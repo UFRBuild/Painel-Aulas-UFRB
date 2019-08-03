@@ -1,0 +1,181 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!-- Light/Day Mode theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundcolor">#fcfcfc</item>
+        <item name="cardbackground">#fff</item>
+        <item name="textcolor">#808080</item>
+        <item name="tintcolor">#000000</item>
+
+        <!--home attrs-->
+        <item name="texttitlecolor">#ffffff</item>
+        <item name="textsubtitlecolor">#ffffff</item>
+        <item name="color_icon_home">#ffffff</item>
+        <item name="color_bg_round">@color/colorPrimaryDark</item>
+        <item name="icons_searchcolor">#ffffff</item>
+        <item name="searchviewcolor">@color/colorPrimaryDark</item>
+        <item name="divider_item_color">#808080</item>
+        <item name="class_number_color">#dadada</item>
+        <item name="button_up_color">#dadada</item>
+        <item name="dialog_close_button_color">#000000</item>
+
+        <!--dialog colors action-->
+        <item name="android:itemBackground">#fff</item>
+        <item name="android:textColor">#303030</item>
+
+        <item name="actionMenuTextColor">#ffffff</item>
+        <item name="android:actionMenuTextColor">#fff</item>
+        <item name="android:textColorSecondary">#dadada</item>
+
+        <item name="android:fontFamily">@font/montserrat</item>
+
+        <item name="searchDialogResultColor">#303030</item>
+
+        <item name="buttoncolor">#2196F3</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <!-- For the resting Spinner style -->
+        <item name="android:spinnerItemStyle">
+            @style/spinnerItemStyle
+        </item>
+
+        <!-- For each individual Spinner list item once clicked on -->
+        <item name="android:spinnerDropDownItemStyle">
+            @style/spinnerDropDownItemStyle
+        </item>
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/material_drawer_background</item>
+        <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text
+        </item>
+        <item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>
+        <item name="material_drawer_divider">@color/material_drawer_divider</item>
+        <item name="material_drawer_selected">@color/colorPrimaryDark</item>
+        <item name="material_drawer_selected_text">@color/colorAccent</item>
+        <item name="material_drawer_header_selection_text">
+            @color/material_drawer_primary_text
+        </item>
+
+
+    </style>
+
+
+    <!-- Night / dark  Mode theme. -->
+    <style name="Darktheme" parent="MaterialDrawerTheme.TranslucentStatus">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#212121</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="backgroundcolor">#303030</item>
+        <item name="cardbackground">#424242</item>
+        <item name="spinnercolor">#424242</item>
+        <item name="textcolor">#9f9f9f</item>
+        <item name="tintcolor">#9f9f9f</item>
+
+        <!--home atts-->
+        <item name="texttitlecolor">#9f9f9f</item>
+        <item name="textsubtitlecolor">#ffffff</item>
+        <item name="color_icon_home">#9f9f9f</item>
+        <item name="buttoncolor">#2196F3</item>
+        <item name="color_bg_round">#424242</item>
+        <item name="icons_searchcolor">#9f9f9f</item>
+        <item name="searchviewcolor">#424242</item>
+        <item name="divider_item_color">#646464</item>
+        <item name="class_number_color">#303030</item>
+        <item name="button_up_color">#212121</item>
+        <item name="searchDialogResultColor">#808080</item>
+        <item name="dialog_close_button_color">#fff</item>
+
+
+        <item name="android:itemBackground">#424242</item>
+        <item name="android:textColor">#9f9f9f</item>
+
+        <item name="actionMenuTextColor">#9f9f9f</item>
+        <item name="android:actionMenuTextColor">#9f9f9f</item>
+
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <!-- For the resting Spinner style -->
+        <item name="android:spinnerItemStyle">
+            @style/spinnerItemStyle
+        </item>
+
+        <!-- For each individual Spinner list item once clicked on -->
+        <item name="android:spinnerDropDownItemStyle">
+            @style/spinnerDropDownItemStyle
+        </item>
+
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/material_drawer_dark_background</item>
+        <item name="material_drawer_primary_text">@color/material_drawer_dark_primary_text</item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_dark_secondary_text
+        </item>
+        <item name="material_drawer_hint_text">@color/material_drawer_dark_hint_text</item>
+        <item name="material_drawer_divider">@color/material_drawer_dark_divider</item>
+        <item name="material_drawer_selected">@color/colorPrimaryDark</item>
+        <item name="material_drawer_selected_text">@color/colorAccent</item>
+        <item name="material_drawer_header_selection_text">
+            @color/material_drawer_dark_primary_text
+        </item>
+
+
+    </style>
+
+
+    <!-- Spinner Custom color -->
+
+    <style name="spinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <!-- <item name="android:padding">10dp</item> -->
+        <item name="android:textColor">?attr/textcolor</item>
+        <item name="android:color">#ffffff</item>
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <!--  <item name="android:padding">20dp</item> -->
+        <item name="android:color">#ffffff</item>
+        <item name="android:textColor">?attr/textcolor</item>
+    </style>
+
+
+    <style name="SearchView">
+        <item name="floatingSearch_backgroundColor"></item>
+        <item name="floatingSearch_viewSearchInputTextColor"></item>
+        <item name="floatingSearch_viewSuggestionItemTextColor"></item>
+        <item name="floatingSearch_hintTextColor"></item>
+        <item name="floatingSearch_dividerColor"></item>
+        <item name="floatingSearch_clearBtnColor"></item>
+        <item name="floatingSearch_leftActionColor"></item>
+        <item name="floatingSearch_menuItemIconColor"></item>
+        <item name="floatingSearch_suggestionRightIconColor"></item>
+        <item name="floatingSearch_actionMenuOverflowColor"></item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+
+    </style>
+
+
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+</resources>

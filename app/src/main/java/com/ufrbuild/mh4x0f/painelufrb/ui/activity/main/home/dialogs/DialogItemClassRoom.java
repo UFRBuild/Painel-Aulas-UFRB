@@ -1,0 +1,70 @@
+/*
+    This file is part of the Painel de Aulas UFRB Open Source Project.
+    Painel de Aulas UFRB is licensed under the Apache 2.0.
+
+    Copyright 2019 UFRBuild - Marcos Bomfim
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ */
+
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs;
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseDialogFragment;
+import java.util.HashMap;
+
+// https://stackoverflow.com/questions/23408756/create-a-general-class-for-custom-dialog-in-java-android/23408864
+
+public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.OnDialogFragmentClickListener> {
+
+
+    private TextView mTextView_matter;
+    private TextView mTextView_prof;
+    private TextView mTextView_duration;
+    private TextView mTextView_status;
+    // interface to handle the dialog click back to the Activity
+    public interface OnDialogFragmentClickListener {
+        public void onOkClicked(DialogItemClassRoom dialog);
+        public void onCancelClicked(DialogItemClassRoom dialog);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_item_class_room, container, false);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mTextView_matter = view.findViewById(R.id.tv_matter);
+        mTextView_matter.setText(getArguments().getString("matter"));
+        return view;
+    }
+
+    // Create an instance of the Dialog with the input
+    public static DialogItemClassRoom newInstance(HashMap<String, String> data) {
+        DialogItemClassRoom frag = new DialogItemClassRoom();
+        Bundle args = new Bundle();
+        for (String key : data.keySet()) {
+            args.putString(key, data.get(key));
+        }
+//        args.putString("title", title);
+//        args.putString("msg", message);
+        frag.setArguments(args);
+        return frag;
+    }
+}

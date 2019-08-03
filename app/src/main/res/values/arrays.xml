@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mobile_manufacturers">
+        <item>Pavilhão de Aulas 1 - PA1</item>
+        <item>Pavilhão de Aulas 2 - PA2</item>
+        <item>Pavilhao de Laboratorios 1 - P</item>
+        <item>Pavilhao II (Quimica)</item>
+        <item>NEAS</item>
+        <item>NEPA</item>
+        <item>LAFA</item>
+        <item>Apicultura</item>
+        <item>OFICINA</item>
+        <item>Pavilhao Sede CCAAB</item>
+        <item>CCS</item>
+        <item>Unidade de Laboratórios "E"</item>
+        <item>Unidade de Laboratórios "F"</item>
+        <item>Unidade de Laboratórios "G"</item>
+        <item>Unidade de Laboratórios "H"</item>
+        <item>Unidade de Laboratórios "I"</item>
+        <item>Unidade de Laboratórios "N"</item>
+        <item>Unidade de Laboratórios "M"</item>
+        <item>Unidade de Laboratórios "L"</item>
+        <item>Unidade de Laboratórios "O"</item>
+        <item>LAS</item>
+        <item>NAF</item>
+        <item>Laboratorios de Solos</item>
+        <item>Campo Experimental Zootecnia</item>
+        <item>Campo Experimental Agronomia</item>
+        <item>CLÍNICA FITOSSANITÁRIA</item>
+        <item>Salas de aulas da Pós-Graduaçã</item>
+        <item>CETEC SEDE</item>
+        <item>Herbário</item>
+        <item>HOSPITAL VETERINÁRIO</item>
+        <item>Unidade de Lab. Eng. Florestal</item>
+        <item>Unidade de Laboratórios "P"</item>
+        <item>INSECTA</item>
+        <item>Sala de Aula 11</item>
+        <item>CETEC PL ENG A</item>
+        <item>Unidade de Lab. Biologia</item>
+        <item>SETOR DE CIÊNCIAS BIOLÓGICAS</item>
+        <item>NBIO </item>
+        <item>CETEC UL S</item>
+        <item>CETEC UL T</item>
+        <item>CETEC UL R</item>
+        <item>CETEC PL ENG B</item>
+        <item>CETEC PL ENG C</item>
+        <item>CETEC PL ENG D</item>
+        <item>CETEC Casa de Tutorias</item>
+        <item>Módulo Habitável Prod. Veget</item>
+        <item>UL P6</item>
+        <item>Cienc</item>
+    </string-array>
+</resources>

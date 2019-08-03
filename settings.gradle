@@ -1,0 +1,3 @@
+include ':app', ':search_dialog', ':floatingsearchview'
+project(':search_dialog').projectDir = new File('modules/search_dialog')
+project(':floatingsearchview').projectDir = new File('modules/floatingsearchview')

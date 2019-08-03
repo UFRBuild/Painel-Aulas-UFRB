@@ -1,0 +1,109 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <!-- Light/Day Mode theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundcolor">#fcfcfc</item>
+        <item name="cardbackground">#ffffff</item>
+        <item name="textcolor">#808080</item>
+        <item name="tintcolor">#000000</item>
+        <item name="buttoncolor">#2196F3</item>
+
+        <item name="searchDialogResultColor">#808080</item>
+
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <!-- For the resting Spinner style -->
+        <item name="android:spinnerItemStyle">
+            @style/spinnerItemStyle
+        </item>
+
+        <!-- For each individual Spinner list item once clicked on -->
+        <item name="android:spinnerDropDownItemStyle">
+            @style/spinnerDropDownItemStyle
+        </item>
+    </style>
+
+
+    <!-- Night / dark  Mode theme. -->
+    <style name="Darktheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundcolor">#303030</item>
+        <item name="cardbackground">#424242</item>
+        <item name="spinnercolor">#424242</item>
+        <item name="textcolor">#9f9f9f</item>
+        <item name="tintcolor">#9f9f9f</item>
+        <item name="textcolor2">#000000</item>
+        <item name="buttoncolor">#2196F3</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <!-- For the resting Spinner style -->
+        <item name="android:spinnerItemStyle">
+            @style/spinnerItemStyle
+        </item>
+
+        <item name="searchDialogResultColor">#808080</item>
+
+        <!-- For each individual Spinner list item once clicked on -->
+        <item name="android:spinnerDropDownItemStyle">
+            @style/spinnerDropDownItemStyle
+        </item>
+    </style>
+
+
+
+    <!-- Spinner Custom color -->
+
+    <style name="spinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <!-- <item name="android:padding">10dp</item> -->
+        <item name="android:textColor">?attr/textcolor</item>
+        <item name="android:color">#ffffff</item>
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <!--  <item name="android:padding">20dp</item> -->
+        <item name="android:color">#ffffff</item>
+        <item name="android:textColor">?attr/textcolor</item>
+    </style>
+
+
+    <style name="SearchView">
+        <item name="floatingSearch_backgroundColor"></item>
+        <item name="floatingSearch_viewSearchInputTextColor"></item>
+        <item name="floatingSearch_viewSuggestionItemTextColor"></item>
+        <item name="floatingSearch_hintTextColor"></item>
+        <item name="floatingSearch_dividerColor"></item>
+        <item name="floatingSearch_clearBtnColor"></item>
+        <item name="floatingSearch_leftActionColor"></item>
+        <item name="floatingSearch_menuItemIconColor"></item>
+        <item name="floatingSearch_suggestionRightIconColor"></item>
+        <item name="floatingSearch_actionMenuOverflowColor"></item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation" >@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+
+    </style>
+
+
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

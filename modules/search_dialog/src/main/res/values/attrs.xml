@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ds">
+        <attr name="backgroundcolor" format="color"></attr>
+        <attr name="cardbackground" format="color"></attr>
+        <attr name="textcolor" format="color"></attr>
+        <attr name="tintcolor" format="color"></attr>
+        <attr name="buttoncolor" format="color"></attr>
+        <attr name="spinnercolor" format="color"></attr>
+        <attr name="searchDialogResultColor" format="color"></attr>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="SearchableSpinner">
+        <attr name="hintText" format="string"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="PersistentSearchView">
+        <attr name="persistentSV_searchTextColor" format="color"/>
+        <attr name="persistentSV_logoDrawable" format="reference"/>
+        <attr name="persistentSV_logoString" format="string"/>
+        <attr name="persistentSV_editTextColor" format="color"/>
+        <attr name="persistentSV_editHintText" format="string"/>
+        <attr name="persistentSV_editHintTextColor" format="color"/>
+        <attr name="persistentSV_searchCardElevation" format="dimension"/>
+        <attr name="persistentSV_displayMode" format="enum">
+            <enum name="menuItem" value="0" />
+            <enum name="toolbar" value="1" />
+        </attr>
+        <attr name="persistentSV_homeButtonColor" format="color"/>
+        <attr name="persistentSV_customToolbarHeight" format="dimension"/>
+        <attr name="persistentSV_homeButtonMode" format="enum">
+            <enum name="arrow" value="0" />
+            <enum name="burger" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

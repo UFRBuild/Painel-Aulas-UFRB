@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_selectArea"
+          android:title="atualizar"
+          android:orderInCategory="3"
+          app:showAsAction="ifRoom"
+          android:icon="@drawable/ic_location_on_black_24dp"/>
+
+</menu>
