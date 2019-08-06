@@ -71,10 +71,11 @@
                                 android:textColor="?attr/textcolor"
                                 android:fontFamily="@font/montserrat"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/txt_duration"
+                                android:layout_height="wrap_content" android:id="@+id/tv_classrom"
                                 android:layout_weight="1"
                                 android:textStyle="bold" android:textSize="14sp"
-                                android:background="@drawable/bg_class_number" android:padding="4dp"/>
+                                android:background="@drawable/bg_class_number" android:padding="4dp"
+                                android:maxLines="1" android:maxLength="12"/>
                     </LinearLayout>
                     <LinearLayout
                             android:orientation="vertical"
@@ -101,7 +102,7 @@
                                     android:layout_weight="1" android:layout_marginStart="4dp" android:textSize="14sp"/>
                         </LinearLayout>
                         <TextView
-                                android:id="@+id/txt_status"
+                                android:id="@+id/tv_start_timer"
                                 android:textColor="?attr/textcolor"
                                 android:fontFamily="@font/montserrat"
                                 android:layout_width="wrap_content"

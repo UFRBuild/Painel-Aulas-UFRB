@@ -39,9 +39,11 @@ import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.details.DetailsActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters.ClassRoomAdapter;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs.DialogItemClassRoom;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
 import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork;
+import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
@@ -50,6 +52,7 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class HomeFragment  extends BaseFragment<HomeViewModel>
@@ -218,9 +221,21 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     @Override
     public void onClassRoomClicked(Discipline discipline) {
-        Intent intent = new Intent(getContext(), DetailsActivity.class);
-        intent.putExtra("discipline", discipline);
-        startActivity(intent);
+//        Intent intent = new Intent(getContext(), DetailsActivity.class);
+//        intent.putExtra("discipline", discipline);
+//        startActivity(intent);
+
+
+        // implementation dialogbox show up single discipline status
+        HashMap data = new  HashMap<String, String>();
+        data.put("matter", discipline.getName());
+        data.put("professor", discipline.getDescription());
+        data.put("duration", CommonUtils.intToTimeString(discipline.getDuration(), 0));
+        data.put("status", String.valueOf(discipline.getStatus()));
+        data.put("class_room", String.valueOf(discipline.getRoom_name()));
+        data.put("start_timer", CommonUtils.intToTimeString(discipline.getStart_time(), -3));
+        DialogItemClassRoom generalDialogFragment = DialogItemClassRoom.newInstance(data);
+        generalDialogFragment.show(MainActivity.getInstance().getSupportFragmentManager(),"dialog");
     }
 
     private void setupFloatingSearch() {

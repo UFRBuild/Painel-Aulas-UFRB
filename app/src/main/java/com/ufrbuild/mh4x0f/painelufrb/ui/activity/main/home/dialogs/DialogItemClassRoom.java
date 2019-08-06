@@ -22,6 +22,7 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,8 @@ public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.
     private TextView mTextView_prof;
     private TextView mTextView_duration;
     private TextView mTextView_status;
+    private TextView mTextView_start_timer;
+    private TextView mTextView_classroom;
     // interface to handle the dialog click back to the Activity
     public interface OnDialogFragmentClickListener {
         public void onOkClicked(DialogItemClassRoom dialog);
@@ -50,8 +53,26 @@ public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_item_class_room, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         mTextView_matter = view.findViewById(R.id.tv_matter);
+        mTextView_prof = view.findViewById(R.id.tv_prof);
+        mTextView_duration = view.findViewById(R.id.tv_duration);
+        mTextView_status = view.findViewById(R.id.tv_status);
+        mTextView_start_timer = view.findViewById(R.id.tv_start_timer);
+        mTextView_classroom = view.findViewById(R.id.tv_classrom);
+
         mTextView_matter.setText(getArguments().getString("matter"));
+        mTextView_prof.setText(getArguments().getString("professor"));
+        mTextView_duration.setText(getArguments().getString("duration"));
+        if (getArguments().getString("status").equalsIgnoreCase("0")){
+            mTextView_status.setText("Em Aguardo");
+        }
+        else{
+            mTextView_status.setText("Confirmado");
+        }
+
+        mTextView_classroom.setText(getArguments().getString("class_room"));
+        mTextView_start_timer.setText(getArguments().getString("start_timer"));
         return view;
     }
 
