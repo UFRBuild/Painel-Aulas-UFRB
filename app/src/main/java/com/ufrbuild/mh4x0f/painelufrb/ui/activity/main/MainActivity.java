@@ -22,7 +22,6 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
@@ -50,10 +49,6 @@ public class MainActivity extends BaseActivity {
     private HomeFragment mHomeFragment;
     @BindView(R.id.subtitle_home)
     TextView mSubTitleHome;
-
-
-    @BindView(R.id.mtoolbar)
-    Toolbar mToolbar;
 
     @BindView(R.id.floating_search_view)
     FloatingSearchView mSearchView;
@@ -92,8 +87,6 @@ public class MainActivity extends BaseActivity {
         sInstance = this;
         ButterKnife.bind(this);
 
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -115,7 +108,6 @@ public class MainActivity extends BaseActivity {
 //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
                 .withActivity(this)
-                .withToolbar(mToolbar)
                 .withAccountHeader(headerResult)
                 .addDrawerItems(
                         item1,

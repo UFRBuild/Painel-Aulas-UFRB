@@ -19,85 +19,90 @@
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <include
-                    android:id="@+id/mtoolbar"
-                    layout="@layout/main_toolbar"
+            <android.support.v7.widget.Toolbar android:layout_width="match_parent"
+
+                                               android:layout_gravity="top"
+                                               app:layout_collapseMode="pin" android:layout_height="70dp">
+
+                <com.arlib.floatingsearchview.FloatingSearchView
+                        android:id="@+id/floating_search_view"
+                        android:layout_width="match_parent"
+                        app:floatingSearch_searchHint="Painel de Aulas - UFRB"
+                        app:floatingSearch_suggestionsListAnimDuration="250"
+                        app:floatingSearch_leftActionMode="showHamburger"
+                        app:floatingSearch_viewTextColor="?attr/textcolor"
+                        app:floatingSearch_menu="@menu/bottom_navigation"
+                        app:floatingSearch_showSearchKey="true"
+                        android:layout_height="match_parent"
+                        app:floatingSearch_backgroundColor="?attr/searchviewcolor"
+                        app:floatingSearch_dimBackground="false"
+                        app:floatingSearch_actionMenuOverflowColor="?attr/icons_searchcolor"
+                        app:floatingSearch_menuItemIconColor="?attr/icons_searchcolor"
+                        app:floatingSearch_clearBtnColor="?attr/icons_searchcolor"
+                        app:floatingSearch_hintTextColor="?attr/icons_searchcolor"
+                        app:floatingSearch_leftActionColor="?attr/icons_searchcolor"
+                        app:floatingSearch_viewSearchInputTextColor="?attr/icons_searchcolor"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:animateLayoutChanges="true"
+                        android:animationCache="true"
+                        app:floatingSearch_close_search_on_keyboard_dismiss="false"
+                        app:floatingSearch_dismissOnOutsideTouch="false"/>
+
+
+            </android.support.v7.widget.Toolbar>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:inputType="textNoSuggestions"
+                    android:background="?attr/colorPrimary"
+                    app:layout_collapseMode="parallax"
                     android:layout_width="match_parent"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    android:layout_height="64dp"
-                    app:layout_collapseMode="pin"></include>
+                    android:layout_height="match_parent" android:layout_marginTop="136dp">
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="8dp">
+
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            app:layout_collapseMode="parallax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/bg_round" android:id="@+id/ll_subtitle_home"
+                            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_collapseMode="parallax"
+                                app:srcCompat="@drawable/ic_person_pin_circle_black_24dp"
+                                android:id="@+id/imageView" android:layout_weight="1" android:layout_gravity="center"
+                                android:paddingLeft="4dp" tools:ignore="VectorDrawableCompat"
+                                android:layout_marginLeft="4dp"
+                                android:paddingBottom="4dp" android:paddingTop="4dp"/>
+                        <TextView
+                                android:text="Pavilhão de Aulas 1 - PA1"
+                                android:layout_width="wrap_content"
+                                app:layout_collapseMode="parallax"
+                                android:textColor="?attr/texttitlecolor"
+                                android:fontFamily="@font/montserrat"
+                                android:layout_height="30dp" android:id="@+id/subtitle_home" android:layout_weight="1"
+                                android:gravity="left|center" android:paddingLeft="8dp"
+                                android:paddingRight="8dp" android:layout_marginEnd="4dp" android:paddingBottom="4dp"
+                                android:paddingTop="4dp"/>
+                    </LinearLayout>
+
+                </android.support.constraint.ConstraintLayout>
+
+
+            </LinearLayout>
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
-            android:orientation="vertical"
-            android:inputType="textNoSuggestions"
-            android:background="?attr/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp" android:layout_marginTop="8dp">
-
-
-            <com.arlib.floatingsearchview.FloatingSearchView
-                    android:id="@+id/floating_search_view"
-                    android:layout_width="match_parent"
-                    app:floatingSearch_searchHint="Painel de Aulas - UFRB"
-                    app:floatingSearch_suggestionsListAnimDuration="250"
-                    app:floatingSearch_leftActionMode="showHamburger"
-                    app:floatingSearch_viewTextColor="?attr/textcolor"
-                    app:floatingSearch_menu="@menu/bottom_navigation"
-                    app:floatingSearch_showSearchKey="true"
-                    android:layout_height="match_parent"
-                    app:floatingSearch_backgroundColor="?attr/searchviewcolor"
-                    app:floatingSearch_dimBackground="false"
-                    app:floatingSearch_actionMenuOverflowColor="?attr/icons_searchcolor"
-                    app:floatingSearch_menuItemIconColor="?attr/icons_searchcolor"
-                    app:floatingSearch_clearBtnColor="?attr/icons_searchcolor"
-                    app:floatingSearch_hintTextColor="?attr/icons_searchcolor"
-                    app:floatingSearch_leftActionColor="?attr/icons_searchcolor"
-                    app:floatingSearch_viewSearchInputTextColor="?attr/icons_searchcolor"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:animateLayoutChanges="true"
-                    android:animationCache="true"
-                    app:floatingSearch_close_search_on_keyboard_dismiss="false"
-                    app:floatingSearch_dismissOnOutsideTouch="false"/>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:background="@drawable/bg_round" android:id="@+id/ll_subtitle_home"
-                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_person_pin_circle_black_24dp"
-                        android:id="@+id/imageView" android:layout_weight="1" android:layout_gravity="center"
-                        android:paddingLeft="4dp" tools:ignore="VectorDrawableCompat" android:layout_marginLeft="4dp"
-                        android:paddingBottom="4dp" android:paddingTop="4dp"/>
-                <TextView
-                        android:text="Pavilhão de Aulas 1 - PA1"
-                        android:layout_width="wrap_content"
-                        android:textColor="?attr/texttitlecolor"
-                        android:fontFamily="@font/montserrat"
-                        android:layout_height="30dp" android:id="@+id/subtitle_home" android:layout_weight="1"
-                        android:gravity="left|center" android:paddingLeft="8dp"
-                        android:paddingRight="8dp" android:layout_marginEnd="4dp" android:paddingBottom="4dp"
-                        android:paddingTop="4dp"/>
-            </LinearLayout>
-
-        </android.support.constraint.ConstraintLayout>
-
-
-
-    </LinearLayout>
 
 
     <FrameLayout
@@ -105,9 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/bg_header_invert">
+            android:background="@color/colorPrimary">
     </FrameLayout>
 
 
