@@ -95,7 +95,7 @@
                             android:fontFamily="@font/montserrat"
                             android:layout_width="wrap_content"
                             android:layout_height="42dp"
-                            tools:text="GCET000 - Calculo Integral e Difrencial I " android:layout_marginStart="8dp"
+                            tools:text="GCET000 - Calculo Integral e Difrencial I "
                             android:textStyle="bold" android:layout_marginTop="4dp" android:maxLength="130"
                             android:layout_marginEnd="16dp"/>
                     <TextView
@@ -105,7 +105,6 @@
                             android:maxLength="32"
                             android:textColor="?attr/textcolor"
                             android:fontFamily="@font/montserrat"
-                            android:layout_marginStart="8dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_below="@+id/title"
@@ -129,7 +128,7 @@
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:gravity="center" android:layout_weight="1"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginStart="8dp">
                             <ImageView
                                     android:layout_width="16dp"
                                     android:layout_height="match_parent"
@@ -149,7 +148,7 @@
                                 android:fontFamily="@font/montserrat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/txt_duration"
-                                android:layout_weight="1" android:layout_marginStart="16dp" android:paddingStart="4dp"
+                                android:layout_weight="1" android:layout_marginStart="8dp" android:paddingStart="4dp"
                                 android:textStyle="bold" android:textSize="13dp"/>
                     </LinearLayout>
                     <LinearLayout
