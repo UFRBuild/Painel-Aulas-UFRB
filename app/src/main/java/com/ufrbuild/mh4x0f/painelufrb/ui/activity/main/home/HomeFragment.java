@@ -304,10 +304,23 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         mSearchView.setOnHomeActionClickListener(new FloatingSearchView.OnHomeActionClickListener() {
             @Override
             public void onHomeClicked() {
-
                 Log.d(TAG, "onHomeClicked()");
             }
         });
+
+        mSearchView.setOnLeftMenuClickListener(
+                new FloatingSearchView.OnLeftMenuClickListener() {
+                    @Override
+                    public void onMenuOpened() {
+                        // open menu
+                        MainActivity.getInstance().getmMenuSideBar().openDrawer();
+                    }
+
+                    @Override
+                    public void onMenuClosed() {
+
+                    }
+                } );
 
 
         mSearchView.setOnClearSearchActionListener(new FloatingSearchView.OnClearSearchActionListener() {

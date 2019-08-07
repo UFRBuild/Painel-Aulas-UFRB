@@ -50,6 +50,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.subtitle_home)
     TextView mSubTitleHome;
 
+    private Drawer mMenuSideBar;
+
+
     @BindView(R.id.floating_search_view)
     FloatingSearchView mSearchView;
 
@@ -62,7 +65,9 @@ public class MainActivity extends BaseActivity {
         return mSubTitleHome;
     }
 
-
+    public Drawer getmMenuSideBar() {
+        return mMenuSideBar;
+    }
 
     // Getter to access Singleton instance
     public static MainActivity getInstance() {
@@ -106,7 +111,7 @@ public class MainActivity extends BaseActivity {
 
 
 //create the drawer and remember the `Drawer` result object
-        Drawer result = new DrawerBuilder()
+        mMenuSideBar = new DrawerBuilder()
                 .withActivity(this)
                 .withAccountHeader(headerResult)
                 .addDrawerItems(
