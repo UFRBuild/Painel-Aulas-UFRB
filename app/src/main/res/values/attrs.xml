@@ -3,6 +3,7 @@
     <declare-styleable name="ds">
         <attr name="backgroundcolor" format="color"></attr>
         <attr name="cardbackground" format="color"></attr>
+        <attr name="background_fragment" format="color"></attr>
         <attr name="textcolor" format="color"></attr>
         <attr name="tintcolor" format="color"></attr>
         <attr name="buttoncolor" format="color"></attr>
@@ -15,8 +16,10 @@
         <attr name="searchviewcolor" format="color"></attr>
         <attr name="divider_item_color" format="color"></attr>
         <attr name="class_number_color" format="color"></attr>
+        <attr name="class_text_color" format="color"></attr>
         <attr name="button_up_color" format="color"></attr>
         <attr name="dialog_close_button_color" format="color"></attr>
+        <attr name="item_disciplineTitle" format="color"></attr>
 
 
     </declare-styleable>

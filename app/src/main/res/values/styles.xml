@@ -9,10 +9,13 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#fcfcfc</item>
         <item name="cardbackground">#fff</item>
+        <item name="background_fragment">@color/colorPrimary</item>
         <item name="textcolor">#808080</item>
         <item name="tintcolor">#000000</item>
 
         <!--home attrs-->
+        <item name="item_disciplineTitle">@color/colorPrimary</item>
+
         <item name="texttitlecolor">#ffffff</item>
         <item name="textsubtitlecolor">#ffffff</item>
         <item name="color_icon_home">#ffffff</item>
@@ -20,7 +23,8 @@
         <item name="icons_searchcolor">#ffffff</item>
         <item name="searchviewcolor">@color/colorPrimaryDark</item>
         <item name="divider_item_color">#808080</item>
-        <item name="class_number_color">#dadada</item>
+        <item name="class_number_color">@color/colorPrimary</item>
+        <item name="class_text_color">#fff</item>
         <item name="button_up_color">#dadada</item>
         <item name="dialog_close_button_color">#000000</item>
 
@@ -72,6 +76,7 @@
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="background_fragment">#212121</item>
         <item name="backgroundcolor">#303030</item>
         <item name="cardbackground">#424242</item>
         <item name="spinnercolor">#424242</item>
@@ -79,6 +84,7 @@
         <item name="tintcolor">#9f9f9f</item>
 
         <!--home atts-->
+        <item name="item_disciplineTitle">#9f9f9f</item>
         <item name="texttitlecolor">#9f9f9f</item>
         <item name="textsubtitlecolor">#ffffff</item>
         <item name="color_icon_home">#9f9f9f</item>
@@ -88,6 +94,7 @@
         <item name="searchviewcolor">#424242</item>
         <item name="divider_item_color">#646464</item>
         <item name="class_number_color">#303030</item>
+        <item name="class_text_color">#9f9f9f</item>
         <item name="button_up_color">#212121</item>
         <item name="searchDialogResultColor">#808080</item>
         <item name="dialog_close_button_color">#fff</item>
