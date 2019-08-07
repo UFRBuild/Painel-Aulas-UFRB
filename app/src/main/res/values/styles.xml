@@ -21,6 +21,7 @@
         <item name="color_icon_home">#ffffff</item>
         <item name="color_bg_round">@color/colorPrimaryDark</item>
         <item name="icons_searchcolor">#ffffff</item>
+        <item name="icon_floatbuttoncolor">#ffffff</item>
         <item name="searchviewcolor">@color/colorPrimaryDark</item>
         <item name="divider_item_color">#808080</item>
         <item name="class_number_color">@color/colorPrimary</item>
@@ -91,6 +92,7 @@
         <item name="buttoncolor">#2196F3</item>
         <item name="color_bg_round">#424242</item>
         <item name="icons_searchcolor">#9f9f9f</item>
+        <item name="icon_floatbuttoncolor">#424242</item>
         <item name="searchviewcolor">#424242</item>
         <item name="divider_item_color">#646464</item>
         <item name="class_number_color">#303030</item>

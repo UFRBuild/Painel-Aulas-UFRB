@@ -13,6 +13,7 @@
         <attr name="color_icon_home" format="color"></attr>
         <attr name="color_bg_round" format="color"></attr>
         <attr name="icons_searchcolor" format="color"></attr>
+        <attr name="icon_floatbuttoncolor" format="color"></attr>
         <attr name="searchviewcolor" format="color"></attr>
         <attr name="divider_item_color" format="color"></attr>
         <attr name="class_number_color" format="color"></attr>
