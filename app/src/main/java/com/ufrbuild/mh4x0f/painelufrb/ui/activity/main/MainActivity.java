@@ -245,12 +245,6 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-//    @Override
-//    public HomeViewModel getViewModel() {
-//        return viewModel;
-//    }
-
     @Override
     protected void setUp() {
         Log.i(TAG, "setUp: ");
@@ -260,5 +254,14 @@ public class MainActivity extends BaseActivity {
         Intent i = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mMenuSideBar.isDrawerOpen()){
+            mMenuSideBar.closeDrawer();
+            return;
+        }
+        super.onBackPressed();
     }
 }
