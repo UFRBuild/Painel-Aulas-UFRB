@@ -73,6 +73,8 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     @BindView(R.id.empty_view)
     TextView emptyView;
 
+    DataManager mDataManager;
+
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefresh;
 
@@ -101,6 +103,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mDataManager = DataManager.getInstance();
 
         setUnBinder(ButterKnife.bind(this, mView));
 
@@ -179,6 +182,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                     public void onSelected(BaseSearchDialogCompat dialog,
                                            LocateModel item, int position) {
                         dialog.dismiss();
+                        mDataManager.getPrefs().put("local_campus", item);
                         MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
                     }
                 }).show();

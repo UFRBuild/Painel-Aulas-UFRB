@@ -37,6 +37,7 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -97,6 +98,12 @@ public class MainActivity extends BaseActivity {
         sInstance = this;
         ButterKnife.bind(this);
 
+        // load local localization
+        LocateModel locate = mDataManager.getPrefs().getObject("local_campus", LocateModel.class);
+        if (locate != null){
+            mSubTitleHome.setText(locate.getTitle());
+        }
+
         setupMaterialDrawer(savedInstanceState);
 
         // support change color statusbar for API < 21
@@ -130,6 +137,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void setupMaterialDrawer( Bundle state){
+        // mount material drawer menu
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withCompactStyle(true)
