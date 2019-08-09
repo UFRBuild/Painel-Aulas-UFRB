@@ -154,12 +154,12 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
     protected void showSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
                 message,
-                Snackbar.LENGTH_SHORT);
+                Snackbar.LENGTH_LONG);
 
         View view = snackbar.getView();
 
         TextView snackTV = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
-        snackTV.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        snackTV.setTextColor(ContextCompat.getColor(this, R.color.md_white_1000));
 
         snackbar.show();
     }
