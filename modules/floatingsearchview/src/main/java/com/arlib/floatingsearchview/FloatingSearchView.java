@@ -995,8 +995,9 @@ public class FloatingSearchView extends FrameLayout {
      * drawers when they open as a result of dragging.
      */
     public void openMenu(boolean withAnim) {
-        mMenuOpen = true;
-        openMenuDrawable(mMenuBtnDrawable, withAnim);
+        // showHambuger fixed without effect onclick
+        //mMenuOpen = true;
+        //openMenuDrawable(mMenuBtnDrawable, withAnim);
         if (mOnMenuClickListener != null) {
             mOnMenuClickListener.onMenuOpened();
         }
