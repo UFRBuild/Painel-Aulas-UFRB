@@ -43,6 +43,7 @@ public class HomeViewModel extends BaseViewModel {
     private TimeServer mTimerServer;
     private DisciplineService disciplineService;
     private TimeServerService timeService;
+    private String TAG = "HomeViewModel";
 
     HomeViewModel(DisciplineService disciplineService, TimeServerService timeService) {
         this.disciplineService = disciplineService;

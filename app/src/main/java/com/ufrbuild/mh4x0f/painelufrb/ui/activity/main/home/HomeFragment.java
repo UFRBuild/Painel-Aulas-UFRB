@@ -61,7 +61,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         implements ClassRoomAdapter.OnClassRoomAdapter{
 
 
-    private String TAG = "result";
+    private String TAG = "HomeFragment";
     ClassRoomAdapter ClassRoomAdapter;
 
     @BindView(R.id.recycler_view)

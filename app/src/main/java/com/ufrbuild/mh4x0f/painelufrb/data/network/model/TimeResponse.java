@@ -27,9 +27,9 @@ import java.util.List;
 public class TimeResponse {
     @Expose
     @SerializedName("result")
-    private List<TimeServer> movies;
+    private List<TimeServer> mTimer;
 
-    public List<TimeServer> getMovies() {
-        return movies;
+    public List<TimeServer> getMtimer() {
+        return mTimer;
     }
 }

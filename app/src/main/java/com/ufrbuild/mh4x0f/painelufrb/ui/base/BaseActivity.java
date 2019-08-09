@@ -45,9 +45,6 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
 
     NetworkUtils networkUtils;
 
-    // TODO
-    // this can probably depend on isLoading variable of BaseViewModel,
-    // since its going to be common for all the activities
     private ProgressDialog progressDialog;
     private Unbinder unBinder;
 
