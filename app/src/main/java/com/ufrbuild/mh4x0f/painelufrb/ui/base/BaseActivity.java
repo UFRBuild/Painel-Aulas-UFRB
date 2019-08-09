@@ -157,6 +157,7 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
                 Snackbar.LENGTH_LONG);
 
         View view = snackbar.getView();
+        view.setBackgroundColor(getResources().getColor(R.color.accent));
 
         TextView snackTV = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
         snackTV.setTextColor(ContextCompat.getColor(this, R.color.md_white_1000));
