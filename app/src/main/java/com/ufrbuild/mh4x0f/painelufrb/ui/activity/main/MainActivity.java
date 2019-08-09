@@ -20,15 +20,20 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
+import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
@@ -45,7 +50,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends BaseActivity {
 
 
-    private static final String TAG = "result";
+    private static final String TAG = "MainActivity";
     private HomeFragment mHomeFragment;
     @BindView(R.id.subtitle_home)
     TextView mSubTitleHome;
@@ -92,46 +97,7 @@ public class MainActivity extends BaseActivity {
         sInstance = this;
         ButterKnife.bind(this);
 
-
-        AccountHeader headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-                .withCompactStyle(true)
-                .addProfiles(
-                        new ProfileDrawerItem().withName("Painel de Aulas - UFRB").withEmail("UFRBuild").withIcon(getResources().getDrawable(R.mipmap.ic_launcher_round))
-                )
-                .withSavedInstance(savedInstanceState)
-                .build();
-
-
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Painel").withIcon(GoogleMaterial.Icon.gmd_perm_media);
-        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName("Favoritos").withIcon(GoogleMaterial.Icon.gmd_favorite_border);
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(3).withName("Configurações").withIcon(GoogleMaterial.Icon.gmd_settings_applications);
-        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName("Criar novo marcador").withIcon(GoogleMaterial.Icon.gmd_note_add);
-
-
-
-//create the drawer and remember the `Drawer` result object
-        mMenuSideBar = new DrawerBuilder()
-                .withActivity(this)
-                .withAccountHeader(headerResult)
-                .addDrawerItems(
-                        item1,
-                        item_favorities,
-                        new SectionDrawerItem().withName(R.string.drawer_item_section_header),
-                        item_add_markers,
-                        new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withIdentifier(5).withName("Doar").withIcon(GoogleMaterial.Icon.gmd_favorite),
-                        item2,
-                        new SecondaryDrawerItem().withIdentifier(5).withName("Ajuda e Feedback").withIcon(GoogleMaterial.Icon.gmd_feedback)
-                        )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        // do something with the clicked item :D
-                        return true;
-                    }
-                })
-                .build();
+        setupMaterialDrawer(savedInstanceState);
 
         // support change color statusbar for API < 21
         Window window = getWindow();
@@ -162,6 +128,75 @@ public class MainActivity extends BaseActivity {
         }
 
     }
+
+    public void setupMaterialDrawer( Bundle state){
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withCompactStyle(true)
+                .addProfiles(
+                        new ProfileDrawerItem().
+                                withName("Painel de Aulas - UFRB")
+                                .withEmail("UFRBuild").withIcon(getResources().
+                                getDrawable(R.mipmap.ic_launcher_round)).
+                                withTypeface(getDefaultFont())
+                )
+                .withSavedInstance(state)
+                .build();
+
+        PrimaryDrawerItem item_fragment_painel = new PrimaryDrawerItem().withIdentifier(1).withName("Painel").withIcon(GoogleMaterial.Icon.gmd_perm_media);
+        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName("Favoritos").withIcon(GoogleMaterial.Icon.gmd_favorite_border);
+        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withIdentifier(3).withName("Configurações").withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
+        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().withIdentifier(3).withName("Sobre").withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
+        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName("Criar novo marcador").withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
+
+        //create the drawer and remember the `Drawer` result object
+        mMenuSideBar = new DrawerBuilder()
+                .withActivity(this)
+                .withAccountHeader(headerResult)
+                .addDrawerItems(
+                        item_fragment_painel.withTypeface(getDefaultFont()),
+                        item_favorities.withTypeface(getDefaultFont()),
+                        new SectionDrawerItem().withName(R.string.drawer_item_section_header).withTypeface(getDefaultFont()),
+                        item_add_markers.withTypeface(getDefaultFont()),
+                        new DividerDrawerItem(),
+                        new SwitchDrawerItem().withName("Tema Escuro").
+                                withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean("DarkModeTheme")).
+                                withOnCheckedChangeListener(onCheckedChangeListener).withSelectable(false)
+                                .withTypeface(getDefaultFont()),
+                        new SecondaryDrawerItem().
+                                withIdentifier(5).withName("Doar")
+                                .withIcon(GoogleMaterial.Icon.gmd_favorite)
+                                .withSelectable(false)
+                                .withTypeface(getDefaultFont()),
+                        item_ac_settings.withTypeface(getDefaultFont()),
+                        new SecondaryDrawerItem().withIdentifier(5).withName("Ajuda e Feedback")
+                                .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
+                                .withTypeface(getDefaultFont()),
+                        item_ac_about.withTypeface(getDefaultFont())
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        // do something with the clicked item :D
+                        return true;
+                    }
+                })
+                .build();
+    }
+
+    public Typeface getDefaultFont(){
+        return ResourcesCompat.getFont(this, R.font.montserrat);
+    }
+
+    private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
+            if (drawerItem instanceof Nameable) {
+                mDataManager.getPrefs().putBoolean("DarkModeTheme", isChecked);
+                restartApp();
+            }
+        }
+    };
 
     @Override
     public BaseViewModel getViewModel() {
