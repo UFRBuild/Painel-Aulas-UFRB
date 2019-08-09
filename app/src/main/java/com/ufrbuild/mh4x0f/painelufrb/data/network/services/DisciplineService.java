@@ -53,7 +53,7 @@ public class DisciplineService {
     }
 
     public interface DisciplineApi {
-        @POST("getAulas") Call<RoomResponse> getAllMovie(@Body HashMap<String, String> parameters);
+        @POST("getAulas") Call<RoomResponse> getAllDiscipline(@Body HashMap<String, String> parameters);
     }
 
 }

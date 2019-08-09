@@ -167,7 +167,7 @@ public class MainActivity extends BaseActivity {
                         new SectionDrawerItem().withName(R.string.drawer_item_section_header).withTypeface(getDefaultFont()),
                         item_add_markers.withTypeface(getDefaultFont()),
                         new DividerDrawerItem(),
-                        new SwitchDrawerItem().withName("Tema Escuro").
+                        new SwitchDrawerItem().withName("Modo escuro").
                                 withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean("DarkModeTheme")).
                                 withOnCheckedChangeListener(onCheckedChangeListener).withSelectable(false)
                                 .withTypeface(getDefaultFont()),

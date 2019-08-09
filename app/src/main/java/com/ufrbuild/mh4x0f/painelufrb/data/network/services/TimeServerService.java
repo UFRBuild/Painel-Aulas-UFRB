@@ -48,7 +48,7 @@ public class TimeServerService {
         mTimerApi = mRetrofit.create(TimerApi.class);
     }
 
-    public TimeServerService.TimerApi getMovieApi() {
+    public TimeServerService.TimerApi getTimerServerApi() {
         return mTimerApi;
     }
 

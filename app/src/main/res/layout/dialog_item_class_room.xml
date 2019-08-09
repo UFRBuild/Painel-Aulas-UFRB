@@ -33,86 +33,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:gravity="center">
 
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:layout_editor_absoluteX="27dp"
-                        tools:ignore="MissingConstraints"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        tools:layout_editor_absoluteY="49dp" android:id="@+id/linearLayout" android:padding="4dp"
-                        android:layout_margin="8dp">
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:layout_weight="1"
-                    >
-                        <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:layout_weight="1"
-                        >
-                            <ImageView
-                                    android:layout_width="16dp"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/ic_timer_black_24dp"
-                                    tools:ignore="VectorDrawableCompat" android:adjustViewBounds="true"/>
-                            <TextView
-                                    android:text="Sala"
-                                    android:textColor="?attr/textcolor"
-                                    android:fontFamily="@font/montserrat"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" android:layout_marginStart="4dp" android:textSize="14sp"/>
-                        </LinearLayout>
-                        <TextView
-                                android:text="PA2 - 106"
-                                android:textColor="?attr/textcolor"
-                                android:fontFamily="@font/montserrat"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/tv_classrom"
-                                android:layout_weight="1"
-                                android:textStyle="bold" android:textSize="14sp"
-                                android:background="@drawable/bg_class_number" android:padding="4dp"
-                                android:maxLines="1" android:maxLength="12"/>
-                    </LinearLayout>
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:layout_weight="1"
-                            android:gravity="right">
-                        <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:gravity="center"
-                                android:layout_marginStart="-2dp">
-                            <ImageView
-                                    android:layout_width="16dp"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/ic_hourglass_empty_black_24dp"
-                                    android:id="@+id/imageView2" tools:ignore="VectorDrawableCompat"
-                            />
-                            <TextView
-                                    android:text="Início"
-                                    android:textColor="?attr/textcolor"
-                                    android:fontFamily="@font/montserrat"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" android:id="@+id/textView2"
-                                    android:layout_weight="1" android:layout_marginStart="4dp" android:textSize="14sp"/>
-                        </LinearLayout>
-                        <TextView
-                                android:id="@+id/tv_start_timer"
-                                android:textColor="?attr/textcolor"
-                                android:fontFamily="@font/montserrat"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="10h:00" android:textStyle="bold"
-                                android:background="@drawable/bg_class_number" android:textSize="14sp"
-                                android:padding="4dp"/>
-                    </LinearLayout>
-                </LinearLayout>
-
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -131,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_close_black_24dp"
-                        android:id="@+id/imageView3"
+                        android:id="@+id/img_closeDialog"
                         android:layout_alignParentRight="true"
                         tools:ignore="VectorDrawableCompat" android:layout_marginEnd="4dp"/>
             </LinearLayout>
@@ -145,7 +65,7 @@
                     tools:ignore="MissingConstraints">
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp" android:id="@+id/view"
+                        android:layout_height="0.6dp" android:id="@+id/view"
                         android:background="@drawable/bg_class_number"/>
                 <LinearLayout
                         android:orientation="horizontal"
@@ -165,7 +85,7 @@
                             app:srcCompat="@drawable/ic_supervisor_account_black_24dp"
                             android:id="@+id/imageView5" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
                     <TextView
-                            android:text="Professor Aritanaelton Alexander"
+                            android:text="Aritanaelton Alexander"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" android:id="@+id/tv_prof"
                             android:layout_weight="2"
@@ -199,12 +119,48 @@
                     <ImageView
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_timer_black_24dp"
+                            app:srcCompat="@drawable/ic_hourglass_empty_black_24dp"
                             android:id="@+id/imageView7" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
                     <TextView
                             android:text="2h:00"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" android:id="@+id/tv_duration"
+                            android:layout_weight="2"
+                            android:paddingLeft="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                >
+                    <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_timer_black_24dp"
+                            android:id="@+id/imageView8" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
+                    <TextView
+                            android:text="7h:00"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/tv_start_timer"
+                            android:layout_weight="2"
+                            android:paddingLeft="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                >
+                    <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_forum_black_24dp"
+                            android:id="@+id/imageView9" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
+                    <TextView
+                            android:text="114 "
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/tv_classrom"
                             android:layout_weight="2"
                             android:paddingLeft="4dp"/>
                 </LinearLayout>
@@ -220,10 +176,6 @@
                     android:layout_margin="8dp" tools:ignore="MissingConstraints" android:id="@+id/linearLayout7"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-                <Button
-                        android:text="Atualizar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button3"/>
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

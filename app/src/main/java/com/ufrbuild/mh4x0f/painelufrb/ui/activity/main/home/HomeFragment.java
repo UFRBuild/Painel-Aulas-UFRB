@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,6 +73,9 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     @BindView(R.id.empty_view)
     TextView emptyView;
+
+    @BindView(R.id.floatingButtonAction)
+    FloatingActionButton mFloatingButton;
 
     DataManager mDataManager;
 
@@ -141,6 +145,13 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
             }
         });
 
+        mFloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.getDisciplineData();
+            }
+        });
+
         ReactiveNetwork.observeInternetConnectivity()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -154,12 +165,12 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
         setupFloatingSearch();
         setupDrawer();
-        viewModel.loadMovieLocal();
+        viewModel.getDisciplineData();
     }
 
     private void refresh() {
         Log.i(TAG, "refresh: ");
-        viewModel.loadMovieLocal();
+        viewModel.getDisciplineData();
     }
 
 

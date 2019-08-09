@@ -22,11 +22,14 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.RoomResponse;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +63,7 @@ public class HomeViewModel extends BaseViewModel {
         return isLoading;
     }
 
-    public void loadMoviesNetwork() {
+    public void startRequestAPI() {
         setIsLoading(true);
 
         // test paraments
@@ -72,69 +75,64 @@ public class HomeViewModel extends BaseViewModel {
 //        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
 //        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
 
-
-        Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllMovie(parameters);
+        Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllDiscipline(parameters);
         DisciplineCall.enqueue(new DisciplineCallback());
     }
-    public void loadMovieLocal() {
+    public void getDisciplineData() {
         setIsLoading(true);
-//        Call<TimeServer> movieCall2 = timeService.getMovieApi().getResult();
-//        movieCall2.enqueue(new TimerCallback());
-
-
-        timeService.getMovieApi().getResult().enqueue(new Callback<TimeServer>() {
+        timeService.getTimerServerApi().getResult().enqueue(new Callback<TimeServer>() {
             @Override
             public void onResponse(Call<TimeServer> call,
                                    Response<TimeServer> response) {
                 TimeServer sensorData = response.body();
                 sensorData.Config();
                 mTimerServer = sensorData;
-                Log.d("result", "getStart_time_max: " + sensorData.getStart_time_max());
-                Log.d("result", "getStart_time_min: " + sensorData.getStart_time_min());
+                Log.d(TAG, "getStart_time_max: " + sensorData.getStart_time_max());
+                Log.d(TAG, "getStart_time_min: " + sensorData.getStart_time_min());
                 setIsLoading(false);
-                loadMoviesNetwork();
+                startRequestAPI();
             }
 
             @Override
             public void onFailure(Call<TimeServer> call, Throwable t) {
 
-                Log.d("result", "onFailure: " + t.toString());
+                Log.d(TAG, "onFailure: " + t.toString());
                 setIsLoading(false);
-
+                showSnackbarMessage(R.string.msg_snack_no_intenet);
             }
         });
     }
-    public void showEmptyList() { setMovies(Collections.<Discipline>emptyList()); }
+    public void showEmptyList() { setDisciplines(Collections.<Discipline>emptyList()); }
 
     private void setIsLoading(boolean loading) {
         isLoading.postValue(loading);
     }
-    private void setMovies(List<Discipline> disciplines) {
+    private void setDisciplines(List<Discipline> disciplines) {
         setIsLoading(false);
         mDisciplineList.postValue(disciplines);
     }
 
 
-    private class TimerCallback implements Callback<TimeServer> {
-
-        @Override
-        public void onResponse(@NonNull Call<TimeServer> call, @NonNull Response<TimeServer> response) {
-            TimeServer mTimerResponse = response.body();
-            Log.i("result", "onResponse: " + mTimerResponse.getResult());
-//            if (movieResponse != null) {
-//                setMovies(movieResponse.getDisciplines());
-//            } else {
-//                setMovies(Collections.<Discipline>emptyList());
-//            }
-        }
-
-        @Override
-        public void onFailure(Call<TimeServer> call, Throwable t) {
-            //setMovies(Collections.<Discipline>emptyList());
-            Log.i("result", "onFailure: " +t.toString());
-
-        }
-    }
+//    private class TimerCallback implements Callback<TimeServer> {
+//
+//        @Override
+//        public void onResponse(@NonNull Call<TimeServer> call, @NonNull Response<TimeServer> response) {
+//            TimeServer mTimerResponse = response.body();
+//            Log.i(TAG, "onResponse: " + mTimerResponse.getResult());
+////            if (movieResponse != null) {
+////                setMovies(movieResponse.getDisciplines());
+////            } else {
+////                setMovies(Collections.<Discipline>emptyList());
+////            }
+//        }
+//
+//        @Override
+//        public void onFailure(Call<TimeServer> call, Throwable t) {
+//            //setMovies(Collections.<Discipline>emptyList());
+//            Log.i(TAG, "onFailure: " +t.toString());
+//
+//        }
+//    }
 
 
     /**
@@ -145,18 +143,18 @@ public class HomeViewModel extends BaseViewModel {
         @Override
         public void onResponse(@NonNull Call<RoomResponse> call, @NonNull Response<RoomResponse> response) {
             RoomResponse roomResponse = response.body();
-            Log.i("result", "onResponse: " + response.toString());
+            Log.i(TAG, "onResponse: " + response.toString());
             if (roomResponse != null) {
-                setMovies(roomResponse.getDisciplines());
+                setDisciplines(roomResponse.getDisciplines());
             } else {
-                setMovies(Collections.<Discipline>emptyList());
+                setDisciplines(Collections.<Discipline>emptyList());
             }
         }
 
         @Override
         public void onFailure(Call<RoomResponse> call, Throwable t) {
-            setMovies(Collections.<Discipline>emptyList());
-
+            setDisciplines(Collections.<Discipline>emptyList());
+            showSnackbarMessage(R.string.msg_snack_no_intenet);
         }
     }
 }

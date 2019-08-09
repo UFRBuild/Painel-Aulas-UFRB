@@ -26,8 +26,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseDialogFragment;
 import java.util.HashMap;
 
@@ -42,6 +44,7 @@ public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.
     private TextView mTextView_status;
     private TextView mTextView_start_timer;
     private TextView mTextView_classroom;
+    private ImageView mImageClose;
     // interface to handle the dialog click back to the Activity
     public interface OnDialogFragmentClickListener {
         public void onOkClicked(DialogItemClassRoom dialog);
@@ -51,8 +54,16 @@ public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_item_class_room, container, false);
+        final View view = inflater.inflate(R.layout.dialog_item_class_room, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        mImageClose = view.findViewById(R.id.img_closeDialog);
+        mImageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
 
         mTextView_matter = view.findViewById(R.id.tv_matter);
         mTextView_prof = view.findViewById(R.id.tv_prof);
@@ -66,9 +77,15 @@ public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.
         mTextView_duration.setText(getArguments().getString("duration"));
         if (getArguments().getString("status").equalsIgnoreCase("0")){
             mTextView_status.setText("Em Aguardo");
+            mTextView_status.setTextColor(MainActivity.getInstance().
+                    getResources()
+                    .getColor(R.color.colorAccent));
         }
         else{
             mTextView_status.setText("Confirmado");
+            mTextView_status.setTextColor(MainActivity.getInstance().
+                    getResources()
+                    .getColor(R.color.colorStatusClassRoom));
         }
 
         mTextView_classroom.setText(getArguments().getString("class_room"));
