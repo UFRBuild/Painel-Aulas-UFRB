@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.donate.DonateActivity">
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:background="?attr/backgroundcolor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:gravity="center"
+                            android:text="@string/title_unlock"
+                            android:textSize="18sp" />
+
+                    <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="24dp"
+                            android:paddingRight="24dp"
+                            android:text="@string/lembretes_de_devolu_o"
+                            android:textSize="14sp"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?cardbackground"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="true"
+                            app:contentPadding="5dp" android:layout_margin="12dp">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                            <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="96dp"
+                                    android:layout_height="96dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="4dp"
+                                    android:paddingBottom="6dp"
+                                    app:srcCompat="@drawable/heart_box"/>
+
+
+                            <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="4dp"
+                                    android:orientation="horizontal">
+
+                                <ImageView
+                                        android:id="@+id/imageView_features"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="6dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/ic_check_circle_black_24dp"
+                                        tools:ignore="VectorDrawableCompat"/>
+
+                                <TextView
+                                        android:id="@+id/textView_features"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="4dp"
+                                        android:layout_toEndOf="@+id/imageView_features"
+                                        android:layout_weight="1"
+                                        android:text="@string/disciplinas_favoritas"
+                                        android:textSize="16dp"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="4dp"
+                                    android:orientation="horizontal">
+
+                                <ImageView
+                                        android:id="@+id/imageView_new"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="6dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/ic_check_circle_black_24dp"
+                                        tools:ignore="VectorDrawableCompat"/>
+
+                                <TextView
+                                        android:id="@+id/textView_new"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="4dp"
+                                        android:layout_toEndOf="@+id/imageView_new"
+                                        android:layout_weight="1"
+                                        android:text="@string/lista_de_macardores"
+                                        android:textSize="16dp"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="4dp"
+                                    android:orientation="horizontal">
+
+                                <ImageView
+                                        android:id="@+id/imageView_0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="6dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/ic_check_circle_black_24dp"
+                                        tools:ignore="VectorDrawableCompat"/>
+
+                                <TextView
+                                        android:id="@+id/textView_0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="4dp"
+                                        android:layout_toEndOf="@+id/imageView_0"
+                                        android:layout_weight="1"
+                                        android:text="@string/notifica_es_sobre_status"
+                                        android:textSize="16dp"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="4dp"
+                                    android:orientation="horizontal">
+
+                                <ImageView
+                                        android:id="@+id/imageView"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="6dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/ic_check_circle_black_24dp"
+                                        tools:ignore="VectorDrawableCompat"/>
+
+                                <TextView
+                                        android:id="@+id/textView4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="4dp"
+                                        android:layout_toEndOf="@+id/imageView"
+                                        android:layout_weight="1"
+                                        android:textSize="16dp" android:text="@string/notifica_es_sobre_eventos_e_palestras"/>
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginEnd="24dp"
+                                android:layout_marginBottom="32dp"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent">
+
+                            <Button
+                                    android:id="@+id/btn_purchase"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/btn_donate"
+                                    android:foreground="@drawable/btn_normal_effect"
+                                    android:text="@string/btn_doar_label"
+                                    android:textColor="?attr/colorAccent" android:layout_marginBottom="8dp"/>
+
+                            <Button
+                                    android:id="@+id/btn_purchase_more"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/btn_donate"
+                                    android:foreground="@drawable/btn_normal_effect"
+                                    android:text="@string/btn_doar_label_more"
+                                    android:textColor="?attr/colorAccent" />
+
+                            <TextView
+                                    android:id="@+id/textView3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/footer_message_unlock" />
+                        </LinearLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

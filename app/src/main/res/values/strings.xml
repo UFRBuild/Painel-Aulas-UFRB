@@ -1,13 +1,76 @@
 <resources>
+    <!--General settings strings -->
     <string name="app_name">Painel de Aulas - UFRB</string>
+    <string name="app_version">1.0</string>
+    <string name="copyright">Copyright 2019 - UFRBuild </string>
     <string name="no_internet">Não há conexão com a internet.</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="drawer_item_section_header">MARCADORES</string>
+
     <string name="msg_snack_no_intenet">Não há conexão com a internet.</string>
+    <string name="url_base_googleplay_app">http://play.google.com/store/apps/details?id=</string>
+    <string name="theme_key">DarkModeTheme</string>
+
+
+
+    <string name="conte_ao_amigo_message">Olá, eu uso esse aplicativo.
+        Biblioteca Universitária permite que você mantenha sempre informado sobre suas reservas
+        e data de devolução sem ter que acessar o sistema manualmente. E adivinha só ?
+        tudo isso grátis! para baixar clique no link:  </string>
+    <string name="title_create_chooser_intent">Conte aos seus amigos</string>
+    <string name="conte_aos_seus_amigos">Conte aos seus amigos</string>
+    <string name="avaliar_esse_app">Avaliar esse app</string>
+    <string name="icons_designed_by_freepik">Icons Designed by Freepik</string>
+
+
+
+    <!--Screen DonateActivity-->
+    <string name="toast_message_donePayment">Muito obrigado pela sua doação! Apreveite todos os novos recursos.</string>
+    <string name="msg_error_services_googleplay">Os serviços de faturamento do Google Play não estão disponíveis.</string>
+    <string name="title_unlock">CONTRIBUA VOCÊ TAMBÉM!</string>
+    <string name="apio_message">Ajude a continuar mudando realidades! Faça sua doação para o App Painel de Aulas - UFRB, Contamos com sua ajuda.</string>
+    <string name="sem_anuncios_label">Sem anúncios!</string>
+    <string name="lembretes_de_devolu_o">As doações tem como objetivo acelerar o desenvolvimento desses recursos listados abaixo. Acelere essa etapa, contribua!</string>
+    <string name="btn_doar_label">Doar R$ 1,99</string>
+    <string name="btn_doar_label_more">Doar R$ 2,99</string>
+    <string name="footer_message_unlock">Contribua e ajude-nos a manter este projeto</string>
+    <string name="disciplinas_favoritas">Disciplinas Favoritas</string>
+    <string name="lista_de_macardores">Lista de Macardores</string>
+    <string name="notifica_es_sobre_status">Notificações sobre status</string>
+    <string name="notifica_es_sobre_eventos_e_palestras">Notificações sobre eventos e palestras</string>
+
+
+
+    <!--Screen AboutActivity-->
+    <string name="action_title_about">Sobre</string>
+    <string name="photo_perfil_developer">
+        https://instagram.fssa12-1.fna.fbcdn.net/vp/cce896b85044127233c832cf47068bb7/5DE1D65B/t51.2885-19/s320x320/67384353_350626775828953_3048186810216742912_n.jpg?_nc_ht=instagram.fssa12-1.fna.fbcdn.net
+    </string>
+    <string name="instagram_develper">https://www.instagram.com/mh4x0f_bomfim/</string>
+    <string name="github_developer">https://github.com/mh4x0f</string>
+    <string name="developer_name">Marcos Bomfim</string>
+    <string name="github_repository">https://github.com/mh4x0f/Painel-Aulas-UFRB</string>
+    <string name="github_license">https://github.com/mh4x0f/Painel-Aulas-UFRB/blob/master/LICENSE</string>
+    <string name="github_policy">https://github.com/mh4x0f/Painel-Aulas-UFRB/blob/master/privacy_policy.md</string>
+    <string name="photo_perfil_marcos_contributor">
+        https://scontent-vie1-1.cdninstagram.com/vp/85e2f5fb0128b68fcbf56689bd2074fa/5DDED14A/t51.2885-19/67662848_2443823712515121_23058829008699392_n.jpg?_nc_ht=scontent-vie1-1.cdninstagram.com
+    </string>
+    <string name="photo_perfil_tassio_vale">https://avatars1.githubusercontent.com/u/10504806</string>
+
+
+    <!--Screen MainActivity-->
+    <string name="locate_campus">local_campus</string>
+    <string name="team_developers">UFRBuild</string>
+    <string name="home_painel">Painel</string>
+    <string name="home_favorites">Favoritos</string>
+    <string name="home_settings">Configurações</string>
+    <string name="home_about">Sobre</string>
+    <string name="home_makator">Criar novo marcador</string>
+    <string name="home_modo_escuro">Modo escuro</string>
+    <string name="home_donate">Doar</string>
+    <string name="home_feedback">Ajuda e Feedback</string>
+    <string name="home_marcadores">MARCADORES</string>
+    <string name="title_select_area">Qual sua localização?</string>
+    <string name="title_name_dialog">Painel de Aulas</string>
+
+
 </resources>

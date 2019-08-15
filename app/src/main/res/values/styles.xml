@@ -79,7 +79,7 @@
 
         <item name="background_fragment">#212121</item>
         <item name="backgroundcolor">#303030</item>
-        <item name="cardbackground">#424242</item>
+        <item name="cardbackground">#3b3b3b</item>
         <item name="spinnercolor">#424242</item>
         <item name="textcolor">#9f9f9f</item>
         <item name="tintcolor">#9f9f9f</item>

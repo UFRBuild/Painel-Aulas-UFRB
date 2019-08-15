@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
@@ -45,14 +46,10 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters.ClassRoomAd
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs.DialogItemClassRoom;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
-import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -72,7 +69,8 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     ProgressBar progressBar;
 
     @BindView(R.id.empty_view)
-    TextView emptyView;
+    ConstraintLayout emptyView;
+
 
     @BindView(R.id.floatingButtonAction)
     FloatingActionButton mFloatingButton;
@@ -152,15 +150,16 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
             }
         });
 
-        ReactiveNetwork.observeInternetConnectivity()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Boolean>() {
-                    @Override public void call(Boolean isConnectedToInternet) {
-                        // do something with isConnectedToInternet value
-                        Log.i(TAG, "call: " + isConnectedToInternet);
-                    }
-                });
+        // TODO: add this feature in future
+//        ReactiveNetwork.observeInternetConnectivity()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<Boolean>() {
+//                    @Override public void call(Boolean isConnectedToInternet) {
+//                        // do something with isConnectedToInternet value
+//                        Log.i(TAG, "call: " + isConnectedToInternet);
+//                    }
+//                });
 
 
         setupFloatingSearch();
@@ -176,7 +175,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     private ArrayList<LocateModel> createSampleData(){
         ArrayList<LocateModel> items = new ArrayList<>();
-        List<String> area = Arrays.asList(getResources().getStringArray(R.array.mobile_manufacturers));
+        List<String> area = Arrays.asList(getResources().getStringArray(R.array.locate_campus));
 
         for (int i = 0; i < area.size();i++){
             items.add(new LocateModel(area.get(i)));
@@ -186,15 +185,16 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
 
     private void toggle() {
-        new SimpleSearchDialogCompat(getContext(), "Painel de Aulas",
-                "Qual sua localização?", null, createSampleData(),
+        new SimpleSearchDialogCompat(getContext(), getString(R.string.title_name_dialog),
+                getString(R.string.title_select_area), null, createSampleData(),
                 new SearchResultListener<LocateModel>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog,
                                            LocateModel item, int position) {
                         dialog.dismiss();
-                        mDataManager.getPrefs().put("local_campus", item);
+                        mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
                         MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
+                        viewModel.getDisciplineData();
                     }
                 }).show();
     }

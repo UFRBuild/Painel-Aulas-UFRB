@@ -12,19 +12,26 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity">
+        <activity android:name=".ui.activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.ufrbuild.mh4x0f.painelufrb.ui.activity.details.DetailsActivity"/>
+        <activity android:name=".ui.activity.details.DetailsActivity"/>
 
         <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
 
+        <activity android:name=".ui.activity.about.AboutActivity"
+                  android:parentActivityName=".ui.activity.main.MainActivity">
+        </activity>
+        <activity android:name=".ui.activity.donate.DonateActivity">
+        </activity>
+        <activity android:name=".ui.activity.settings.SettingsActivity">
+        </activity>
     </application>
 
 </manifest>

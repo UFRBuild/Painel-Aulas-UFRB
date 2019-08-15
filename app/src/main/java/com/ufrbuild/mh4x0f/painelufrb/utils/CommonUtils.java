@@ -20,12 +20,17 @@
 package com.ufrbuild.mh4x0f.painelufrb.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.provider.Settings;
+import android.util.TypedValue;
+import android.view.Window;
+import android.view.WindowManager;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,6 +75,19 @@ public final class CommonUtils {
         return matcher.matches();
     }
 
+    public static void getSupportActionBar(Activity ac){
+
+        // support change color statusbar for API < 21
+        Window window = ac.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue typedValue = new TypedValue();
+            ac.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+            int color = typedValue.data;
+            window.setStatusBarColor(color);
+        }
+    }
 
     public static String intToTimeString(Long timestamp, int gmt){
 

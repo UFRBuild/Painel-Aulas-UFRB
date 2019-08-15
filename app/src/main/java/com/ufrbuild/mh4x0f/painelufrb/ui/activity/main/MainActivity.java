@@ -21,11 +21,9 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.*;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -36,6 +34,8 @@ import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
@@ -47,10 +47,15 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
 public class MainActivity extends BaseActivity {
 
 
+    public final static int ITEM_MATERIALDRAWER_FAVORITES = 2;
+    public final static int ITEM_MATERIALDRAWER_MARK = 4;
+    public final static int ITEM_MATERIALDRAWER_DONATE = 7;
+    public final static int ITEM_MATERIALDRAWER_ABOUT = 10;
     private static final String TAG = "MainActivity";
     private HomeFragment mHomeFragment;
     @BindView(R.id.subtitle_home)
@@ -88,7 +93,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         mDataManager = DataManager.getInstance();
-        if(mDataManager.getPrefs().getBoolean("DarkModeTheme")) {
+        if(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))) {
             setTheme(R.style.Darktheme);
         }
         else  setTheme(R.style.AppTheme);
@@ -99,33 +104,17 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         // load local localization
-        LocateModel locate = mDataManager.getPrefs().getObject("local_campus", LocateModel.class);
+        LocateModel locate = mDataManager.getPrefs().getObject(getString(R.string.locate_campus), LocateModel.class);
         if (locate != null){
             mSubTitleHome.setText(locate.getTitle());
         }
 
         setupMaterialDrawer(savedInstanceState);
 
-        // support change color statusbar for API < 21
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            TypedValue typedValue = new TypedValue();
-            this.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-            int color = typedValue.data;
-            window.setStatusBarColor(color);
-        }
+        // get support action bar mode
+        CommonUtils.getSupportActionBar(this);
 
         mHomeFragment = new HomeFragment();
-
-
-        // dialog discipline test
-//        HashMap data = new  HashMap<String, String>();
-//        data.put("matter", "Example Dialog discinpline");
-//        DialogItemClassRoom generalDialogFragment =
-//                DialogItemClassRoom.newInstance(data);
-//        generalDialogFragment.show(getSupportFragmentManager(),"dialog");
 
 
         //I added this if statement to keep the selected fragment when rotating the device
@@ -143,19 +132,19 @@ public class MainActivity extends BaseActivity {
                 .withCompactStyle(true)
                 .addProfiles(
                         new ProfileDrawerItem().
-                                withName("Painel de Aulas - UFRB")
-                                .withEmail("UFRBuild").withIcon(getResources().
+                                withName(getString(R.string.app_name))
+                                .withEmail(getString(R.string.team_developers)).withIcon(getResources().
                                 getDrawable(R.mipmap.ic_launcher_round)).
                                 withTypeface(getDefaultFont())
                 )
                 .withSavedInstance(state)
                 .build();
 
-        PrimaryDrawerItem item_fragment_painel = new PrimaryDrawerItem().withIdentifier(1).withName("Painel").withIcon(GoogleMaterial.Icon.gmd_perm_media);
-        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName("Favoritos").withIcon(GoogleMaterial.Icon.gmd_favorite_border);
-        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withIdentifier(3).withName("Configurações").withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
-        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().withIdentifier(3).withName("Sobre").withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
-        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName("Criar novo marcador").withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
+        PrimaryDrawerItem item_fragment_painel = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.home_painel).withIcon(GoogleMaterial.Icon.gmd_perm_media);
+        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.home_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite_border);
+        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_settings).withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
+        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_about).withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
+        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName(R.string.home_makator).withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
 
         //create the drawer and remember the `Drawer` result object
         mMenuSideBar = new DrawerBuilder()
@@ -164,20 +153,20 @@ public class MainActivity extends BaseActivity {
                 .addDrawerItems(
                         item_fragment_painel.withTypeface(getDefaultFont()),
                         item_favorities.withTypeface(getDefaultFont()),
-                        new SectionDrawerItem().withName(R.string.drawer_item_section_header).withTypeface(getDefaultFont()),
+                        new SectionDrawerItem().withName(R.string.home_marcadores).withTypeface(getDefaultFont()),
                         item_add_markers.withTypeface(getDefaultFont()),
                         new DividerDrawerItem(),
-                        new SwitchDrawerItem().withName("Modo escuro").
-                                withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean("DarkModeTheme")).
+                        new SwitchDrawerItem().withName(R.string.home_modo_escuro).
+                                withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))).
                                 withOnCheckedChangeListener(onCheckedChangeListener).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
                         new SecondaryDrawerItem().
-                                withIdentifier(5).withName("Doar")
+                                withIdentifier(5).withName(R.string.home_donate)
                                 .withIcon(GoogleMaterial.Icon.gmd_favorite)
                                 .withSelectable(false)
                                 .withTypeface(getDefaultFont()),
                         item_ac_settings.withTypeface(getDefaultFont()),
-                        new SecondaryDrawerItem().withIdentifier(5).withName("Ajuda e Feedback")
+                        new SecondaryDrawerItem().withIdentifier(5).withName(R.string.home_feedback)
                                 .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
                         item_ac_about.withTypeface(getDefaultFont())
@@ -186,6 +175,21 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // do something with the clicked item :D
+                        Log.i(TAG, "onItemClick: " + position);
+                        switch (position) {
+                            case ITEM_MATERIALDRAWER_ABOUT:
+                                call_AboutActivity();
+                                break;
+                            case ITEM_MATERIALDRAWER_DONATE:
+                                call_DonteActivity();
+                                break;
+                            case ITEM_MATERIALDRAWER_FAVORITES:
+                                call_DonteActivity();
+                                break;
+                            case ITEM_MATERIALDRAWER_MARK:
+                                call_DonteActivity();
+                                break;
+                        }
                         return true;
                     }
                 })
@@ -200,7 +204,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
             if (drawerItem instanceof Nameable) {
-                mDataManager.getPrefs().putBoolean("DarkModeTheme", isChecked);
+                mDataManager.getPrefs().putBoolean(getString(R.string.theme_key), isChecked);
                 restartApp();
             }
         }
@@ -209,40 +213,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public BaseViewModel getViewModel() {
         return null;
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        MenuItem actiondarkmode = menu.findItem(R.id.action_darkmode);
-        actiondarkmode.setChecked(DataManager.getInstance().getPrefs().getBoolean("DarkModeTheme"));
-
-
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml
-
-        switch (item.getItemId()) {
-            case R.id.action_darkmode:
-                if (!mDataManager.getPrefs().getBoolean("DarkModeTheme"))
-                    mDataManager.getPrefs().putBoolean("DarkModeTheme", true);
-                else
-                    mDataManager.getPrefs().putBoolean("DarkModeTheme", false);
-                restartApp();
-                break;
-        }
-
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -256,10 +226,26 @@ public class MainActivity extends BaseActivity {
         finish();
     }
 
+    public void call_AboutActivity () {
+        // about activity
+        Intent i = new Intent(getApplicationContext(),AboutActivity.class);
+        startActivity(i);
+    }
+
+    public void call_DonteActivity () {
+        // donate activity
+        Intent i = new Intent(getApplicationContext(),DonateActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public void onBackPressed() {
         if (mMenuSideBar.isDrawerOpen()){
             mMenuSideBar.closeDrawer();
+            return;
+        }
+        if (mSearchView.isSearchBarFocused()){
+            mSearchView.clearSearchFocus();
             return;
         }
         super.onBackPressed();
