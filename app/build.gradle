@@ -69,7 +69,6 @@ dependencies {
     implementation project(path: ':search_dialog')
     implementation project(path: ':floatingsearchview')
 
-
 //    implementation 'com.github.ariskou:ReactiveNetwork:v0.7.0'
 
     implementation("com.mikepenz:materialdrawer:6.0.9@aar") {

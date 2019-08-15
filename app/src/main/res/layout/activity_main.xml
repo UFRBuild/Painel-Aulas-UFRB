@@ -77,7 +77,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layout_collapseMode="parallax"
-                                app:srcCompat="@drawable/ic_person_pin_circle_black_24dp"
+                                app:srcCompat="@drawable/ic_school_black_24dp"
                                 android:id="@+id/imageView" android:layout_weight="1" android:layout_gravity="center"
                                 android:paddingLeft="4dp" tools:ignore="VectorDrawableCompat"
                                 android:layout_marginLeft="4dp"

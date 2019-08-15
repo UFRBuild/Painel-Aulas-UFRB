@@ -13,11 +13,6 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".ui.activity.details.DetailsActivity"/>
 
@@ -25,12 +20,20 @@
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
 
-        <activity android:name=".ui.activity.about.AboutActivity"
-                  android:parentActivityName=".ui.activity.main.MainActivity">
+        <activity
+                android:name=".ui.activity.about.AboutActivity"
+                android:parentActivityName=".ui.activity.main.MainActivity">
         </activity>
         <activity android:name=".ui.activity.donate.DonateActivity">
         </activity>
         <activity android:name=".ui.activity.settings.SettingsActivity">
+        </activity>
+        <activity android:name=".ui.activity.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

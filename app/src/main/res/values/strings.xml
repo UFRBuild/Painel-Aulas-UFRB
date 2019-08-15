@@ -2,7 +2,7 @@
     <!--General settings strings -->
     <string name="app_name">Painel de Aulas - UFRB</string>
     <string name="app_version">1.0</string>
-    <string name="copyright">Copyright 2019 - UFRBuild </string>
+    <string name="copyright">Copyright 2019 - UFRBuild</string>
     <string name="no_internet">Não há conexão com a internet.</string>
     <string name="action_settings">Settings</string>
 
@@ -11,25 +11,29 @@
     <string name="theme_key">DarkModeTheme</string>
 
 
-
     <string name="conte_ao_amigo_message">Olá, eu uso esse aplicativo.
         Biblioteca Universitária permite que você mantenha sempre informado sobre suas reservas
         e data de devolução sem ter que acessar o sistema manualmente. E adivinha só ?
-        tudo isso grátis! para baixar clique no link:  </string>
+        tudo isso grátis! para baixar clique no link:
+    </string>
     <string name="title_create_chooser_intent">Conte aos seus amigos</string>
     <string name="conte_aos_seus_amigos">Conte aos seus amigos</string>
     <string name="avaliar_esse_app">Avaliar esse app</string>
     <string name="icons_designed_by_freepik">Icons Designed by Freepik</string>
 
 
-
     <!--Screen DonateActivity-->
     <string name="toast_message_donePayment">Muito obrigado pela sua doação! Apreveite todos os novos recursos.</string>
-    <string name="msg_error_services_googleplay">Os serviços de faturamento do Google Play não estão disponíveis.</string>
+    <string name="msg_error_services_googleplay">Os serviços de faturamento do Google Play não estão disponíveis.
+    </string>
     <string name="title_unlock">CONTRIBUA VOCÊ TAMBÉM!</string>
-    <string name="apio_message">Ajude a continuar mudando realidades! Faça sua doação para o App Painel de Aulas - UFRB, Contamos com sua ajuda.</string>
+    <string name="apio_message">Ajude a continuar mudando realidades! Faça sua doação para o App Painel de Aulas - UFRB,
+        Contamos com sua ajuda.
+    </string>
     <string name="sem_anuncios_label">Sem anúncios!</string>
-    <string name="lembretes_de_devolu_o">As doações tem como objetivo acelerar o desenvolvimento desses recursos listados abaixo. Acelere essa etapa, contribua!</string>
+    <string name="lembretes_de_devolu_o">As doações tem como objetivo acelerar o desenvolvimento desses recursos
+        listados abaixo. Acelere essa etapa, contribua!
+    </string>
     <string name="btn_doar_label">Doar R$ 1,99</string>
     <string name="btn_doar_label_more">Doar R$ 2,99</string>
     <string name="footer_message_unlock">Contribua e ajude-nos a manter este projeto</string>
@@ -37,7 +41,6 @@
     <string name="lista_de_macardores">Lista de Macardores</string>
     <string name="notifica_es_sobre_status">Notificações sobre status</string>
     <string name="notifica_es_sobre_eventos_e_palestras">Notificações sobre eventos e palestras</string>
-
 
 
     <!--Screen AboutActivity-->
@@ -71,6 +74,8 @@
     <string name="home_marcadores">MARCADORES</string>
     <string name="title_select_area">Qual sua localização?</string>
     <string name="title_name_dialog">Painel de Aulas</string>
+    <string name="sub_title_emptyview">Por favor, verifique as informações sobre o local ou procure a portaria do Pavilhão de aulas.</string>
+    <string name="title_emptyview">Nenhuma reserva encontrada!</string>
 
 
 </resources>

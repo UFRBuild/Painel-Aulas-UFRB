@@ -246,6 +246,7 @@ public class MainActivity extends BaseActivity {
         }
         if (mSearchView.isSearchBarFocused()){
             mSearchView.clearSearchFocus();
+            mSearchView.hideProgress();
             return;
         }
         super.onBackPressed();

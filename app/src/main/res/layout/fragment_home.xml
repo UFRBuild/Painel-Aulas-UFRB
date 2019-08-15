@@ -82,13 +82,16 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="?attr/textcolor"
-                                    android:text="There is no item!"
-                                    android:visibility="visible" android:fontFamily="@font/montserrat"/>
+                                    android:text="@string/title_emptyview"
+                                    android:visibility="visible" android:fontFamily="@font/montserrat"
+                                    android:textStyle="bold" android:layout_margin="8dp"/>
                             <TextView
                                     android:textColor="?attr/textcolor"
                                     android:layout_width="match_parent"
+                                    android:fontFamily="@font/montserrat"
                                     android:layout_height="wrap_content" android:id="@+id/subtitle_states"
-                                    android:gravity="center_horizontal" android:text="Opa! Não encontramos"/>
+                                    android:gravity="center_horizontal" android:text="@string/sub_title_emptyview"
+                                    android:layout_margin="8dp"/>
                         </LinearLayout>
                     </android.support.constraint.ConstraintLayout>
                     <android.support.v7.widget.RecyclerView
