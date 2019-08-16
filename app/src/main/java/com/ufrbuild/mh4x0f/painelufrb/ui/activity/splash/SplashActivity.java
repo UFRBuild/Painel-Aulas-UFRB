@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        CommonUtils.getSupportActionBar(this);
+        //CommonUtils.getSupportActionBar(this);
 
         Animation fadEffect = AnimationUtils.loadAnimation(this, R.anim.effect_splash);
         //mTvDescription.startAnimation(fadEffect);
