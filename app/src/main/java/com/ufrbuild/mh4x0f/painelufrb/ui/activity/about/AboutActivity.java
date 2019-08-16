@@ -220,9 +220,6 @@ public class AboutActivity extends AppCompatActivity implements
         startActivity(browserIntent);
     }
 
-    public void callIntentShareApp(View view) {
-    }
-
     @Override
     public void onLinksClicked(Links link) {
         if (link.getUrl() == ""){

@@ -114,29 +114,6 @@ public class HomeViewModel extends BaseViewModel {
         mDisciplineList.postValue(disciplines);
     }
 
-
-//    private class TimerCallback implements Callback<TimeServer> {
-//
-//        @Override
-//        public void onResponse(@NonNull Call<TimeServer> call, @NonNull Response<TimeServer> response) {
-//            TimeServer mTimerResponse = response.body();
-//            Log.i(TAG, "onResponse: " + mTimerResponse.getResult());
-////            if (movieResponse != null) {
-////                setMovies(movieResponse.getDisciplines());
-////            } else {
-////                setMovies(Collections.<Discipline>emptyList());
-////            }
-//        }
-//
-//        @Override
-//        public void onFailure(Call<TimeServer> call, Throwable t) {
-//            //setMovies(Collections.<Discipline>emptyList());
-//            Log.i(TAG, "onFailure: " +t.toString());
-//
-//        }
-//    }
-
-
     /**
      * Callback
      **/
