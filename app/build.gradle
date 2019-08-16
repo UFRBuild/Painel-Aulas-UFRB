@@ -78,6 +78,11 @@ dependencies {
     // icon fonts used inside the sample
     // https://github.com/mikepenz/Android-Iconics
     implementation 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
-    implementation 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
+
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-messaging:17.4.0'
 
 }
+
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
