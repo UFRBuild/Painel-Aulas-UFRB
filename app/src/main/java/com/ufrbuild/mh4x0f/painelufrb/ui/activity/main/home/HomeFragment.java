@@ -36,6 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+import com.bumptech.glide.load.engine.Resource;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
@@ -134,7 +135,8 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
 
         mSearchView = MainActivity.getInstance().getmSearchView();
-
+        mSwipeRefresh.setColorSchemeColors(getResources().getColor(R.color.accent),
+                getResources().getColor(R.color.colorPrimary));
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
