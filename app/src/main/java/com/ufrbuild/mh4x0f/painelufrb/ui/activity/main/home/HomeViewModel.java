@@ -45,6 +45,8 @@ public class HomeViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Discipline>> mDisciplineList;
     private MutableLiveData<Boolean> isLoading;
+    private MutableLiveData<Boolean> isNetworkError;
+    private MutableLiveData<Boolean> isEmptyView;
     private TimeServer mTimerServer;
     private DisciplineService disciplineService;
     private TimeServerService timeService;
@@ -55,6 +57,8 @@ public class HomeViewModel extends BaseViewModel {
         this.timeService = timeService;
         mDisciplineList = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
+        isNetworkError = new MutableLiveData<>();
+        isEmptyView =  new MutableLiveData<>();
         mTimerServer = new TimeServer();
     }
 
@@ -64,18 +68,24 @@ public class HomeViewModel extends BaseViewModel {
     public MutableLiveData<Boolean> getLoadingStatus() {
         return isLoading;
     }
+    public MutableLiveData<Boolean> getNetworkErrorStatus() {
+        return isNetworkError;
+    }
+    public MutableLiveData<Boolean> getIsEmptyViewStatus() {
+        return isEmptyView;
+    }
 
     public void startRequestAPI() {
         setIsLoading(true);
 
         // test paraments
         HashMap<String, String> parameters = new HashMap<>();
-        parameters.put("area", "Pavilhão de Aulas 1 - PA1");
-        parameters.put("st_min", "1561496400");
-        parameters.put("st_max", "1561503600");
-//        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
-//        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
-//        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
+//        parameters.put("area", "Pavilhão de Aulas 1 - PA1");
+////        parameters.put("st_min", "1561496400");
+////        parameters.put("st_max", "1561503600");
+        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
+        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
+        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
 
         Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllDiscipline(parameters);
         DisciplineCall.enqueue(new DisciplineCallback());
@@ -100,6 +110,7 @@ public class HomeViewModel extends BaseViewModel {
 
                 Log.d(TAG, "onFailure: " + t.toString());
                 setIsLoading(false);
+                setIsNetworkError(true);
                 showSnackbarMessage(R.string.msg_snack_no_intenet);
             }
         });
@@ -109,8 +120,20 @@ public class HomeViewModel extends BaseViewModel {
     private void setIsLoading(boolean loading) {
         isLoading.postValue(loading);
     }
+
+    private void setIsNetworkError(boolean status) {
+        isNetworkError.postValue(status);
+    }
+
+    private void setIsEmptyView(boolean status) {
+        isEmptyView.postValue(status);
+    }
+
     private void setDisciplines(List<Discipline> disciplines) {
         setIsLoading(false);
+        if (disciplines.size() == 0){
+            setIsEmptyView(true);
+        }
         mDisciplineList.postValue(disciplines);
     }
 
@@ -127,12 +150,14 @@ public class HomeViewModel extends BaseViewModel {
                 setDisciplines(roomResponse.getDisciplines());
             } else {
                 setDisciplines(Collections.<Discipline>emptyList());
+                setIsEmptyView(true);
             }
         }
 
         @Override
         public void onFailure(Call<RoomResponse> call, Throwable t) {
-            setDisciplines(Collections.<Discipline>emptyList());
+            //setDisciplines(Collections.<Discipline>emptyList());
+            setIsNetworkError(true);
             showSnackbarMessage(R.string.msg_snack_no_intenet);
         }
     }

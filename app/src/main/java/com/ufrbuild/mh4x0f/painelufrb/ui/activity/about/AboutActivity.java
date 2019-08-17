@@ -191,6 +191,14 @@ public class AboutActivity extends AppCompatActivity implements
                 "Freepik", "The icon logo this project",
                 "https://www.flaticon.com/free-icon/computer_1846883"));
 
+        licenses.add(new License("Cloud Computing free icon",
+                "Smashicons", "EmptyView icon for search disciplines",
+                "https://www.flaticon.com/free-icon/cloud-computing_149215"));
+
+        licenses.add(new License("Cloud icon free",
+                "Good Ware", "No internet connection",
+                "https://www.flaticon.com/free-icon/cloud_784675"));
+
         return licenses;
     }
 

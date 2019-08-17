@@ -20,7 +20,6 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,7 +39,6 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.details.DetailsActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters.ClassRoomAdapter;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs.DialogItemClassRoom;
@@ -70,6 +68,15 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     @BindView(R.id.empty_view)
     ConstraintLayout emptyView;
+
+    @BindView(R.id.image_state)
+    ImageView mImageState;
+
+    @BindView(R.id.title_states)
+    TextView mTitleStates;
+
+    @BindView(R.id.subtitle_states)
+    TextView mSubTitleStates;
 
 
     @BindView(R.id.floatingButtonAction)
@@ -121,6 +128,8 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
 
         viewModel.getLoadingStatus().observe(this, new HomeFragment.LoadingObserver());
+        viewModel.getNetworkErrorStatus().observe(this, new HomeFragment.NetworkObserver());
+        viewModel.getIsEmptyViewStatus().observe(this, new HomeFragment.EmptyViewObserver());
         viewModel.getDisciplines().observe(this, new HomeFragment.MovieObserver());
 
 
@@ -214,6 +223,37 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
             }
         }
     }
+
+    private class NetworkObserver implements Observer<Boolean> {
+
+        @Override
+        public void onChanged(@Nullable Boolean isNetworkError) {
+            if (isNetworkError == null) return;
+
+            if (isNetworkError) {
+                //mImageState;
+                mTitleStates.setText(getString(R.string.msg_no_intenet));
+                mSubTitleStates.setText(getString(R.string.sub_msg_no_intenet));
+                mImageState.setImageResource(R.drawable.network_error);
+            }
+        }
+    }
+
+    private class EmptyViewObserver implements Observer<Boolean> {
+
+        @Override
+        public void onChanged(@Nullable Boolean isEmpty) {
+            if (isEmpty == null) return;
+
+            if (isEmpty) {
+                //mImageState;
+                mTitleStates.setText(getString(R.string.title_emptyview));
+                mSubTitleStates.setText(getString(R.string.sub_title_emptyview));
+                mImageState.setImageResource(R.drawable.empty_search);
+            }
+        }
+    }
+
 
     private class MovieObserver implements Observer<List<Discipline>> {
 
