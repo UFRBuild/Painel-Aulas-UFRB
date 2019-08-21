@@ -133,6 +133,8 @@ public class HomeViewModel extends BaseViewModel {
         setIsLoading(false);
         if (disciplines.size() == 0){
             setIsEmptyView(true);
+        }else{
+            showSnackbarMessage(R.string.message_update_disciplines);
         }
         mDisciplineList.postValue(disciplines);
     }
