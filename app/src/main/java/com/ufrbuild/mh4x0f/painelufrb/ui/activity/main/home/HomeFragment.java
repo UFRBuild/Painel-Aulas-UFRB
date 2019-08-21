@@ -206,6 +206,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                         mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
                         MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
                         viewModel.getDisciplineData();
+                        viewModel.showSnackbarMessage(R.string.message_change_local_campus);
                     }
                 }).show();
     }
