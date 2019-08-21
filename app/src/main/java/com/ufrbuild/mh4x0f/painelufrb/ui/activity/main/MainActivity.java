@@ -26,6 +26,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.*;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +49,9 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
 public class MainActivity extends BaseActivity {
 
@@ -60,6 +64,9 @@ public class MainActivity extends BaseActivity {
     private HomeFragment mHomeFragment;
     @BindView(R.id.subtitle_home)
     TextView mSubTitleHome;
+
+    @BindView(R.id.ll_subtitle_home)
+    LinearLayout mllSubtTitleHome;
 
     private Drawer mMenuSideBar;
 
@@ -120,8 +127,28 @@ public class MainActivity extends BaseActivity {
         //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+                    mHomeFragment).commit();
         }
+
+
+        mllSubtTitleHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SimpleSearchDialogCompat(MainActivity.this, getString(R.string.title_name_dialog),
+                        getString(R.string.title_select_area), null, mHomeFragment.createSampleData(MainActivity.this),
+                        new SearchResultListener<LocateModel>() {
+                            @Override
+                            public void onSelected(BaseSearchDialogCompat dialog,
+                                                   LocateModel item, int position) {
+                                mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                getmSubTitleHome().setText(item.getTitle());
+                                mHomeFragment.getViewModel().getDisciplineData();
+                                showSnackbar(getString(R.string.message_change_local_campus));
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+        });
 
     }
 

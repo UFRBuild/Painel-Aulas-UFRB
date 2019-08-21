@@ -20,6 +20,7 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -184,9 +185,9 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     }
 
 
-    private ArrayList<LocateModel> createSampleData(){
+    public ArrayList<LocateModel> createSampleData(Context context){
         ArrayList<LocateModel> items = new ArrayList<>();
-        List<String> area = Arrays.asList(getResources().getStringArray(R.array.locate_campus));
+        List<String> area = Arrays.asList(context.getResources().getStringArray(R.array.locate_campus));
 
         for (int i = 0; i < area.size();i++){
             items.add(new LocateModel(area.get(i)));
@@ -197,7 +198,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     private void toggle() {
         new SimpleSearchDialogCompat(getContext(), getString(R.string.title_name_dialog),
-                getString(R.string.title_select_area), null, createSampleData(),
+                getString(R.string.title_select_area), null, createSampleData(getContext()),
                 new SearchResultListener<LocateModel>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog,
