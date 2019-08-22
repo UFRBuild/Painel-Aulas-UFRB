@@ -187,6 +187,10 @@ public class AboutActivity extends AppCompatActivity implements
                 "google", "A Java serialization/deserialization library to convert Java Objects into JSON and back",
                 "https://github.com/google/gson"));
 
+        licenses.add(new License("android-inapp-billing-v3",
+                "anjlab", "A lightweight implementation of Android In-app Billing Version 3",
+                "https://github.com/anjlab/android-inapp-billing-v3"));
+
         licenses.add(new License("Freepik",
                 "Freepik", "The icon logo this project",
                 "https://www.flaticon.com/free-icon/computer_1846883"));
