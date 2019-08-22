@@ -1,14 +1,14 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:color="#ffffff"
-    tools:targetApi="lollipop">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:color="#ffffff"
+        tools:targetApi="lollipop">
     <item android:id="@android:id/mask">
         <shape >
-            <corners android:radius="0dp" />
+            <corners android:radius="8dp" />
             <solid android:color="#ffffff" />
         </shape>
     </item>
     <item
-        android:id="@android:id/background"
-        android:drawable="@color/cardview_shadow_end_color" />
+            android:id="@android:id/background"
+            android:drawable="@color/cardview_shadow_end_color" />
 </ripple>

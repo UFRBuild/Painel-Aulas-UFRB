@@ -19,15 +19,33 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
 
-public class DonateActivity extends AppCompatActivity {
+public class DonateActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
 
+    BillingProcessor bp;
     DataManager mDataManager;
+    @BindView(R.id.btn_purchase)
+    Button mBtnPurchase_1;
+
+    @BindView(R.id.btn_purchase_more)
+    Button mBtnPurchase_2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mDataManager = DataManager.getInstance();
@@ -38,7 +56,121 @@ public class DonateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate);
 
+
+        ButterKnife.bind(this);
+
         // get support action bar mode
         CommonUtils.getSupportActionBar(this);
+
+        bp = new BillingProcessor(this, getString(R.string.key_license), this);
+        bp.initialize();
+
+        if (bp.isPurchased(getString(R.string.product_id_payment_1))) {
+            mBtnPurchase_1.setEnabled(false);
+            mBtnPurchase_1.setAlpha(0.4f);
+        }
+        else if (bp.isPurchased(getString(R.string.product_id_payment_2))) {
+            mBtnPurchase_2.setEnabled(false);
+            mBtnPurchase_2.setAlpha(0.4f);
+        }
+
+
+        mBtnPurchase_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!NetworkUtils.isNetworkConnected(getApplicationContext())){
+                    showSnackbar(getString(R.string.no_internet));
+                    return;
+                }
+                boolean isAvailable =  bp.isIabServiceAvailable(getApplicationContext());
+                if (!isAvailable) {
+                    showSnackbar(getString(R.string.msg_error_services_googleplay));
+                    return;
+                }
+                boolean isOneTimePurchaseSupported = bp.isOneTimePurchaseSupported();
+                if(isOneTimePurchaseSupported) {
+                    bp.purchase(DonateActivity.this,getString(R.string.product_id_payment_1));
+                }
+
+            }
+        });
+
+
+        mBtnPurchase_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!NetworkUtils.isNetworkConnected(getApplicationContext())){
+                    showSnackbar(getString(R.string.no_internet));
+                    return;
+                }
+                boolean isAvailable =  bp.isIabServiceAvailable(getApplicationContext());
+                if (!isAvailable) {
+                    showSnackbar(getString(R.string.msg_error_services_googleplay));
+                    return;
+                }
+                boolean isOneTimePurchaseSupported = bp.isOneTimePurchaseSupported();
+                if(isOneTimePurchaseSupported) {
+                    bp.purchase(DonateActivity.this,getString(R.string.product_id_payment_2));
+                }
+
+            }
+        });
+
+    }
+
+    @Override
+    public BaseViewModel getViewModel() {
+        return null;
+    }
+
+    @Override
+    protected void setUp() {
+
+    }
+
+    @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+
+        if (productId == getString(R.string.product_id_payment_1)){
+            mBtnPurchase_1.setEnabled(false);
+            mBtnPurchase_1.setAlpha(0.4f);
+
+        }else if (productId == getString(R.string.product_id_payment_2)){
+            mBtnPurchase_2.setEnabled(false);
+            mBtnPurchase_2.setAlpha(0.4f);
+        }
+
+        showToast(getString((R.string.toast_message_donePayment)));
+
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+    }
+
+    @Override
+    public void onBillingInitialized() {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
+        super.onDestroy();
     }
 }

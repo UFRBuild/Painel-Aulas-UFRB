@@ -1,7 +1,7 @@
 <resources>
     <!--General settings strings -->
     <string name="app_name">Painel de Aulas - UFRB</string>
-    <string name="app_version">1.0.0</string>
+    <string name="app_version">1.0.1</string>
     <string name="copyright">Copyright 2019 - UFRBuild</string>
     <string name="no_internet">Não há conexão com a internet.</string>
     <string name="action_settings">Settings</string>
@@ -77,6 +77,6 @@
     <string name="msg_no_intenet">Parece que você não está conectado à internet. </string>
     <string name="sub_msg_no_intenet">Ocorreu um problema ao tentar carregar os dados. Verifique sua conexão e tente novamente</string>
     <string name="message_change_local_campus">Localização alterada.</string>
-    <string name="message_update_disciplines">Lista de Disciplinas atualizada!</string>
+    <string name="message_update_disciplines">Lista de disciplinas atualizada.</string>
 
 </resources>
