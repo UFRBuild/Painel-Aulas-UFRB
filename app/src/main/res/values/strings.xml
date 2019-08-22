@@ -78,5 +78,7 @@
     <string name="sub_msg_no_intenet">Ocorreu um problema ao tentar carregar os dados. Verifique sua conexão e tente novamente</string>
     <string name="message_change_local_campus">Localização alterada.</string>
     <string name="message_update_disciplines">Lista de disciplinas atualizada.</string>
+    <string name="sub_title_loadview">Por favor, aguarde uns instantes, estamos consultando as reservas disponíveis.</string>
+    <string name="title_loadview">Consultando Reversas de Salas!</string>
 
 </resources>

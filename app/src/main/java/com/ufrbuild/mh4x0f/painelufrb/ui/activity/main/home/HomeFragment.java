@@ -219,6 +219,9 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
             if (isLoading == null) return;
 
             if (isLoading) {
+                mTitleStates.setText(getString(R.string.title_loadview));
+                mSubTitleStates.setText(getString(R.string.sub_title_loadview));
+                mImageState.setImageResource(R.drawable.loading);
                 progressBar.setVisibility(View.VISIBLE);
                 mSwipeRefresh.setRefreshing(true);
             } else {
