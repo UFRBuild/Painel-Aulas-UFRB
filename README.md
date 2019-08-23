@@ -5,7 +5,7 @@ O App permite o monitoramento do uso das salas de aula e laboratórios da UFRB d
 
 Qualquer um da universidade que souber programação, design, quiser ajudar a melhorar o app com sugestões ou colocar algo novo é bem vindo.
 
-O aplicativo oficial [Google play](http://google.com)
+O aplicativo oficial [Google play](https://play.google.com/store/apps/details?id=com.ufrbuild.mh4x0f.painelufrb)
 
 ### Metas
 - [ ] Disciplinas Favoritas
