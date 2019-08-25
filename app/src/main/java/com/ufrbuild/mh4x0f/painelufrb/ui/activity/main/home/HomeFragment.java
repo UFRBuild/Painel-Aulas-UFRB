@@ -106,17 +106,15 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView =  inflater.inflate(R.layout.fragment_home, container, false);
+        setUnBinder(ButterKnife.bind(this, mView));
         return mView;
     }
 
-
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         mDataManager = DataManager.getInstance();
-
-        setUnBinder(ButterKnife.bind(this, mView));
 
         ClassRoomAdapter = new ClassRoomAdapter(this);
         recyclerView.setAdapter(ClassRoomAdapter);
