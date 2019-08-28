@@ -57,7 +57,7 @@ public class ClassRoomAdapter extends RecyclerView.Adapter<ClassRoomAdapter.View
 
                 if (mItemsFull != null) {
                     for (Discipline item : mItemsFull) {
-                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                        if (item.getName().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern)) {
                             filteredList.add(item);
                         }
                     }
