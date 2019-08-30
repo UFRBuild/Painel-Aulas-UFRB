@@ -224,7 +224,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public Typeface getDefaultFont(){
-        return ResourcesCompat.getFont(this, R.font.montserrat);
+        return Typeface.createFromAsset(getAssets(), "fonts/montserrat_regular.ttf");
     }
 
     private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
