@@ -9,7 +9,7 @@ O aplicativo oficial [Google play](https://play.google.com/store/apps/details?id
 
 ### Metas
 - [ ] Disciplinas Favoritas
-- [ ] Lista de Macardores
+- [ ] Lista de Marcadores
 - [ ] Notificações sobre status ( confirmado ou Em Aguardo)
 - [ ] Notificações sobre eventos e palestras
 - [ ] Quadro  de componentes ( futuro)
