@@ -201,10 +201,16 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog,
                                            LocateModel item, int position) {
-                        mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
-                        MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
-                        viewModel.getDisciplineData();
-                        viewModel.showSnackbarMessage(R.string.message_change_local_campus);
+                        try {
+                            if (item != null) {
+                                mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
+                                viewModel.getDisciplineData();
+                                viewModel.showSnackbarMessage(R.string.message_change_local_campus);
+                                }
+                            } catch (Exception e){
+                                Log.i(TAG, "onSelected: " + e.toString());
+                            }
                         dialog.dismiss();
                     }
                 }).show();

@@ -140,10 +140,17 @@ public class MainActivity extends BaseActivity {
                             @Override
                             public void onSelected(BaseSearchDialogCompat dialog,
                                                    LocateModel item, int position) {
-                                mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
-                                getmSubTitleHome().setText(item.getTitle());
-                                mHomeFragment.getViewModel().getDisciplineData();
-                                showSnackbar(getString(R.string.message_change_local_campus));
+                                try {
+                                    if (item != null){
+                                        mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                        getmSubTitleHome().setText(item.getTitle());
+                                        mHomeFragment.getViewModel().getDisciplineData();
+                                        showSnackbar(getString(R.string.message_change_local_campus));
+                                    }
+                                }
+                                catch (Exception e){
+                                    Log.i(TAG, "onSelected: " + e.toString());
+                                }
                                 dialog.dismiss();
                             }
                         }).show();
