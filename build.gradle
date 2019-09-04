@@ -58,7 +58,7 @@ ext {
     timberVersion = '4.5.1'
     retrofitVersion = '2.3.0'
     retrofit2Rxjava2AdapterVersion = '2.3.0'
-    okHttpVersion = '3.9.0'
+    okHttpVersion = '5.1'
     roomVersion = '1.0.0'
     lifecycle = '1.0.0'
     androidJob = '1.2.5'
