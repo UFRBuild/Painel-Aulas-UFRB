@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#413C5E</color>
     <color name="colorAccent">#FFAB40</color>
     <color name="colorFab">#5c6bc0</color>
-    <color name="colorStatusClassRoom">#02803a</color>
+    <color name="colorStatusClassRoom_confirmed">#02803a</color>
+    <color name="colorStatusClassRoom_wating">#FFAB40</color>
+    <color name="colorStatusClassRoom_cancel">#F44336</color>
 
     <color name="searchDialogResultHighlightColor">#5c6bc0</color>
     <!-- overwrite the selected colors because the primary color is to dark -->

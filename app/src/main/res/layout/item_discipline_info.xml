@@ -174,13 +174,15 @@
                                     android:layout_height="wrap_content" android:id="@+id/textView2"
                                     android:layout_weight="1" android:layout_marginStart="4dp" android:textSize="13dp"/>
                         </LinearLayout>
+
                         <TextView
                                 android:id="@+id/txt_status"
-                                android:textColor="?attr/textcolor"
-                                android:fontFamily="@font/montserrat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Em Aguardo" android:textStyle="bold"/>
+                                android:fontFamily="@font/montserrat"
+                                android:text="Em Aguardo"
+                                android:textColor="@color/colorStatusClassRoom_wating"
+                                android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 

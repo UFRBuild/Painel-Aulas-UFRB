@@ -3,9 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Painel-Aulas-UFRB.iml" filepath="$PROJECT_DIR$/Painel-Aulas-UFRB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Painel-Aulas-UFRB-app.iml" filepath="$PROJECT_DIR$/app/Painel-Aulas-UFRB-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/floatingsearchview/floatingsearchview.iml" filepath="$PROJECT_DIR$/modules/floatingsearchview/floatingsearchview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/floatingsearchview/modules-floatingsearchview.iml" filepath="$PROJECT_DIR$/modules/floatingsearchview/modules-floatingsearchview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/search_dialog/modules-search_dialog.iml" filepath="$PROJECT_DIR$/modules/search_dialog/modules-search_dialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/search_dialog/search_dialog.iml" filepath="$PROJECT_DIR$/modules/search_dialog/search_dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ufrb-Painel-Aulas-UFRB.iml" filepath="$PROJECT_DIR$/ufrb-Painel-Aulas-UFRB.iml" />
     </modules>
   </component>
 </project>

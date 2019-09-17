@@ -103,11 +103,15 @@
                             android:layout_height="wrap_content"
                             app:srcCompat="@drawable/ic_event_available_black_24dp"
                             android:id="@+id/imageView6" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
+
                     <TextView
-                            android:text="Em Aguardo"
+                            android:id="@+id/tv_status"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/tv_status" android:layout_weight="2"
-                            android:paddingLeft="4dp"/>
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:paddingLeft="4dp"
+                            android:text="Em Aguardo"
+                            android:textColor="@color/colorStatusClassRoom_wating" />
                 </LinearLayout>
 
 

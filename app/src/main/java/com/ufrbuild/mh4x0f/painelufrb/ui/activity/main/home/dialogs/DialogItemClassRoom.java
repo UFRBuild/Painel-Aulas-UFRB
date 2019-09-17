@@ -75,17 +75,17 @@ public class DialogItemClassRoom extends BaseDialogFragment<DialogItemClassRoom.
         mTextView_matter.setText(getArguments().getString("matter"));
         mTextView_prof.setText(getArguments().getString("professor"));
         mTextView_duration.setText(getArguments().getString("duration"));
-        if (getArguments().getString("status").equalsIgnoreCase("0")){
-            mTextView_status.setText("Em Aguardo");
+        if (getArguments().getString("status").equalsIgnoreCase("2")){
+            mTextView_status.setText("Cancelado");
             mTextView_status.setTextColor(MainActivity.getInstance().
                     getResources()
-                    .getColor(R.color.colorAccent));
+                    .getColor(R.color.colorStatusClassRoom_cancel));
         }
-        else{
+        else if (getArguments().getString("status").equalsIgnoreCase("1")){
             mTextView_status.setText("Confirmado");
             mTextView_status.setTextColor(MainActivity.getInstance().
                     getResources()
-                    .getColor(R.color.colorStatusClassRoom));
+                    .getColor(R.color.colorStatusClassRoom_confirmed));
         }
 
         mTextView_classroom.setText(getArguments().getString("class_room"));

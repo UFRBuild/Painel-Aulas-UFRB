@@ -110,16 +110,17 @@ public class ClassRoomAdapter extends RecyclerView.Adapter<ClassRoomAdapter.View
 
         holder.setOnClickListener(discipline);
         holder.setTitle(discipline.getName());
-        if (discipline.getStatus() == 1 ){
+
+        if (discipline.getStatus() == 1){
             holder.setStatus("Confirmado");
-            holder.setmViewColorStatus(true);
-            holder.setmColorStatus(true);
+        }
+        else if (discipline.getStatus() == 2){
+            holder.setStatus("Cancelado");
         }
         else{
             holder.setStatus("Em Aguardo");
-            holder.setmViewColorStatus(false);
-            holder.setmColorStatus(false);
         }
+        holder.setmViewColorStatus(discipline.getStatus());
         holder.setSala(discipline.getRoom_name());
 
 
@@ -188,30 +189,30 @@ public class ClassRoomAdapter extends RecyclerView.Adapter<ClassRoomAdapter.View
             this.sala.setText(sala);
         }
 
-        public void setmViewColorStatus(boolean status){
-            if (status){
+        public void setmViewColorStatus(int flag){
+            if (flag == 1){
                 mViewColorStatus.setBackgroundColor(MainActivity.getInstance().
                         getResources()
-                        .getColor(R.color.colorStatusClassRoom));
+                        .getColor(R.color.colorStatusClassRoom_confirmed));
+                status.setTextColor(MainActivity.getInstance().
+                        getResources()
+                        .getColor(R.color.colorStatusClassRoom_confirmed));
+            }
+            else if (flag == 2){
+                mViewColorStatus.setBackgroundColor(MainActivity.getInstance().
+                        getResources()
+                        .getColor(R.color.colorStatusClassRoom_cancel));
+                status.setTextColor(MainActivity.getInstance().
+                        getResources()
+                        .getColor(R.color.colorStatusClassRoom_cancel));
             }
             else{
                 mViewColorStatus.setBackgroundColor(MainActivity.getInstance().
                         getResources()
-                        .getColor(R.color.colorAccent));
-            }
-
-        }
-
-        public void setmColorStatus(boolean flag){
-            if (flag){
+                        .getColor(R.color.colorStatusClassRoom_wating));
                 status.setTextColor(MainActivity.getInstance().
                         getResources()
-                        .getColor(R.color.colorStatusClassRoom));
-            }
-            else{
-                status.setTextColor(MainActivity.getInstance().
-                        getResources()
-                        .getColor(R.color.colorAccent));
+                        .getColor(R.color.colorStatusClassRoom_wating));
             }
 
         }
