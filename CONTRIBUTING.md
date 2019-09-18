@@ -19,6 +19,8 @@ Os branchs estão distribuídos em:
 
 - master - Versão estável. Somente será adicionado algo a este branch quando for realmente relevante para o lançamento de uma nova versão.
 
+- beta - Versão estável Beta [Faixa aberta] em produção no Google Play. relevante para o lançamento de uma nova versão beta no google play.
+
 - dev - Versão instável. É a versão contínua de desenvolvimento. Neste branch será adicionado todas as modificações aprovadas e testada.
 
 - inbox - Branch para recebimento de Pulls Requests. Todos os pulls deverão ser direcionados a este branch, que se aprovados serão mergeds para o dev.
