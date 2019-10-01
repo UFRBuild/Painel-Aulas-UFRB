@@ -1,7 +1,7 @@
 <resources>
     <!--General settings strings -->
     <string name="app_name">Painel de Aulas - UFRB</string>
-    <string name="app_version">1.0.6</string>
+    <string name="app_version">1.0.7</string>
     <string name="copyright">Copyright 2019 - UFRBuild</string>
     <string name="no_internet">Não há conexão com a internet.</string>
     <string name="action_settings">Settings</string>
