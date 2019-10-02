@@ -33,6 +33,7 @@ import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import com.pd.chocobar.ChocoBar;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
@@ -153,7 +154,6 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                                         mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
                                         getmSubTitleHome().setText(item.getTitle());
                                         mHomeFragment.getViewModel().getDisciplineData();
-                                        showSnackbar(getString(R.string.message_change_local_campus));
                                     }
                                 }
                                 catch (Exception e){

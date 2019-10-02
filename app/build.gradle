@@ -19,6 +19,11 @@ android {
     }
     productFlavors {
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {
@@ -99,6 +104,9 @@ dependencies {
 
     // appIn Billing android
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+
+    // test snackbar
+    implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

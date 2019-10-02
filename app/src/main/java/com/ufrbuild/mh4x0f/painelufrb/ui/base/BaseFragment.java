@@ -23,7 +23,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import butterknife.Unbinder;
 import dagger.android.support.DaggerFragment;
@@ -39,10 +38,10 @@ public abstract class BaseFragment<V extends BaseViewModel> extends DaggerFragme
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetupAll();
     }
 
     public void SetupAll(){
-        viewModel = getViewModel();
         setUpSnackbar();
         setUpToast();
         setHasOptionsMenu(false);
@@ -124,6 +123,10 @@ public abstract class BaseFragment<V extends BaseViewModel> extends DaggerFragme
      * @return view model instance
      */
     public abstract V getViewModel();
+
+    public void setActivity(BaseActivity ac){
+        activity = ac;
+    }
 
     protected abstract void setUp(View view);
     public abstract boolean onActivityBackPress();

@@ -215,6 +215,10 @@ public class AboutActivity extends BaseActivity<AboutViewModel> implements
                 "anjlab", "A lightweight implementation of Android In-app Billing Version 3",
                 "https://github.com/anjlab/android-inapp-billing-v3"));
 
+        licenses.add(new License("ChocoBar",
+                "Pradyuman Dixit", "The usual Snackbar with more chocolate_bar and colours",
+                "https://github.com/Pradyuman7/ChocoBar"));
+
         licenses.add(new License("Freepik",
                 "Freepik", "The icon logo this project",
                 "https://www.flaticon.com/free-icon/computer_1846883"));
@@ -226,6 +230,7 @@ public class AboutActivity extends BaseActivity<AboutViewModel> implements
         licenses.add(new License("Cloud icon free",
                 "Good Ware", "No internet connection",
                 "https://www.flaticon.com/free-icon/cloud_784675"));
+
 
         return licenses;
     }

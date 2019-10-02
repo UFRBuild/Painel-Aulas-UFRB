@@ -131,7 +131,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         //viewModel = createViewModel();
-        super.SetupAll();
+        //super.SetupAll();
 
 
         viewModel.getLoadingStatus().observe(this, new HomeFragment.LoadingObserver());
@@ -213,7 +213,6 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                                 mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
                                 MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
                                 viewModel.getDisciplineData();
-                                viewModel.showSnackbarMessage(R.string.message_change_local_campus);
                                 }
                             } catch (Exception e){
                                 Log.i(TAG, "onSelected: " + e.toString());
@@ -291,7 +290,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     @Override
     protected void setUp(View view) {
-
+        setActivity(MainActivity.getInstance()); // set observer activity
     }
 
     @Override
