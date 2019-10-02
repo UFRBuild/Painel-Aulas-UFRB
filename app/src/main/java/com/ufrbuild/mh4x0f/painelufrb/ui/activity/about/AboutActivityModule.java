@@ -17,19 +17,26 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.utils;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.about;
 
+import android.arch.lifecycle.ViewModelProvider;
 
-public class AppConstants {
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.details.DetailsViewModel;
 
-    private AppConstants() {
-        // This utility class is not publicly instantiable
+import dagger.Module;
+import dagger.Provides;
+
+@Module
+public class AboutActivityModule {
+    @Provides
+    AboutViewModel providesViewModel(DataManager store){
+        return new AboutViewModel(store);
     }
 
-    public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-    public static final String mDiscPref = "disciplines_pref";
-
-    // API SMSA UFRB
-    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
-    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
+    @Provides
+    ViewModelProvider.Factory provideViewModelProvider(AboutViewModel viewModel){
+        return new ViewModelProviderFactory<>(viewModel);
+    }
 }

@@ -40,6 +40,15 @@ dependencies {
     implementation "com.google.android.gms:play-services-auth:$rootProject.playServicesAuthVersion"
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
 
+    /* Dagger2 - We are going to use dagger.android which includes
+    * support for Activity and fragment injection so we need to include
+    * the following dependencies */
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+
     //gson
     implementation 'com.google.code.gson:gson:2.8.2'
 

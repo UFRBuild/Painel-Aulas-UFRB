@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/modules/floatingsearchview/modules-floatingsearchview.iml" filepath="$PROJECT_DIR$/modules/floatingsearchview/modules-floatingsearchview.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/search_dialog/modules-search_dialog.iml" filepath="$PROJECT_DIR$/modules/search_dialog/modules-search_dialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/search_dialog/search_dialog.iml" filepath="$PROJECT_DIR$/modules/search_dialog/search_dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-Painel-Aulas-UFRB.iml" filepath="$PROJECT_DIR$/test-Painel-Aulas-UFRB.iml" />
       <module fileurl="file://$PROJECT_DIR$/ufrb-Painel-Aulas-UFRB.iml" filepath="$PROJECT_DIR$/ufrb-Painel-Aulas-UFRB.iml" />
     </modules>
   </component>

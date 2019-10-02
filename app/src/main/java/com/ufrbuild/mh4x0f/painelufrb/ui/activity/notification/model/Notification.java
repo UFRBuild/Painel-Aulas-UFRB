@@ -17,22 +17,7 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.model;
 
-import android.app.Application;
-
-public class App extends Application {
-
-    private static App sInstance;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        sInstance = this;
-    }
-
-    public static App getInstance() {
-        return sInstance;
-    }
-
+public class Notification {
 }

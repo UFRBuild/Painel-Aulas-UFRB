@@ -17,20 +17,15 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.ui.activity.details;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
@@ -39,21 +34,16 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-public class DetailsActivity extends BaseActivity<DetailsViewModel> {
-
-    @BindView(R.id.image) AppCompatImageView image;
-    @BindView(R.id.title) TextView title;
-    @BindView(R.id.desc) TextView desc;
-
-    @Inject
-    DataManager mDataManager;
-    @Inject
-    CommonUtils utils;
-
-    DetailsViewModel viewModel;
+public class NotificationActivity extends BaseActivity<NotificationViewModel> {
+    NotificationViewModel viewModel;
     @Inject
     ViewModelProvider.Factory factory;
+    @Inject
+    CommonUtils utils;
+    @Inject
+    DataManager mDataManager;
+    @BindView(R.id.main_appbar_notification)
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,39 +52,25 @@ public class DetailsActivity extends BaseActivity<DetailsViewModel> {
             setTheme(R.style.Darktheme);
         }
         else  setTheme(R.style.AppTheme);
-        setContentView(R.layout.activity_details);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_notification);
 
-
-        // get support action bar mode
         utils.getSupportActionBar(this);
 
 
-
+        ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(R.string.action_title_notification);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public DetailsViewModel getViewModel() {
-        viewModel = ViewModelProviders.of(this, factory).get(DetailsViewModel.class);
+    public NotificationViewModel getViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(NotificationViewModel.class);
         return viewModel;
     }
 
     @Override
     protected void setUp() {
-        viewModel.getDisciplines().observe(this, new ClasRoomObserver());
 
-        viewModel.loadData(getIntent());
     }
-
-    private class ClasRoomObserver implements Observer<Discipline> {
-        @Override
-        public void onChanged(@Nullable Discipline discipline) {
-            if (discipline == null) return;
-
-            title.setText(discipline.getName());
-            desc.setText(discipline.getDescription());
-        }
-    }
-
 }
-

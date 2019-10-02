@@ -17,19 +17,20 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.utils;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate;
 
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 
-public class AppConstants {
+import javax.inject.Inject;
 
-    private AppConstants() {
-        // This utility class is not publicly instantiable
+public class DonateViewModel extends BaseViewModel {
+
+    private DataManager store;
+
+    @Inject
+    public DonateViewModel(DataManager store) {
+        this.store = store;
     }
 
-    public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-    public static final String mDiscPref = "disciplines_pref";
-
-    // API SMSA UFRB
-    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
-    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
 }

@@ -36,11 +36,11 @@ import android.widget.Toast;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
-
 import butterknife.Unbinder;
+import dagger.android.support.DaggerAppCompatActivity;
 
 
-public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<V extends BaseViewModel> extends DaggerAppCompatActivity {
 
 
     NetworkUtils networkUtils;
@@ -53,9 +53,11 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setUpAllObservers(); // init all observers and viewmodel
+        setUp();
     }
 
-    protected void SetupAll(){
+    protected void setUpAllObservers(){
         setUpViewModel();
         setUpSnackbar();
         setUpToast();

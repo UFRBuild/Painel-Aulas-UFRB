@@ -18,47 +18,26 @@
  */
 
 package com.ufrbuild.mh4x0f.painelufrb.data.network.services;
-import android.os.Build;
+
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.RoomResponse;
 import java.util.HashMap;
-import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 
+@Singleton
 public class DisciplineService {
-
-    private static final String URL = "https://smsa.ufrb.edu.br/backend/CRUD/";
 
     private DisciplineApi mDisciplineApi;
 
-    private static DisciplineService instance;
-
-
-    public static DisciplineService getInstance() {
-        if (instance == null) {
-            instance = new DisciplineService();
-        }
-        return instance;
-    }
-
-    private DisciplineService() {
-        Retrofit mRetrofit;
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            mRetrofit = new Retrofit.Builder().
-                    addConverterFactory(GsonConverterFactory.create())
-                    .client(NetworkUtils.getUnsafeOkHttpClient().build())
-                    .baseUrl(URL).build();
-        }
-        else{
-            mRetrofit = new Retrofit.Builder().
-                    addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(URL).build();
-        }
-        mDisciplineApi = mRetrofit.create(DisciplineApi.class);
+    @Inject
+    public DisciplineService(@Named("CRUD") Retrofit retrofit) {
+        mDisciplineApi = retrofit.create(DisciplineApi.class);
     }
 
     public DisciplineApi getDisciplineApi() {

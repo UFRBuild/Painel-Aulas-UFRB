@@ -1,3 +1,4 @@
+
 /*
     This file is part of the Painel de Aulas UFRB Open Source Project.
     Painel de Aulas UFRB is licensed under the Apache 2.0.
@@ -17,19 +18,20 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.utils;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification;
 
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
+import javax.inject.Inject;
 
-public class AppConstants {
+public class NotificationViewModel extends BaseViewModel {
 
-    private AppConstants() {
-        // This utility class is not publicly instantiable
+    private DataManager store;
+
+    @Inject
+    public NotificationViewModel(DataManager store) {
+        this.store = store;
     }
 
-    public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-    public static final String mDiscPref = "disciplines_pref";
 
-    // API SMSA UFRB
-    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
-    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
 }

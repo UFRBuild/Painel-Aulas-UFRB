@@ -36,6 +36,9 @@ import java.util.List;
 
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
+
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,6 +55,7 @@ public class HomeViewModel extends BaseViewModel {
     private TimeServerService timeService;
     private String TAG = "HomeViewModel";
 
+    @Inject
     HomeViewModel(DisciplineService disciplineService, TimeServerService timeService) {
         this.disciplineService = disciplineService;
         this.timeService = timeService;

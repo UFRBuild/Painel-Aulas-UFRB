@@ -19,31 +19,42 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
+import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-public class HomeViewModelFactory implements ViewModelProvider.Factory {
+import dagger.Module;
+import dagger.Provides;
+import retrofit2.Retrofit;
 
-    private final DisciplineService disciplineService;
-    private final TimeServerService timerService;
+@Module
+public class HomeFragmentModule {
 
-    public HomeViewModelFactory(DisciplineService disciplineService, TimeServerService mtimerService) {
-        this.timerService = mtimerService;
-        this.disciplineService = disciplineService;
+    @Provides
+    DisciplineService provideDisciplineService(@Named("CRUD") Retrofit retrofit){
+        return new DisciplineService(retrofit);
     }
 
-    @NonNull
-    @Override
-    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(HomeViewModel.class)) {
-            return (T) new HomeViewModel(disciplineService, timerService);
-        }
 
-        throw new IllegalArgumentException("Unknown ViewModel class");
+    @Provides
+    TimeServerService provideTimeServerService(@Named("Timer") Retrofit retrofit){
+        return new TimeServerService(retrofit);
+    }
+
+    @Provides
+    HomeViewModel homeViewModel(DisciplineService dis, TimeServerService tim) {
+        return new HomeViewModel(dis, tim);
+    }
+
+
+    @Provides
+    ViewModelProvider.Factory provideViewModelProvider(HomeViewModel viewModel){
+        return new ViewModelProviderFactory<>(viewModel);
     }
 
 }

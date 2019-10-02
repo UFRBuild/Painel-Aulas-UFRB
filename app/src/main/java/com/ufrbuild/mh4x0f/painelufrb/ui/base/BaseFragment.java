@@ -26,9 +26,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import butterknife.Unbinder;
+import dagger.android.support.DaggerFragment;
 
 
-public abstract class BaseFragment<V extends BaseViewModel> extends Fragment {
+public abstract class BaseFragment<V extends BaseViewModel> extends DaggerFragment {
 
     private BaseActivity activity;
     private Unbinder unBinder;
@@ -61,11 +62,7 @@ public abstract class BaseFragment<V extends BaseViewModel> extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof BaseActivity) {
-            BaseActivity activity = (BaseActivity) context;
-            this.activity = activity;
-            //activity.onFragmentAttached();
-        }
+        viewModel = getViewModel();
     }
 
     @Override

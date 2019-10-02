@@ -17,19 +17,29 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.utils;
+package com.ufrbuild.mh4x0f.painelufrb;
 
+import com.ufrbuild.mh4x0f.painelufrb.di.components.DaggerPainelMainComponent;
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 
-public class AppConstants {
+public class PainelUFRBApp extends DaggerApplication {
 
-    private AppConstants() {
-        // This utility class is not publicly instantiable
+    private static PainelUFRBApp sInstance;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sInstance = this;
     }
 
-    public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-    public static final String mDiscPref = "disciplines_pref";
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerPainelMainComponent.builder().create(this);
+    }
 
-    // API SMSA UFRB
-    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
-    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
+    public static PainelUFRBApp getInstance() {
+        return sInstance;
+    }
+
 }

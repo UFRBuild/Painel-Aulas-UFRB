@@ -19,6 +19,7 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
@@ -55,8 +56,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class HomeFragment  extends BaseFragment<HomeViewModel>
         implements ClassRoomAdapter.OnClassRoomAdapter{
+
+
+    @Inject
+    ViewModelProvider.Factory factory;
+    private HomeViewModel viewModel;
 
 
     private String TAG = "HomeFragment";
@@ -84,6 +92,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     @BindView(R.id.floatingButtonAction)
     FloatingActionButton mFloatingButton;
 
+    @Inject
     DataManager mDataManager;
 
     @BindView(R.id.swipe_refresh)
@@ -92,14 +101,14 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     private String mLastQuery = "";
     private  FloatingSearchView mSearchView;
 
-    HomeViewModel viewModel;
 
     private View mView;
 
 
-    private HomeViewModel createViewModel() {
-        HomeViewModelFactory factory = new HomeViewModelFactory(DataManager.getInstance().getMovieService(), DataManager.getInstance().getTimeService());
-        return ViewModelProviders.of(this, factory).get(HomeViewModel.class);
+    @Override
+    public HomeViewModel getViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel.class);
+        return viewModel;
     }
 
     @Nullable
@@ -114,8 +123,6 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mDataManager = DataManager.getInstance();
-
         ClassRoomAdapter = new ClassRoomAdapter(this);
         recyclerView.setAdapter(ClassRoomAdapter);
 
@@ -123,7 +130,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        viewModel = createViewModel();
+        //viewModel = createViewModel();
         super.SetupAll();
 
 
@@ -281,10 +288,6 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         }
     }
 
-    @Override
-    public HomeViewModel getViewModel() {
-        return viewModel;
-    }
 
     @Override
     protected void setUp(View view) {

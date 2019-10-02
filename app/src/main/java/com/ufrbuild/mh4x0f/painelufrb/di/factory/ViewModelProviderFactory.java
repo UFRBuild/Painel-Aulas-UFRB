@@ -17,19 +17,22 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.utils;
+package com.ufrbuild.mh4x0f.painelufrb.di.factory;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
 
+public class ViewModelProviderFactory<V> implements ViewModelProvider.Factory {
+    private V viewModel;
 
-public class AppConstants {
-
-    private AppConstants() {
-        // This utility class is not publicly instantiable
+    public ViewModelProviderFactory(V viewModel) {
+        this.viewModel = viewModel;
     }
 
-    public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-    public static final String mDiscPref = "disciplines_pref";
-
-    // API SMSA UFRB
-    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
-    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
+    @Override
+    public <T extends ViewModel> T create(Class<T> modelClass) {
+        if (modelClass.isAssignableFrom(viewModel.getClass())) {
+            return (T) viewModel;
+        }
+        throw new IllegalArgumentException("Unknown class name");
+    }
 }

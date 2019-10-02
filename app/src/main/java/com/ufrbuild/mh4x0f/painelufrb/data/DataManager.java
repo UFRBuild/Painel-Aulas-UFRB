@@ -19,27 +19,33 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.data;
 
-import com.ufrbuild.mh4x0f.painelufrb.App;
+import android.content.Context;
+import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
 import com.ufrbuild.mh4x0f.painelufrb.data.db.database.LogDatabase;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 import com.preference.PowerPreference;
 import com.preference.Preference;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-
+@Singleton
 public class DataManager {
 
     private static DataManager sInstance;
+    public Context context;
 
-    private DataManager() {
-        // This class is not publicly instantiable
+    @Inject
+    public DataManager(Context context) {
+        this.context = context;
     }
 
-    public static synchronized DataManager getInstance() {
-        if (sInstance == null) {
-            sInstance = new DataManager();
-        }
-        return sInstance;
+//    public static synchronized DataManager getInstance() {
+//        if (sInstance == null) {
+//            sInstance = new DataManager();
+//        }
+//        return sInstance;
+//    }
+    public boolean isFirstTimeLaunch(){
+        return getPrefs().getBoolean("FirstTimeLaunch",false);
     }
 
     public Preference getPrefs() {
@@ -47,15 +53,8 @@ public class DataManager {
     }
 
     public LogDatabase getLogDatabse() {
-        return LogDatabase.getInstance(App.getInstance());
+        return LogDatabase.getInstance(PainelUFRBApp.getInstance());
     }
 
-    public DisciplineService getMovieService() {
-        return DisciplineService.getInstance();
-    }
-
-    public TimeServerService getTimeService() {
-        return TimeServerService.getInstance();
-    }
 
 }

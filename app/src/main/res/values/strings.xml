@@ -64,6 +64,7 @@
     <string name="home_favorites">Favoritos</string>
     <string name="home_settings">Configurações</string>
     <string name="home_about">Sobre</string>
+    <string name="home_notification">Avisos</string>
     <string name="home_makator">Criar novo marcador</string>
     <string name="home_modo_escuro">Modo escuro</string>
     <string name="home_donate">Doar</string>
@@ -80,5 +81,8 @@
     <string name="message_update_disciplines">Lista de disciplinas atualizada.</string>
     <string name="sub_title_loadview">Por favor, aguarde uns instantes, estamos consultando as reservas disponíveis.</string>
     <string name="title_loadview">Consultando Reversas de Salas!</string>
+
+<!--    Screen NotificationActivity-->
+    <string name="action_title_notification">Avisos</string>
 
 </resources>

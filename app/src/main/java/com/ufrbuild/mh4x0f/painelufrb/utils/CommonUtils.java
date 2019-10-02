@@ -40,11 +40,18 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class CommonUtils {
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-    private CommonUtils() {
-        // This utility class is not publicly instantiable
+@Singleton
+public final class CommonUtils {
+    public Context context;
+
+    @Inject
+    public CommonUtils(Context context) {
+        this.context = context;
     }
+
 
     public static ProgressDialog showLoadingDialog(Context context) {
         ProgressDialog progressDialog = new ProgressDialog(context);

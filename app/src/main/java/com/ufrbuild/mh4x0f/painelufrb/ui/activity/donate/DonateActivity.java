@@ -19,6 +19,8 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,15 +33,27 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.splash.SplashViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
 
-public class DonateActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
+import javax.inject.Inject;
+
+public class DonateActivity extends BaseActivity<DonateViewModel> implements BillingProcessor.IBillingHandler {
 
     BillingProcessor bp;
+    @Inject
     DataManager mDataManager;
+
+    DonateViewModel viewModel;
+    @Inject
+    ViewModelProvider.Factory factory;
+
+    @Inject
+    CommonUtils utils;
+
     @BindView(R.id.btn_purchase)
     Button mBtnPurchase_1;
 
@@ -48,19 +62,19 @@ public class DonateActivity extends BaseActivity implements BillingProcessor.IBi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mDataManager = DataManager.getInstance();
+        super.onCreate(savedInstanceState);
         if(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))) {
             setTheme(R.style.Darktheme);
         }
         else  setTheme(R.style.AppTheme);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate);
+
 
 
         ButterKnife.bind(this);
 
         // get support action bar mode
-        CommonUtils.getSupportActionBar(this);
+        utils.getSupportActionBar(this);
 
         bp = new BillingProcessor(this, getString(R.string.key_license), this);
         bp.initialize();
@@ -119,8 +133,9 @@ public class DonateActivity extends BaseActivity implements BillingProcessor.IBi
     }
 
     @Override
-    public BaseViewModel getViewModel() {
-        return null;
+    public DonateViewModel getViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(DonateViewModel.class);
+        return viewModel;
     }
 
     @Override

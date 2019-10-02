@@ -19,10 +19,10 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.*;
 import android.widget.CompoundButton;
@@ -39,8 +39,8 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -49,17 +49,28 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+import javax.inject.Inject;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<MainActivityViewModel> {
 
+
+    @Inject
+    MainActivityViewModel viewModel;
+
+    @Inject
+    CommonUtils utils;
+
+    @Inject
+    DataManager mDataManager;
 
     public final static int ITEM_MATERIALDRAWER_FAVORITES = 2;
     public final static int ITEM_MATERIALDRAWER_MARK = 4;
-    public final static int ITEM_MATERIALDRAWER_DONATE = 7;
-    public final static int ITEM_MATERIALDRAWER_ABOUT = 10;
+    public final static int ITEM_MATERIALDRAWER_DONATE = 10;
+    public final static int ITEM_MATERIALDRAWER_ABOUT = 11;
+    public final static int ITEM_MATERIALDRAWER_AVISOS = 7;
     private static final String TAG = "MainActivity";
     private HomeFragment mHomeFragment;
     @BindView(R.id.subtitle_home)
@@ -73,8 +84,6 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.floating_search_view)
     FloatingSearchView mSearchView;
-
-    DataManager mDataManager;
 
     // Singleton instance
     private static MainActivity sInstance = null;
@@ -98,13 +107,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        mDataManager = DataManager.getInstance();
         if(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))) {
             setTheme(R.style.Darktheme);
         }
         else  setTheme(R.style.AppTheme);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         sInstance = this;
@@ -119,7 +127,7 @@ public class MainActivity extends BaseActivity {
         setupMaterialDrawer(savedInstanceState);
 
         // get support action bar mode
-        CommonUtils.getSupportActionBar(this);
+        utils.getSupportActionBar(this);
 
         mHomeFragment = new HomeFragment();
 
@@ -174,11 +182,13 @@ public class MainActivity extends BaseActivity {
                 .withSavedInstance(state)
                 .build();
 
+        // TODO: fix the number id witch item menudrawer
         PrimaryDrawerItem item_fragment_painel = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.home_painel).withIcon(GoogleMaterial.Icon.gmd_perm_media);
         PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.home_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite_border);
         SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_settings).withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
         SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_about).withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
         SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName(R.string.home_makator).withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
+        SecondaryDrawerItem item_notification = new SecondaryDrawerItem().withIdentifier(8).withName(R.string.home_notification).withIcon(GoogleMaterial.Icon.gmd_notifications).withSelectable(false);
 
         //create the drawer and remember the `Drawer` result object
         mMenuSideBar = new DrawerBuilder()
@@ -194,14 +204,15 @@ public class MainActivity extends BaseActivity {
                                 withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))).
                                 withOnCheckedChangeListener(onCheckedChangeListener).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
+                        item_notification.withTypeface(getDefaultFont()),
+                        item_ac_settings.withTypeface(getDefaultFont()),
+                        new SecondaryDrawerItem().withIdentifier(5).withName(R.string.home_feedback)
+                                .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
+                                .withTypeface(getDefaultFont()),
                         new SecondaryDrawerItem().
                                 withIdentifier(5).withName(R.string.home_donate)
                                 .withIcon(GoogleMaterial.Icon.gmd_favorite)
                                 .withSelectable(false)
-                                .withTypeface(getDefaultFont()),
-                        item_ac_settings.withTypeface(getDefaultFont()),
-                        new SecondaryDrawerItem().withIdentifier(5).withName(R.string.home_feedback)
-                                .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
                         item_ac_about.withTypeface(getDefaultFont())
                 )
@@ -212,16 +223,19 @@ public class MainActivity extends BaseActivity {
                         Log.i(TAG, "onItemClick: " + position);
                         switch (position) {
                             case ITEM_MATERIALDRAWER_ABOUT:
-                                call_AboutActivity();
+                                call_Activity(getApplicationContext(), AboutActivity.class);
                                 break;
                             case ITEM_MATERIALDRAWER_DONATE:
-                                call_DonteActivity();
+                                call_Activity(getApplicationContext(), DonateActivity.class);
+                                break;
+                            case ITEM_MATERIALDRAWER_AVISOS:
+                                call_Activity(getApplicationContext(), NotificationActivity.class);
                                 break;
                             case ITEM_MATERIALDRAWER_FAVORITES:
-                                call_DonteActivity();
+                                call_Activity(getApplicationContext(), DonateActivity.class);
                                 break;
                             case ITEM_MATERIALDRAWER_MARK:
-                                call_DonteActivity();
+                                call_Activity(getApplicationContext(), DonateActivity.class);
                                 break;
                         }
                         return true;
@@ -245,8 +259,8 @@ public class MainActivity extends BaseActivity {
     };
 
     @Override
-    public BaseViewModel getViewModel() {
-        return null;
+    public MainActivityViewModel getViewModel() {
+        return viewModel;
     }
 
     @Override
@@ -260,15 +274,9 @@ public class MainActivity extends BaseActivity {
         finish();
     }
 
-    public void call_AboutActivity () {
+    public void call_Activity (Context context, Class<?> ac) {
         // about activity
-        Intent i = new Intent(getApplicationContext(),AboutActivity.class);
-        startActivity(i);
-    }
-
-    public void call_DonteActivity () {
-        // donate activity
-        Intent i = new Intent(getApplicationContext(),DonateActivity.class);
+        Intent i = new Intent(context,ac);
         startActivity(i);
     }
 

@@ -20,7 +20,7 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.base;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.StringRes;
-import com.ufrbuild.mh4x0f.painelufrb.App;
+import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
@@ -76,7 +76,7 @@ public abstract class BaseViewModel extends ViewModel {
     }
 
     public boolean isInternet() {
-        if (networkUtils != null && networkUtils.isNetworkConnected(App.getInstance().getApplicationContext()))
+        if (networkUtils != null && networkUtils.isNetworkConnected(PainelUFRBApp.getInstance().getApplicationContext()))
             return true;
 
         showSnackbarMessage(R.string.no_internet);
