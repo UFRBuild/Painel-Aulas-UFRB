@@ -23,6 +23,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -44,6 +45,7 @@ public class SplashActivity extends BaseActivity<SplashViewModel> {
     ViewModelProvider.Factory factory;
     @Inject
     CommonUtils utils;
+    private static int SPLASH_TIME_OUT = 1000;
 
 
     @Override
@@ -70,22 +72,13 @@ public class SplashActivity extends BaseActivity<SplashViewModel> {
     @Override
     protected void setUp() {
         final Intent intent = new Intent(this, MainActivity.class);
-        Thread timer  = new Thread() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                super.run();
-                try{
-                    sleep(1000);
-                }catch (InterruptedException e){
-
-                }
-                finally {
-                    startActivity(intent);
-                    finish();
-                }
+                startActivity(intent);
+                finish();
             }
-        };
-
-        timer.start();
+        }, SPLASH_TIME_OUT);
     }
+
 }
