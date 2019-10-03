@@ -45,7 +45,6 @@ public class SplashActivity extends BaseActivity<SplashViewModel> {
     ViewModelProvider.Factory factory;
     @Inject
     CommonUtils utils;
-    private static int SPLASH_TIME_OUT = 1000;
 
 
     @Override
@@ -71,14 +70,8 @@ public class SplashActivity extends BaseActivity<SplashViewModel> {
 
     @Override
     protected void setUp() {
-        final Intent intent = new Intent(this, MainActivity.class);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(intent);
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
 }

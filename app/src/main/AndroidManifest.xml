@@ -29,7 +29,7 @@
                 android:parentActivityName=".ui.activity.main.MainActivity"></activity>
         <activity android:name=".ui.activity.donate.DonateActivity"></activity>
         <activity android:name=".ui.activity.settings.SettingsActivity"></activity>
-        <activity android:name=".ui.activity.splash.SplashActivity">
+        <activity android:name=".ui.activity.splash.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
