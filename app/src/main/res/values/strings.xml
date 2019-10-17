@@ -84,5 +84,6 @@
 
 <!--    Screen NotificationActivity-->
     <string name="action_title_notification">Avisos</string>
+    <string name="empty_notification_title">Ops! Sem notificações</string>
 
 </resources>

@@ -27,7 +27,7 @@
         <item name="class_number_color">@color/colorPrimary</item>
         <item name="class_text_color">#fff</item>
         <item name="button_up_color">#dadada</item>
-        <item name="dialog_close_button_color">#000000</item>
+        <item name="dialog_close_button_color">#808080</item>
 
         <!--dialog colors action-->
         <item name="android:itemBackground">#fff</item>
@@ -99,7 +99,7 @@
         <item name="class_text_color">#9f9f9f</item>
         <item name="button_up_color">#212121</item>
         <item name="searchDialogResultColor">#808080</item>
-        <item name="dialog_close_button_color">#fff</item>
+        <item name="dialog_close_button_color">#9f9f9f</item>
 
 
         <item name="android:itemBackground">#424242</item>

@@ -38,7 +38,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.bumptech.glide.load.engine.Resource;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
@@ -210,7 +209,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                                            LocateModel item, int position) {
                         try {
                             if (item != null) {
-                                mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                mDataManager.getPrefs().putObject(getString(R.string.locate_campus), item);
                                 MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
                                 viewModel.getDisciplineData();
                                 }

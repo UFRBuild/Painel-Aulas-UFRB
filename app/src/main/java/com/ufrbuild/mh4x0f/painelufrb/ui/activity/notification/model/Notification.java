@@ -20,4 +20,38 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.model;
 
 public class Notification {
+    private String title;
+    private String content;
+    private String data_temp;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getData_temp() {
+        return data_temp;
+    }
+
+    public void setData_temp(String data_temp) {
+        this.data_temp = data_temp;
+    }
+
+    public Notification (String title, String content){
+        setTitle(title);
+        setContent(content);
+    }
 }
+
+

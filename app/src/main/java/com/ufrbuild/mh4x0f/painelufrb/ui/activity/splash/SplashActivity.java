@@ -23,20 +23,26 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.model.Notification;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+
+import java.util.Calendar;
+
 import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity<SplashViewModel> {
 
+    private static final String TAG =  "SplashActivity";
     @BindView(R.id.img_logo_splash)
     ImageView mImageLogo;
 
@@ -46,6 +52,8 @@ public class SplashActivity extends BaseActivity<SplashViewModel> {
     @Inject
     CommonUtils utils;
 
+    @Inject
+    DataManager mDataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +68,26 @@ public class SplashActivity extends BaseActivity<SplashViewModel> {
         //mTvDescription.startAnimation(fadEffect);
         mImageLogo.startAnimation(fadEffect);
 
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Log.i(TAG, "onCreate: " + getIntent().getStringExtra("title_message"));
+            Log.i(TAG, "onCreate: " + getIntent().getStringExtra("body_message"));
+            Notification notify = new Notification(getIntent().getStringExtra("title_message"),
+                    getIntent().getStringExtra("body_message"));
+            notify.setData_temp(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+            mDataManager.putNotificationMessage(notify);
+            setUpMessage();
+        }
+
     }
 
     @Override
     public SplashViewModel getViewModel() {
         viewModel = ViewModelProviders.of(this, factory).get(SplashViewModel.class);
         return viewModel;
+    }
+    public void setUpMessage(){
+        startActivity(new Intent(this, MainActivity.class).putExtra("hasNotification",0));
+        finish();
     }
 
     @Override

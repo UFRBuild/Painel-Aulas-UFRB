@@ -22,19 +22,25 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.adapters.NotificationAdapter;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.dialogs.DialogItemNotification;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.model.Notification;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NotificationActivity extends BaseActivity<NotificationViewModel> {
+public class NotificationActivity extends BaseActivity<NotificationViewModel> implements  NotificationAdapter.OnNotificationAdapter{
     NotificationViewModel viewModel;
     @Inject
     ViewModelProvider.Factory factory;
@@ -44,6 +50,19 @@ public class NotificationActivity extends BaseActivity<NotificationViewModel> {
     DataManager mDataManager;
     @BindView(R.id.main_appbar_notification)
     Toolbar mToolbar;
+    @BindView(R.id.rv_notification)
+    RecyclerView rv_notification;
+
+    @BindView(R.id.layoutEmptyNotification)
+    ConstraintLayout mEmpytViewNotification;
+
+    NotificationAdapter mNotificationAdapter;
+    LinearLayoutManager managerNotification;
+
+
+    public DataManager getmDataManager() {
+        return mDataManager;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +80,18 @@ public class NotificationActivity extends BaseActivity<NotificationViewModel> {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(R.string.action_title_notification);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mNotificationAdapter = new NotificationAdapter(this, mDataManager, mEmpytViewNotification);
+        managerNotification = new LinearLayoutManager(this);
+        rv_notification.setAdapter(mNotificationAdapter);
+        rv_notification.setLayoutManager(managerNotification);
+
+        ArrayList<Notification> stack = mDataManager.getNotificationsMessage();
+        if (stack != null) {
+            Collections.reverse(stack);
+            mNotificationAdapter.setItems(stack);
+        }
+
     }
 
     @Override
@@ -71,6 +102,16 @@ public class NotificationActivity extends BaseActivity<NotificationViewModel> {
 
     @Override
     protected void setUp() {
+    }
 
+    @Override
+    public void onNotificationClicked(Notification notification) {
+        // implementation dialogbox show up single discipline status
+        HashMap data = new  HashMap<String, String>();
+        data.put("title_message", notification.getTitle());
+        data.put("content_message", notification.getContent());
+        data.put("date_message", notification.getData_temp());
+        DialogItemNotification generalDialogMessage = DialogItemNotification.newInstance(data);
+        generalDialogMessage.show(getSupportFragmentManager(),"dialog");
     }
 }

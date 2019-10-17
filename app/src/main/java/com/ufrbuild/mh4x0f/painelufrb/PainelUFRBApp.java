@@ -19,6 +19,7 @@
 
 package com.ufrbuild.mh4x0f.painelufrb;
 
+import com.preference.PowerPreference;
 import com.ufrbuild.mh4x0f.painelufrb.di.components.DaggerPainelMainComponent;
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
@@ -31,6 +32,7 @@ public class PainelUFRBApp extends DaggerApplication {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        PowerPreference.init(this);
     }
 
     @Override

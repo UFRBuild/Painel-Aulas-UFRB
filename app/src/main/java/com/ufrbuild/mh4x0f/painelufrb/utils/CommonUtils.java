@@ -28,6 +28,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.format.DateFormat;
 import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,6 +36,7 @@ import com.ufrbuild.mh4x0f.painelufrb.R;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -95,6 +97,30 @@ public final class CommonUtils {
             window.setStatusBarColor(color);
         }
     }
+
+
+
+    public static String getFormattedDate( long smsTimeInMilis) {
+        // https://stackoverflow.com/questions/12818711/how-to-find-time-is-today-or-yesterday-in-android/16146263
+        Calendar smsTime = Calendar.getInstance();
+        smsTime.setTimeInMillis(smsTimeInMilis);
+
+        Calendar now = Calendar.getInstance();
+
+        final String timeFormatString = "h:mm aa";
+        final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
+        final long HOURS = 60 * 60 * 60;
+        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE) ) {
+            return " Hoje " + DateFormat.format(timeFormatString, smsTime);
+        } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1  ){
+            return " Ontem " + DateFormat.format(timeFormatString, smsTime);
+        } else if (now.get(Calendar.YEAR) == smsTime.get(Calendar.YEAR)) {
+            return " " + DateFormat.format(dateTimeFormatString, smsTime).toString();
+        } else {
+            return " " + DateFormat.format("dd MMMM yyyy, h:mm aa", smsTime).toString();
+        }
+    }
+
 
     public static String intToTimeString(Long timestamp, int gmt){
 

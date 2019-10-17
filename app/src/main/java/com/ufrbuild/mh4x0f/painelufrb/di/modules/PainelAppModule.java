@@ -40,8 +40,8 @@ public class PainelAppModule {
 
     @Singleton
     @Provides
-    DataManager provideDataManager(Context context){
-        return new DataManager(context);
+    DataManager provideDataManager(Context context, Gson gson){
+        return new DataManager(context, gson );
     }
 
 

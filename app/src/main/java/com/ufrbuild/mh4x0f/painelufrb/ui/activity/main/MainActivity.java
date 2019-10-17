@@ -21,6 +21,7 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,9 +32,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
-import com.pd.chocobar.ChocoBar;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
@@ -71,7 +72,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
     public final static int ITEM_MATERIALDRAWER_MARK = 4;
     public final static int ITEM_MATERIALDRAWER_DONATE = 10;
     public final static int ITEM_MATERIALDRAWER_ABOUT = 11;
-    public final static int ITEM_MATERIALDRAWER_AVISOS = 7;
+    public final static int ITEM_MATERIALDRAWER_AVISOS = 3;
     private static final String TAG = "MainActivity";
     private HomeFragment mHomeFragment;
     @BindView(R.id.subtitle_home)
@@ -133,6 +134,21 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
         mHomeFragment = new HomeFragment();
 
 
+        // get firebase token to send message for just test app
+//        FirebaseInstanceId.getInstance().getInstanceId()
+//                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "getInstanceId failed", task.getException());
+//                            return;
+//                        }
+//                        // Get new Instance ID token
+//                        String token = task.getResult().getToken();
+//                        Log.d(TAG, token);
+//                    }
+//                });
+
         //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -151,7 +167,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                                                    LocateModel item, int position) {
                                 try {
                                     if (item != null){
-                                        mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                        mDataManager.getPrefs().putObject(getString(R.string.locate_campus), item);
                                         getmSubTitleHome().setText(item.getTitle());
                                         mHomeFragment.getViewModel().getDisciplineData();
                                     }
@@ -164,6 +180,10 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                         }).show();
             }
         });
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            call_Activity(getApplicationContext(), NotificationActivity.class);
+        }
 
     }
 
@@ -184,11 +204,21 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
 
         // TODO: fix the number id witch item menudrawer
         PrimaryDrawerItem item_fragment_painel = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.home_painel).withIcon(GoogleMaterial.Icon.gmd_perm_media);
-        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.home_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite_border);
-        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_settings).withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
-        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_about).withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
-        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName(R.string.home_makator).withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
-        SecondaryDrawerItem item_notification = new SecondaryDrawerItem().withIdentifier(8).withName(R.string.home_notification).withIcon(GoogleMaterial.Icon.gmd_notifications).withSelectable(false);
+        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(ITEM_MATERIALDRAWER_FAVORITES).withName(R.string.home_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite_border);
+        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withName(R.string.home_settings).withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
+        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().
+                withIdentifier(ITEM_MATERIALDRAWER_ABOUT).withName(R.string.home_about).
+                withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
+        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(ITEM_MATERIALDRAWER_DONATE).withName(R.string.home_makator).withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
+        SecondaryDrawerItem item_notification = new SecondaryDrawerItem().withIdentifier(ITEM_MATERIALDRAWER_AVISOS).withName(R.string.home_notification).withIcon(GoogleMaterial.Icon.gmd_notifications).withSelectable(false);
+
+        if (mDataManager.getNotificationsMessage() != null) {
+            if (mDataManager.getNotificationsMessage().size() != 0) {
+                item_notification.withBadge(
+                        String.valueOf(mDataManager.getNotificationsMessage().size())
+                ).withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700));
+            }
+        }
 
         //create the drawer and remember the `Drawer` result object
         mMenuSideBar = new DrawerBuilder()
@@ -197,6 +227,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                 .addDrawerItems(
                         item_fragment_painel.withTypeface(getDefaultFont()),
                         item_favorities.withTypeface(getDefaultFont()),
+                        item_notification.withTypeface(getDefaultFont()),
                         new SectionDrawerItem().withName(R.string.home_marcadores).withTypeface(getDefaultFont()),
                         item_add_markers.withTypeface(getDefaultFont()),
                         new DividerDrawerItem(),
@@ -204,13 +235,12 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                                 withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))).
                                 withOnCheckedChangeListener(onCheckedChangeListener).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
-                        item_notification.withTypeface(getDefaultFont()),
                         item_ac_settings.withTypeface(getDefaultFont()),
-                        new SecondaryDrawerItem().withIdentifier(5).withName(R.string.home_feedback)
+                        new SecondaryDrawerItem().withName(R.string.home_feedback)
                                 .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
                         new SecondaryDrawerItem().
-                                withIdentifier(5).withName(R.string.home_donate)
+                                withIdentifier(ITEM_MATERIALDRAWER_DONATE).withName(R.string.home_donate)
                                 .withIcon(GoogleMaterial.Icon.gmd_favorite)
                                 .withSelectable(false)
                                 .withTypeface(getDefaultFont()),
@@ -221,7 +251,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // do something with the clicked item :D
                         Log.i(TAG, "onItemClick: " + position);
-                        switch (position) {
+                        switch ((int)drawerItem.getIdentifier()) {
                             case ITEM_MATERIALDRAWER_ABOUT:
                                 call_Activity(getApplicationContext(), AboutActivity.class);
                                 break;
