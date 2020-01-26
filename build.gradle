@@ -42,7 +42,7 @@ ext {
     versionName = '1.0.7'
 
     // App dependencies
-    supportLibraryVersion = '27.1.1'
+    supportLibraryVersion = '28.0.0'
     constraintLayout = '1.0.2'
     gsonVersion = '2.8.0'
     calligraphyVersion = '2.2.0'
@@ -59,7 +59,7 @@ ext {
     retrofitVersion = '2.3.0'
     retrofit2Rxjava2AdapterVersion = '2.3.0'
     okHttpVersion = '5.1'
-    roomVersion = '1.0.0'
+    roomVersion = '1.1.1'
     lifecycle = '1.0.0'
     androidJob = '1.2.5'
 

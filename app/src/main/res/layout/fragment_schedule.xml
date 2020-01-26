@@ -4,29 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:background="@drawable/bg_header_invert"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
         android:orientation="vertical">
-
-
-    <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" android:gravity="center" android:layout_marginTop="8dp">
-        <Button
-                android:layout_width="40dp"
-                android:layout_height="4dp" android:id="@+id/btn_up"
-                android:background="@drawable/bg_color_upbutton" android:layout_marginBottom="2dp"/>
-    </LinearLayout>
-
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/title_recycler"
-            android:text="Favoritos"
-            android:textStyle="bold" android:textSize="18sp" android:fontFamily="@font/montserrat"
-            android:layout_marginEnd="16dp" android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp" android:paddingBottom="8dp" android:paddingTop="4dp"
-            android:textColor="?attr/item_disciplineTitle"/>
 
     <android.support.v4.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
@@ -36,9 +15,10 @@
         <android.support.v4.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/swipe_refresh_favorites" app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/swipe_refresh_schedule" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 >
+
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -61,12 +41,12 @@
 
                     <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:id="@+id/empty_view_favorites">
+                            android:layout_height="match_parent" android:id="@+id/empty_view_schedule">
 
                         <ImageView
                                 android:layout_width="128dp"
                                 android:layout_height="128dp"
-                                android:id="@+id/image_state_favorites" android:layout_marginTop="16dp"
+                                android:id="@+id/image_state_schedule" android:layout_marginTop="16dp"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,9 +56,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                app:layout_constraintTop_toBottomOf="@+id/image_state_favorites">
+                                app:layout_constraintTop_toBottomOf="@+id/image_state_schedule">
                             <TextView
-                                    android:id="@+id/title_states_favorites"
+                                    android:id="@+id/title_states_schedule"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
@@ -90,13 +70,13 @@
                                     android:textColor="?attr/textcolor"
                                     android:layout_width="match_parent"
                                     android:fontFamily="@font/montserrat"
-                                    android:layout_height="wrap_content" android:id="@+id/subtitle_states_favorites"
+                                    android:layout_height="wrap_content" android:id="@+id/subtitle_states_schedule"
                                     android:gravity="center_horizontal" android:text="@string/sub_title_emptyview"
                                     android:layout_margin="8dp"/>
                         </LinearLayout>
                     </android.support.constraint.ConstraintLayout>
                     <android.support.v7.widget.RecyclerView
-                            android:id="@+id/recycler_view_favorites"
+                            android:id="@+id/recycler_view_schedule"
                             android:layout_width="match_parent"
                             android:requiresFadingEdge="horizontal|vertical"
                             android:layout_height="wrap_content"
@@ -104,40 +84,16 @@
                             app:fastScrollEnabled="false"/>
 
 
-                    <com.dmitrymalkovich.android.ProgressFloatingActionButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/fab_margin"
-                            android:layout_marginEnd="24dp"
-                            android:layout_marginBottom="8dp"
-                            android:clickable="true"
-                            android:paddingBottom="48dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
-
-                        <android.support.design.widget.FloatingActionButton
-                                android:id="@+id/floatingButtonAction_favorites"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:baselineAlignBottom="true"
-                                android:src="@drawable/ic_update_black_24dp"
-                                app:elevation="2dp"
-                                app:useCompatPadding="false" />
-
-                        <ProgressBar
-                                android:id="@+id/progress_bar_favorites"
-                                style="@style/Widget.AppCompat.ProgressBar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                    </com.dmitrymalkovich.android.ProgressFloatingActionButton>
 
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
         </android.support.v4.widget.SwipeRefreshLayout>
 
+
+
+
     </android.support.v4.widget.NestedScrollView>
+
 
 
 </LinearLayout>

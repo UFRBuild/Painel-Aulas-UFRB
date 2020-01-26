@@ -19,44 +19,84 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.data.network.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
-public class Discipline implements Parcelable{
+@Entity(tableName = "DisciplineDetails")
+public class Discipline implements Parcelable, Comparable<Discipline> {
+
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "IdTable")
+    private int idtable;
+
+    @Expose
+    @SerializedName("id")
+    @ColumnInfo(name = "Id")
+    private String id;
 
     @Expose
     @SerializedName("name")
+    @ColumnInfo(name = "Name")
     private String name;
 
     @Expose
     @SerializedName("description")
+    @ColumnInfo(name = "Description")
     private String description;
 
     @Expose
     @SerializedName("room_name")
+    @ColumnInfo(name = "RoomName")
     private String room_name;
 
     @Expose
     @SerializedName("start_time")
+    @ColumnInfo(name = "StartTime")
     private long start_time;
 
     @Expose
     @SerializedName("duration")
+    @ColumnInfo(name = "Duration")
     private long duration;
 
     @Expose
     @SerializedName("status")
+    @ColumnInfo(name = "Status")
     private int status;
 
+    @ColumnInfo(name = "DayOfWeek")
+    private int day_week;
+
+    @ColumnInfo(name = "PavilionName")
+    private String pavilionName;
+
+    public Discipline(String id,String name, String description,
+                      String room_name, long start_time, long duration, int status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.room_name = room_name;
+        this.start_time = start_time;
+        this.duration = duration;
+        this.status = status;
+    }
+
     protected Discipline(Parcel in) {
+        id  = in.readString();
         name = in.readString();
         description = in.readString();
         room_name = in.readString();
         duration = in.readLong();
         start_time = in.readLong();
         status = in.readInt();
+        day_week = in.readInt();
     }
 
     public static final Creator<Discipline> CREATOR = new Creator<Discipline>() {
@@ -73,6 +113,18 @@ public class Discipline implements Parcelable{
 
     public String getDescription() {
         return description;
+    }
+
+    public String getPavilionName() {
+        return pavilionName;
+    }
+
+    public void setPavilionName(String pavilionName) {
+        this.pavilionName = pavilionName;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -104,6 +156,37 @@ public class Discipline implements Parcelable{
         this.duration = duration;
     }
 
+    public int getIdtable() {
+        return idtable;
+    }
+
+    public void setIdtable(int idtable) {
+        this.idtable = idtable;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getDay_week() {
+        return day_week;
+    }
+
+    public void setDay_week(int DAY_OF_WEEK) {
+        this.day_week = DAY_OF_WEEK;
+    }
 
     @Override
     public int describeContents() {
@@ -118,5 +201,12 @@ public class Discipline implements Parcelable{
         parcel.writeString(room_name);
         parcel.writeString(description);
         parcel.writeString(name);
+        parcel.writeString(id);
+        parcel.writeInt(day_week);
+    }
+
+    @Override
+    public int compareTo(Discipline another) {
+        return Long.compare(this.getStart_time(), another.getStart_time());
     }
 }

@@ -21,6 +21,7 @@ package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
 import android.arch.lifecycle.ViewModelProvider;
 
+import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
@@ -46,9 +47,15 @@ public class HomeFragmentModule {
         return new TimeServerService(retrofit);
     }
 
+        @Provides
+    HomeRepository provideHomeRepository(PainelUFRBApp application){
+        //TODO: teste this
+        return new HomeRepository(application);
+    }
+
     @Provides
-    HomeViewModel homeViewModel(DisciplineService dis, TimeServerService tim) {
-        return new HomeViewModel(dis, tim);
+    HomeViewModel homeViewModel(DisciplineService dis, TimeServerService tim, HomeRepository home) {
+        return new HomeViewModel(dis, tim, home);
     }
 
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/navigation_home_fragment"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Disciplinas" />
+
+    <item
+            android:id="@+id/navigation_favorites_fragment"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="Favoritos" />
+
+
+    <item
+            android:id="@+id/navigation_schedule_fragment"
+            android:icon="@drawable/ic_event_available_black_24dp"
+            android:title="Horário" />
+    <item
+            android:id="@+id/navigation_monitors_fragment"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
+            android:title="Monitorias" />
+
+</menu>

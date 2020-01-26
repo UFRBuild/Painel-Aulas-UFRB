@@ -8,9 +8,13 @@
     <color name="colorStatusClassRoom_wating">#FFAB40</color>
     <color name="colorStatusClassRoom_cancel">#F44336</color>
 
+    <color name="color_status_week_inative">#42000000</color>
+
     <color name="searchDialogResultHighlightColor">#5c6bc0</color>
     <!-- overwrite the selected colors because the primary color is to dark -->
 
+    <!--Icons Colors-->
+    <color name="navIconColor">#06C8D4</color>
 
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->

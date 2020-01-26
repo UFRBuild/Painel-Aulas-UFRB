@@ -180,6 +180,10 @@
                     android:layout_margin="8dp" tools:ignore="MissingConstraints" android:id="@+id/linearLayout7"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyler_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

@@ -107,6 +107,9 @@ dependencies {
 
     // test snackbar
     implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
+
+
+    implementation 'com.github.IntruderShanky:Sectioned-RecyclerView:2.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

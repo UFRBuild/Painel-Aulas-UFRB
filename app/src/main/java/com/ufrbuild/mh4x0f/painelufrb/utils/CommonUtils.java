@@ -33,15 +33,18 @@ import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -166,6 +169,16 @@ public final class CommonUtils {
         is.close();
 
         return new String(buffer, "UTF-8");
+    }
+
+    public ArrayList<LocateModel> getAllLocateModel(Context context){
+        ArrayList<LocateModel> items = new ArrayList<>();
+        List<String> area = Arrays.asList(context.getResources().getStringArray(R.array.locate_campus));
+
+        for (int i = 0; i < area.size();i++){
+            items.add(new LocateModel(area.get(i)));
+        }
+        return items;
     }
 
     public static String getTimeStamp() {

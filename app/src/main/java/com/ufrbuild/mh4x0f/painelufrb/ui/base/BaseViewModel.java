@@ -50,6 +50,10 @@ public abstract class BaseViewModel extends ViewModel {
     }
 
 
+    public void getDisciplineData(){
+        //TODO: this method will be default for all fragment
+    }
+
     public DataManager getDataManager() {
         return dataManager;
     }

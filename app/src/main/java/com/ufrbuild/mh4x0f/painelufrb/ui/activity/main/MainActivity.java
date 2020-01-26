@@ -19,11 +19,16 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
+import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.*;
 import android.widget.CompoundButton;
@@ -39,8 +44,12 @@ import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.Schedule;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.ScheduleFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -50,6 +59,9 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
+import com.ufrbuild.mh4x0f.painelufrb.utils.BottomNavigationBehaviour;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import javax.inject.Inject;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
@@ -74,7 +86,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
     public final static int ITEM_MATERIALDRAWER_ABOUT = 11;
     public final static int ITEM_MATERIALDRAWER_AVISOS = 3;
     private static final String TAG = "MainActivity";
-    private HomeFragment mHomeFragment;
+    private BaseFragment mActiveFragment;
     @BindView(R.id.subtitle_home)
     TextView mSubTitleHome;
 
@@ -86,6 +98,10 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
 
     @BindView(R.id.floating_search_view)
     FloatingSearchView mSearchView;
+
+
+    @BindView(R.id.navigation_button)
+    BottomNavigationView bottomNavigationView;
 
     // Singleton instance
     private static MainActivity sInstance = null;
@@ -120,6 +136,9 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
         sInstance = this;
         ButterKnife.bind(this);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        initScrollAutoHide();
+
         // load local localization
         LocateModel locate = mDataManager.getPrefs().getObject(getString(R.string.locate_campus), LocateModel.class);
         if (locate != null){
@@ -131,7 +150,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
         // get support action bar mode
         utils.getSupportActionBar(this);
 
-        mHomeFragment = new HomeFragment();
+        mActiveFragment = new HomeFragment();
 
 
         // get firebase token to send message for just test app
@@ -150,26 +169,24 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
 //                });
 
         //I added this if statement to keep the selected fragment when rotating the device
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    mHomeFragment).commit();
-        }
+        loadFragmentCommit(mActiveFragment);
 
 
         mllSubtTitleHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SimpleSearchDialogCompat(MainActivity.this, getString(R.string.title_name_dialog),
-                        getString(R.string.title_select_area), null, mHomeFragment.createSampleData(MainActivity.this),
+                        getString(R.string.title_select_area), null, utils.getAllLocateModel(MainActivity.this),
                         new SearchResultListener<LocateModel>() {
                             @Override
                             public void onSelected(BaseSearchDialogCompat dialog,
                                                    LocateModel item, int position) {
                                 try {
                                     if (item != null){
+                                        //TODO : fix fragment load
                                         mDataManager.getPrefs().putObject(getString(R.string.locate_campus), item);
                                         getmSubTitleHome().setText(item.getTitle());
-                                        mHomeFragment.getViewModel().getDisciplineData();
+                                        mActiveFragment.getViewModel().getDisciplineData();
                                     }
                                 }
                                 catch (Exception e){
@@ -186,6 +203,53 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
         }
 
     }
+
+    private void initScrollAutoHide(){
+        // Navigation behaviour - hide/show on scroll
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams)
+                bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationBehaviour());
+    }
+
+
+    public void loadFragmentCommit(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    //This won't show a blank page when android back press button is clicked from fragment
+                    //.addToBackStack(null)
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }
+    }
+
+    public BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+        Fragment fragment;
+        switch (item.getItemId()) {
+            case R.id.navigation_home_fragment:
+                fragment = new HomeFragment();
+                loadFragmentCommit(fragment);
+                return true;
+            case R.id.navigation_favorites_fragment:
+                fragment = new FavoritesFragment();
+                loadFragmentCommit(fragment);
+                return true;
+            case R.id.navigation_monitors_fragment:
+                //fragment = new ProfileFragment();
+                //loadFragmentCommit(fragment);
+                return true;
+            case R.id.navigation_schedule_fragment:
+                fragment = new Schedule();
+                loadFragmentCommit(fragment);
+                return true;
+        }
+        return false;
+    };
+
+
+
 
     public void setupMaterialDrawer( Bundle state){
         // mount material drawer menu

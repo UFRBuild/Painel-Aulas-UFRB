@@ -1,41 +1,22 @@
-/*
-    This file is part of the Painel de Aulas UFRB Open Source Project.
-    Painel de Aulas UFRB is licensed under the Apache 2.0.
-
-    Copyright 2019 UFRBuild - Marcos Bomfim
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
- */
-
-package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
+
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.RoomResponse;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeViewModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 
 import javax.inject.Inject;
 
@@ -43,9 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class HomeViewModel extends BaseViewModel {
-
+public class FavoritesViewModel extends BaseViewModel {
     private MutableLiveData<List<Discipline>> mDisciplineList;
     private MutableLiveData<Boolean> isLoading;
     private MutableLiveData<Boolean> isNetworkError;
@@ -53,20 +32,22 @@ public class HomeViewModel extends BaseViewModel {
     private TimeServer mTimerServer;
     private DisciplineService disciplineService;
     private TimeServerService timeService;
-    private HomeRepository mRepository;
-    private String TAG = "HomeViewModel";
+    private DisciplineRepository mRepository;
+    private String TAG = "FavoritesViewModel";
 
     @Inject
-    HomeViewModel(DisciplineService disciplineService, TimeServerService timeService, HomeRepository home) {
+    FavoritesViewModel(DisciplineService disciplineService, TimeServerService timeService,
+                       DisciplineRepository repository) {
         this.disciplineService = disciplineService;
         this.timeService = timeService;
+        this.mRepository = repository;
         mDisciplineList = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
         isNetworkError = new MutableLiveData<>();
         isEmptyView =  new MutableLiveData<>();
         mTimerServer = new TimeServer();
-        mRepository = home;
     }
+
 
     public MutableLiveData<List<Discipline>> getDisciplines() {
         return mDisciplineList;
@@ -86,17 +67,16 @@ public class HomeViewModel extends BaseViewModel {
 
         // test paraments
         HashMap<String, String> parameters = new HashMap<>();
-//        parameters.put("area", "Pavilhão de Aulas 1 - PA1");
-//        parameters.put("st_min", "1561496400");
-//        parameters.put("st_max", "1561503600");
-        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
-        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
-        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
+        parameters.put("area", "Pavilhão de Aulas 1 - PA1");
+        parameters.put("st_min", "1561496400");
+        parameters.put("st_max", "1561503600");
+//        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
+//        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
+//        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
 
         Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllDiscipline(parameters);
-        DisciplineCall.enqueue(new DisciplineCallback());
+        DisciplineCall.enqueue(new FavoritesViewModel.DisciplineCallback());
     }
-
     public void getDisciplineData() {
         setIsLoading(true);
         timeService.getTimerServerApi().getResult().enqueue(new Callback<TimeServer>() {
@@ -146,8 +126,7 @@ public class HomeViewModel extends BaseViewModel {
         mDisciplineList.postValue(disciplines);
     }
 
-
-    public HomeRepository getmRepository() {
+    public DisciplineRepository getmRepository() {
         return mRepository;
     }
 
