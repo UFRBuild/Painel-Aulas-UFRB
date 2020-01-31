@@ -27,10 +27,10 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivityModule;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivityModule;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragmentModule;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragmentProvider;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragmentProvider;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.ScheduleFragmentProvider;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.SchedulePagerFragmentProvider;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.fragments.ScheduleFragmentProvider;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivityModule;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.splash.SplashActivity;
@@ -46,6 +46,7 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {
             MainActivityModule.class,
             FavoritesFragmentProvider.class,
+            SchedulePagerFragmentProvider.class,
             ScheduleFragmentProvider.class,
             HomeFragmentProvider.class})
     abstract MainActivity contributeMainActivity();

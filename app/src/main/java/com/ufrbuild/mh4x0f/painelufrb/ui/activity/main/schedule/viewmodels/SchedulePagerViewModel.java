@@ -1,16 +1,15 @@
-package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels;
+
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.model.RoomResponse;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.ScheduleRepository;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.SectionHeader;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
@@ -18,12 +17,10 @@ import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.inject.Inject;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class ScheduleViewModel extends BaseViewModel {
+import javax.inject.Inject;
+
+public class SchedulePagerViewModel extends BaseViewModel {
     private MutableLiveData<List<SectionHeader>> mDisciplineSectionedList;
     private MutableLiveData<Boolean> isLoading;
     private MutableLiveData<Boolean> isNetworkError;
@@ -36,7 +33,7 @@ public class ScheduleViewModel extends BaseViewModel {
     private String TAG = "ScheduleViewModel";
 
     @Inject
-    ScheduleViewModel(DisciplineService disciplineService, TimeServerService timeService) {
+    public SchedulePagerViewModel(DisciplineService disciplineService, TimeServerService timeService) {
         this.disciplineService = disciplineService;
         this.timeService = timeService;
         mDisciplineSectionedList = new MutableLiveData<>();

@@ -28,6 +28,7 @@
         <item name="class_text_color">#fff</item>
         <item name="button_up_color">#dadada</item>
         <item name="dialog_close_button_color">#808080</item>
+        <item name="btn_textcolor">#fff</item>
 
         <!--schedule fragment attrs-->
         <item name="background_monitoring_color">@color/colorAccent</item>
@@ -108,6 +109,7 @@
         <item name="button_up_color">#212121</item>
         <item name="searchDialogResultColor">#808080</item>
         <item name="dialog_close_button_color">#9f9f9f</item>
+        <item name="btn_textcolor">#9f9f9f</item>
 
         <item name="bottomNavIconColor">#FCC344</item>
         <item name="textNavColor">#808080</item>

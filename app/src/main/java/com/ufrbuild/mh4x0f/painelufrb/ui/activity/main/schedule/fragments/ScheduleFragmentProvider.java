@@ -1,4 +1,7 @@
-package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.fragments;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.fragments.ScheduleFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.fragments.ScheduleFragmentModule;
+
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 

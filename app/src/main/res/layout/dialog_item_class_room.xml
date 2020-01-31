@@ -55,59 +55,200 @@
                         android:layout_alignParentRight="true"
                         tools:ignore="VectorDrawableCompat" android:layout_marginEnd="4dp"/>
             </LinearLayout>
+
             <LinearLayout
-                    android:orientation="vertical"
+                    android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" android:layout_margin="8dp"
-                    tools:layout_editor_absoluteX="8dp"
-                    android:id="@+id/linearLayout5"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
                     tools:ignore="MissingConstraints">
+
                 <View
+                        android:id="@+id/view"
                         android:layout_width="match_parent"
-                        android:layout_height="0.6dp" android:id="@+id/view"
-                        android:background="@drawable/bg_class_number"/>
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                >
-                </LinearLayout>
+                        android:layout_height="0.2dp"
+                        android:background="@drawable/bg_class_number" />
 
                 <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                >
-                    <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_supervisor_account_black_24dp"
-                            android:id="@+id/imageView5" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
+                        android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_class_room_linear_layout"
+                        android:orientation="vertical">
+
                     <TextView
-                            android:text="Aritanaelton Alexander"
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_weight="1"
+                            android:text="Docente"
+                            android:textSize="12sp" />
+
+                    <TextView
+                            android:id="@+id/tv_prof"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/tv_prof"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
                             android:layout_weight="2"
-                            android:paddingLeft="4dp"/>
+                            android:paddingLeft="4dp"
+                            android:text="Aritanaelton Alexander"
+                            android:textStyle="bold" />
                 </LinearLayout>
 
 
                 <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                >
+                        android:orientation="horizontal">
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/bg_class_room_linear_layout"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="2dp"
+                                android:layout_weight="2"
+                                android:text="Duração"
+                                android:textSize="12sp" />
+
+                        <TextView
+                                android:id="@+id/tv_duration"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_weight="2"
+                                android:text="2h:00"
+                                android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/bg_class_room_linear_layout"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="2dp"
+                                android:layout_weight="2"
+                                android:text="Inicio"
+                                android:textSize="12sp" />
+
+                        <TextView
+                                android:id="@+id/tv_start_timer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_weight="2"
+                                android:text="7h:00"
+                                android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/bg_class_room_linear_layout"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="2dp"
+                                android:layout_weight="2"
+                                android:text="Sala "
+                                android:textSize="12sp" />
+
+                        <TextView
+                                android:id="@+id/tv_classrom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_weight="2"
+                                android:text="114"
+                                android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
                     <ImageView
+                            android:id="@+id/imageView6"
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
                             app:srcCompat="@drawable/ic_event_available_black_24dp"
-                            android:id="@+id/imageView6" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
+                            tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                             android:id="@+id/tv_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
                             android:layout_weight="2"
                             android:paddingLeft="4dp"
                             android:text="Em Aguardo"
@@ -115,75 +256,37 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                >
-                    <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_hourglass_empty_black_24dp"
-                            android:id="@+id/imageView7" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
-                    <TextView
-                            android:text="2h:00"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/tv_duration"
-                            android:layout_weight="2"
-                            android:paddingLeft="4dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                >
-                    <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_timer_black_24dp"
-                            android:id="@+id/imageView8" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
-                    <TextView
-                            android:text="7h:00"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/tv_start_timer"
-                            android:layout_weight="2"
-                            android:paddingLeft="4dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                >
-                    <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_forum_black_24dp"
-                            android:id="@+id/imageView9" android:layout_weight="1" tools:ignore="VectorDrawableCompat"/>
-                    <TextView
-                            android:text="114 "
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/tv_classrom"
-                            android:layout_weight="2"
-                            android:paddingLeft="4dp"/>
-                </LinearLayout>
-
-
             </LinearLayout>
+
             <LinearLayout
-                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_margin="8dp" tools:ignore="MissingConstraints" android:id="@+id/linearLayout7"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="8dp">
 
                 <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyler_week"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="16dp" />
+
+                <Button
+                        android:id="@+id/btn_save_disciplinedb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_dialog_background"
+                        android:foreground="@drawable/btn_normal_effect"
+                        android:text="Definir"
+                        android:textColor="?attr/btn_textcolor" />
+
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

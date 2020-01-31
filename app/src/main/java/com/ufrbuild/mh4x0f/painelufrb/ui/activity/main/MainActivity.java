@@ -19,13 +19,11 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
-import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
@@ -46,10 +44,8 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.Schedule;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.ScheduleFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.SchedulePagerFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -60,7 +56,6 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.utils.BottomNavigationBehaviour;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import javax.inject.Inject;
@@ -121,6 +116,10 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
 
     public FloatingSearchView getmSearchView() {
         return mSearchView;
+    }
+
+    public BaseFragment getmActiveFragment() {
+        return mActiveFragment;
     }
 
     @Override
@@ -212,7 +211,8 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
     }
 
 
-    public void loadFragmentCommit(Fragment fragment) {
+    public void loadFragmentCommit(BaseFragment fragment) {
+        //TODO: change fragment o BaseFragment
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -221,12 +221,13 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                     //.addToBackStack(null)
                     .replace(R.id.fragment_container, fragment)
                     .commit();
+            mActiveFragment = fragment;
         }
     }
 
     public BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-        Fragment fragment;
+        BaseFragment fragment;
         switch (item.getItemId()) {
             case R.id.navigation_home_fragment:
                 fragment = new HomeFragment();
@@ -241,7 +242,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                 //loadFragmentCommit(fragment);
                 return true;
             case R.id.navigation_schedule_fragment:
-                fragment = new Schedule();
+                fragment = new SchedulePagerFragment();
                 loadFragmentCommit(fragment);
                 return true;
         }

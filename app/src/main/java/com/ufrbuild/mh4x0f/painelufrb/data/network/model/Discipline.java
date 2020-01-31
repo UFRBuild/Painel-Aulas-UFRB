@@ -21,12 +21,15 @@ package com.ufrbuild.mh4x0f.painelufrb.data.network.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+
+import java.util.ArrayList;
 
 @Entity(tableName = "DisciplineDetails")
 public class Discipline implements Parcelable, Comparable<Discipline> {
@@ -76,6 +79,9 @@ public class Discipline implements Parcelable, Comparable<Discipline> {
 
     @ColumnInfo(name = "PavilionName")
     private String pavilionName;
+
+    @Ignore
+    private ArrayList<Integer> weeksdays;
 
     public Discipline(String id,String name, String description,
                       String room_name, long start_time, long duration, int status) {
@@ -186,6 +192,14 @@ public class Discipline implements Parcelable, Comparable<Discipline> {
 
     public void setDay_week(int DAY_OF_WEEK) {
         this.day_week = DAY_OF_WEEK;
+    }
+
+    public ArrayList<Integer> getWeeksdays() {
+        return weeksdays;
+    }
+
+    public void setWeeksdays(ArrayList<Integer> weeksdays) {
+        this.weeksdays = weeksdays;
     }
 
     @Override

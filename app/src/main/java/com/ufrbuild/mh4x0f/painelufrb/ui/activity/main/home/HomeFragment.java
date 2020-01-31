@@ -27,6 +27,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -103,6 +105,7 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
     private String mLastQuery = "";
     private  FloatingSearchView mSearchView;
+    private DialogItemClassRoom mDialogFragment;
 
 
     private View mView;
@@ -236,6 +239,19 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         }
     }
 
+
+    private class LoadingObserverRepositoryThread implements Observer<Discipline> {
+
+        @Override
+        public void onChanged(@Nullable Discipline discpline) {
+            if (discpline == null) return;
+
+            Log.i(TAG, "onChanged: " + discpline);
+            mDialogFragment.getDialog().dismiss();
+            viewModel.getmRepository().updateDisciplinesWeek(discpline);
+        }
+    }
+
     private class NetworkObserver implements Observer<Boolean> {
 
         @Override
@@ -280,24 +296,24 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                 emptyView.setVisibility(View.GONE);
             }
 
-            List<Discipline> discip = new ArrayList<Discipline>();
-            Discipline d = new Discipline("1000","GCET148 MV Cálculo Diferencial e Integral III",
-                    "Henrique dos Anjos",
-                    "006",
-                    1561496400,7200, 0);
-            d.setDay_week(SemanaEnum.SEGUNDA.getValor());
-            d.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-            Discipline d2 = new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
-                    "Henrique dos Anjos",
-                    "006",
-                    1561496400,7200, 0);
-            d2.setDay_week(SemanaEnum.SEGUNDA.getValor());
-            d2.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-            discip.add(d);
-            discip.add(d2);
-            ClassRoomAdapter.setItems(discip);
+//            List<Discipline> discip = new ArrayList<Discipline>();
+//            Discipline d = new Discipline("1000","GCET789 Fisica Geral 3 ",
+//                    "Vanderlivisom ",
+//                    "008",
+//                    1561496200,7200, 0);
+//            d.setDay_week(SemanaEnum.SEGUNDA.getValor());
+//            d.setPavilionName("Pavilhao de Aulas 1 - PA1");
+//
+//            Discipline d2 = new Discipline("4200","GCET148 MV Cálculo Diferencial e Integral VI",
+//                    "Aritanaelton ",
+//                    "114",
+//                    1561496400,7200, 0);
+//            d2.setDay_week(SemanaEnum.TERCA.getValor());
+//            d2.setPavilionName("Pavilhao de Aulas 2 - PA2");
+//
+//            discip.add(d);
+//            discip.add(d2);
+//            ClassRoomAdapter.setItems(discip);
         }
     }
 
@@ -315,15 +331,20 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
 
         // implementation dialogbox show up single discipline status
-        HashMap data = new  HashMap<String, String>();
-        data.put("matter", discipline.getName());
-        data.put("id", discipline.getId());
-        data.put("professor", discipline.getDescription());
-        data.put("duration", CommonUtils.intToTimeString(discipline.getDuration(), 0));
-        data.put("status", String.valueOf(discipline.getStatus()));
-        data.put("class_room", String.valueOf(discipline.getRoom_name()));
-        data.put("start_timer", CommonUtils.intToTimeString(discipline.getStart_time(), -3));
+//        HashMap data = new  HashMap<String, String>();
+////        data.put("matter", discipline.getName());
+////        data.put("id", discipline.getId());
+////        data.put("professor", discipline.getDescription());
+////        data.put("duration", CommonUtils.intToTimeString(discipline.getDuration(), 0));
+////        data.put("status", String.valueOf(discipline.getStatus()));
+////        data.put("class_room", String.valueOf(discipline.getRoom_name()));
+////        data.put("pavilion", String.valueOf(discipline.getRoom_name()));
+//        data.put("start_timer", CommonUtils.intToTimeString(discipline.getStart_time(), -3));
+        discipline.setPavilionName(MainActivity.getInstance().getmSubTitleHome().getText().toString());
         viewModel.getmRepository().setAllData(discipline.getId());
+        viewModel.setIsLoading(true);
+        mDialogFragment = null;
+
         //TODO: create way to delete and insert data in generalDialogFragment
         //viewModel.getmRepository().deleteDisciplineByIDAndWeekID("1168565", 2);
 
@@ -335,10 +356,16 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                 for (Discipline dis: disciplines){
                     Log.i(TAG, "onChanged: " + dis.getName());
                 }
-                DialogItemClassRoom generalDialogFragment = DialogItemClassRoom.newInstance(data, (ArrayList<Discipline>) disciplines);
-                generalDialogFragment.show(
-                        MainActivity.getInstance().getSupportFragmentManager(),
-                        "dialog");
+
+                if (mDialogFragment == null) {
+                    mDialogFragment = DialogItemClassRoom.newInstance(discipline, (ArrayList<Discipline>) disciplines);
+                    mDialogFragment.getmDisciplineFetch()
+                            .observe(MainActivity.getInstance().getmActiveFragment()
+                                    , new HomeFragment.LoadingObserverRepositoryThread());
+                    mDialogFragment.show(
+                            MainActivity.getInstance().getSupportFragmentManager(),
+                            "dialog");
+                }
             }
         });
     }

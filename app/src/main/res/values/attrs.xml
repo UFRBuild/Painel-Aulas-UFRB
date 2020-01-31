@@ -24,6 +24,7 @@
         <attr name="bottomNavIconColor" format="color"></attr>
         <attr name="textNavColor" format="color"></attr>
         <attr name="background_monitoring_color" format="color"></attr>
+        <attr name="btn_textcolor" format="color"></attr>
 
 
     </declare-styleable>

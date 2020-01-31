@@ -23,6 +23,9 @@ public interface DisciplineDao {
     @Query("DELETE from DisciplineDetails where id = :id and DayOfWeek = :id_week")
     void removeDisciplinesByIdAndDayOfWeek(String id, String id_week);
 
+    @Query("DELETE from DisciplineDetails where id = :id")
+    void deleteAllDisciplinesById(String id);
+
     @Query("delete from DisciplineDetails")
     void deleteAllData();
 

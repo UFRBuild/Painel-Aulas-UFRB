@@ -124,7 +124,7 @@ public class HomeViewModel extends BaseViewModel {
     }
     public void showEmptyList() { setDisciplines(Collections.<Discipline>emptyList()); }
 
-    private void setIsLoading(boolean loading) {
+    public void setIsLoading(boolean loading) {
         isLoading.postValue(loading);
     }
 

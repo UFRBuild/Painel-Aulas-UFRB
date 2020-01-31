@@ -1,4 +1,4 @@
-package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.fragments;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -22,6 +22,8 @@ import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.ScheduleRepository;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels.ScheduleViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.adapters.ScheduleSectionAdapter;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.SectionHeader;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.SemanaEnum;
@@ -178,11 +180,11 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
 //        disciplines.add(d3);
         disciplines.add(d4);
         //list_section.add(new SectionHeader(disciplines, "Manhã"));
-        mRepository.deleteAllData(d);
+        //mRepository.deleteAllData(d);
 
-        mRepository.insertData(disciplines.get(0));
+        //mRepository.insertData(disciplines.get(0));
 //        mRepository.insertData(disciplines.get(1));
-        mRepository.insertData(disciplines.get(2));
+        //mRepository.insertData(disciplines.get(2));
 //        mRepository.insertData(disciplines.get(3));
 //        mRepository.insertData(disciplines.get(4));
 

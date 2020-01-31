@@ -41,6 +41,10 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public List<Week> getmItems() {
+        return mItems;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_week_info, parent, false);
