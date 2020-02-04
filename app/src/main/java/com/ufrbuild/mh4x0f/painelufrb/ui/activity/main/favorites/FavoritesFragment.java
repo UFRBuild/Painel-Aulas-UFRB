@@ -295,9 +295,9 @@ public class FavoritesFragment extends BaseFragment<FavoritesViewModel>
 
             if (isEmpty) {
                 //mImageState;
-                mTitleStates.setText(getString(R.string.title_emptyview));
-                mSubTitleStates.setText(getString(R.string.sub_title_emptyview));
-                mImageState.setImageResource(R.drawable.empty_search);
+                mTitleStates.setText(getString(R.string.title_emptyview_favorites));
+                mSubTitleStates.setText(getString(R.string.sub_title_emptyview_favorites));
+                mImageState.setImageResource(R.drawable.developing);
             }
         }
     }

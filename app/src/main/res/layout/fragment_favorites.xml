@@ -64,13 +64,16 @@
                             android:layout_height="match_parent" android:id="@+id/empty_view_favorites">
 
                         <ImageView
+                                android:id="@+id/image_state_favorites"
                                 android:layout_width="128dp"
                                 android:layout_height="128dp"
-                                android:id="@+id/image_state_favorites" android:layout_marginTop="16dp"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/developing"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                android:layout_marginEnd="16dp" android:layout_marginStart="16dp"/>
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         <LinearLayout
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"
@@ -83,16 +86,19 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="?attr/textcolor"
-                                    android:text="@string/title_emptyview"
+                                    android:text="@string/title_emptyview_favorites"
                                     android:visibility="visible" android:fontFamily="@font/montserrat"
                                     android:textStyle="bold" android:layout_margin="8dp"/>
+
                             <TextView
-                                    android:textColor="?attr/textcolor"
+                                    android:id="@+id/subtitle_states_favorites"
                                     android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
                                     android:fontFamily="@font/montserrat"
-                                    android:layout_height="wrap_content" android:id="@+id/subtitle_states_favorites"
-                                    android:gravity="center_horizontal" android:text="@string/sub_title_emptyview"
-                                    android:layout_margin="8dp"/>
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/sub_title_emptyview_favorites"
+                                    android:textColor="?attr/textcolor" />
                         </LinearLayout>
                     </android.support.constraint.ConstraintLayout>
                     <android.support.v7.widget.RecyclerView

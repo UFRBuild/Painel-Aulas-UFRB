@@ -83,6 +83,10 @@
     <string name="title_loadview">Consultando Reversas de Salas!</string>
 
 
+    <!--    favorites fragment-->
+    <string name="title_emptyview_favorites">Opus! Em Desenvolvimento!</string>
+    <string name="sub_title_emptyview_favorites">Estamos trabalhando nesse recurso, aguedem...</string>
+
 <!--    schedule fragment-->
     <string name="title_emptyview_schedule">Nenhuma disciplina encontrada!</string>
     <string name="sub_title_emptyview_schedule">Verifique se você definiu corretamente um horário para este dia.</string>
