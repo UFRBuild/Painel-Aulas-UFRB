@@ -122,22 +122,22 @@ public class FavoritesFragment extends BaseFragment<FavoritesViewModel>
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         List<Discipline> disciplines = new ArrayList<Discipline>();
-        disciplines.add(new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
-                "Henrique dos Anjos",
-                "006",
-                1561496400,7200, 0));
-        disciplines.add(new Discipline("1168545","GCET148 MV Cálculo Diferencial e Integral II",
-                "Guilherme Santos",
-                "008",
-                1561498200,7200, 0));
-        disciplines.add(new Discipline("1168548","GCET148 MV Cálculo Diferencial e Integral I",
-                "Pricila Nesstor ",
-                "007",
-                1561496100,7200, 0));
-        viewModel.getmRepository().insertData(disciplines.get(0));
-        viewModel.getmRepository().insertData(disciplines.get(1));
-        viewModel.getmRepository().insertData(disciplines.get(2));
-        list_section.add(new SectionHeaderFavorites(disciplines, "Manhã"));
+//        disciplines.add(new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
+//                "Henrique dos Anjos",
+//                "006",
+//                1561496400,7200, 0));
+//        disciplines.add(new Discipline("1168545","GCET148 MV Cálculo Diferencial e Integral II",
+//                "Guilherme Santos",
+//                "008",
+//                1561498200,7200, 0));
+//        disciplines.add(new Discipline("1168548","GCET148 MV Cálculo Diferencial e Integral I",
+//                "Pricila Nesstor ",
+//                "007",
+//                1561496100,7200, 0));
+//        viewModel.getmRepository().insertData(disciplines.get(0));
+//        viewModel.getmRepository().insertData(disciplines.get(1));
+//        viewModel.getmRepository().insertData(disciplines.get(2));
+        //list_section.add(new SectionHeaderFavorites(disciplines, "Manhã"));
 
         //mRepository.insertData(disciplines.get(0));
 
@@ -199,7 +199,7 @@ public class FavoritesFragment extends BaseFragment<FavoritesViewModel>
 
         setupFloatingSearch();
         setupDrawer();
-        viewModel.getDisciplineData();
+        //viewModel.getDisciplineData();
     }
 
     private void refresh() {
@@ -310,9 +310,9 @@ public class FavoritesFragment extends BaseFragment<FavoritesViewModel>
             if (disciplines == null) return;
             // TODO: RoomFavoritesAdapter.setItems(disciplines);
 
-            RoomFavoritesAdapter.insertNewChild(disciplines.get(0), 0);
-            RoomFavoritesAdapter.insertNewChild(disciplines.get(1), 0);
-            RoomFavoritesAdapter.insertNewChild(disciplines.get(2), 0);
+//            RoomFavoritesAdapter.insertNewChild(disciplines.get(0), 0);
+//            RoomFavoritesAdapter.insertNewChild(disciplines.get(1), 0);
+//            RoomFavoritesAdapter.insertNewChild(disciplines.get(2), 0);
 
             if (disciplines.isEmpty()) {
                 emptyView.setVisibility(View.VISIBLE);

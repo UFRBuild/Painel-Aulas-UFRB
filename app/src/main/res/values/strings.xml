@@ -82,6 +82,11 @@
     <string name="sub_title_loadview">Por favor, aguarde uns instantes, estamos consultando as reservas disponíveis.</string>
     <string name="title_loadview">Consultando Reversas de Salas!</string>
 
+
+<!--    schedule fragment-->
+    <string name="title_emptyview_schedule">Nenhuma disciplina encontrada!</string>
+    <string name="sub_title_emptyview_schedule">Verifique se você definiu corretamente um horário para este dia.</string>
+
 <!--    Screen NotificationActivity-->
     <string name="action_title_notification">Avisos</string>
     <string name="empty_notification_title">Ops! Sem notificações</string>

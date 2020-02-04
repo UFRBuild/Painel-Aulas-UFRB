@@ -12,13 +12,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
-        <android.support.v4.widget.SwipeRefreshLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/swipe_refresh_schedule" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                >
-
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -87,7 +80,6 @@
 
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
-        </android.support.v4.widget.SwipeRefreshLayout>
 
 
 

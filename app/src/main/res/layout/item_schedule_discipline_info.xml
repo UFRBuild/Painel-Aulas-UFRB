@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:cardCornerRadius="4dp"
-        app:cardElevation="0dp"
+        app:cardElevation="2dp"
         app:cardBackgroundColor="?attr/cardbackground"
         app:cardUseCompatPadding="true" android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
@@ -134,11 +134,10 @@
                                 android:orientation="vertical">
 
                             <LinearLayout
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
                                     android:layout_margin="8dp"
-                                    android:gravity="center"
                                     android:orientation="horizontal">
 
                                 <ImageView
@@ -182,10 +181,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:layout_weight="1"
-                            android:layout_marginBottom="4dp">
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -215,15 +215,20 @@
 
                         <TextView
                                 android:id="@+id/txt_duration"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="4dp"
                                 android:layout_weight="1"
+                                android:background="@drawable/bg_class_room_duration"
                                 android:fontFamily="@font/montserrat"
                                 android:gravity="center"
-                                android:paddingStart="4dp"
+                                android:paddingStart="8dp"
+                                android:paddingLeft="8dp"
+                                android:paddingEnd="8dp"
+                                android:paddingRight="8dp"
                                 android:text="2h:00"
-                                android:textColor="?attr/textcolor"
+                                android:textColor="?attr/class_text_color"
                                 android:textSize="13dp"
                                 android:textStyle="bold" />
                     </LinearLayout>
@@ -234,7 +239,7 @@
                             android:layout_marginBottom="4dp">
 
                         <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_margin="8dp"
@@ -263,14 +268,19 @@
 
                         <TextView
                                 android:id="@+id/txt_timer_start"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
+                                android:layout_marginBottom="4dp"
                                 android:layout_weight="1"
+                                android:background="@drawable/bg_class_room_start_time"
                                 android:fontFamily="@font/montserrat"
                                 android:gravity="center"
+                                android:paddingStart="8dp"
+                                android:paddingLeft="8dp"
+                                android:paddingEnd="8dp"
                                 android:text="10h:00"
-                                android:textColor="?attr/item_disciplineTitle"
+                                android:textColor="?attr/class_text_color"
                                 android:textStyle="bold" />
 
                     </LinearLayout>

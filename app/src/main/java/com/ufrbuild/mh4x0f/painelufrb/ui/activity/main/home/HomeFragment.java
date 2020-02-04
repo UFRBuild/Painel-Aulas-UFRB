@@ -133,8 +133,8 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         recyclerView.setAdapter(ClassRoomAdapter);
 
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
+        //recyclerView.addItemDecoration(dividerItemDecoration);
 
         //viewModel = createViewModel();
         //super.SetupAll();
@@ -343,6 +343,9 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         discipline.setPavilionName(MainActivity.getInstance().getmSubTitleHome().getText().toString());
         viewModel.getmRepository().setAllData(discipline.getId());
         viewModel.setIsLoading(true);
+        // eu nem lembro a ultima vez que fiz uma barbaridade dessa
+        // mas a culpa nao eh minha, nao tou habituado
+        // com coisa que nao posso controlar nada.
         mDialogFragment = null;
 
         //TODO: create way to delete and insert data in generalDialogFragment

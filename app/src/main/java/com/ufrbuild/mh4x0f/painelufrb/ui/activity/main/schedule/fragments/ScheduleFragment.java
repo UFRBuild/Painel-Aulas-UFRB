@@ -92,8 +92,8 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
     private String mLastQuery = "";
     private FloatingSearchView mSearchView;
 
-    @BindView(R.id.swipe_refresh_schedule)
-    SwipeRefreshLayout mSwipeRefresh;
+//    @BindView(R.id.swipe_refresh_schedule)
+//    SwipeRefreshLayout mSwipeRefresh;
 
     ScheduleSectionAdapter RoomFavoritesAdapter;
 
@@ -221,14 +221,14 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
 
 
         mSearchView = MainActivity.getInstance().getmSearchView();
-        mSwipeRefresh.setColorSchemeColors(getResources().getColor(R.color.accent),
-                getResources().getColor(R.color.colorPrimary));
-        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refresh();
-            }
-        });
+//        mSwipeRefresh.setColorSchemeColors(getResources().getColor(R.color.accent),
+//                getResources().getColor(R.color.colorPrimary));
+//        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                refresh();
+//            }
+//        });
 
 
         mSearchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
@@ -327,9 +327,9 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
                 mTitleStates.setText(getString(R.string.title_loadview));
                 mSubTitleStates.setText(getString(R.string.sub_title_loadview));
                 mImageState.setImageResource(R.drawable.loading);
-                mSwipeRefresh.setRefreshing(true);
+                //mSwipeRefresh.setRefreshing(true);
             } else {
-                mSwipeRefresh.setRefreshing(false);
+                //mSwipeRefresh.setRefreshing(false);
             }
         }
     }
@@ -357,9 +357,9 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
 
             if (isEmpty) {
                 //mImageState;
-                mTitleStates.setText(getString(R.string.title_emptyview));
-                mSubTitleStates.setText(getString(R.string.sub_title_emptyview));
-                mImageState.setImageResource(R.drawable.empty_search);
+                mTitleStates.setText(getString(R.string.title_emptyview_schedule));
+                mSubTitleStates.setText(getString(R.string.sub_title_emptyview_schedule));
+                mImageState.setImageResource(R.drawable.empty_schedule);
             }
         }
     }

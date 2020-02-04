@@ -68,11 +68,11 @@ public class FavoritesViewModel extends BaseViewModel {
         // test paraments
         HashMap<String, String> parameters = new HashMap<>();
         parameters.put("area", "Pavilhão de Aulas 1 - PA1");
-        parameters.put("st_min", "1561496400");
-        parameters.put("st_max", "1561503600");
-//        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
-//        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
-//        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
+//        parameters.put("st_min", "1561496400");
+//        parameters.put("st_max", "1561503600");
+        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
+        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
+        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
 
         Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllDiscipline(parameters);
         DisciplineCall.enqueue(new FavoritesViewModel.DisciplineCallback());

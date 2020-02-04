@@ -25,6 +25,8 @@
         <attr name="textNavColor" format="color"></attr>
         <attr name="background_monitoring_color" format="color"></attr>
         <attr name="btn_textcolor" format="color"></attr>
+        <attr name="color_schedule_duration" format="color"></attr>
+        <attr name="color_schedule_starting" format="color"></attr>
 
 
     </declare-styleable>
