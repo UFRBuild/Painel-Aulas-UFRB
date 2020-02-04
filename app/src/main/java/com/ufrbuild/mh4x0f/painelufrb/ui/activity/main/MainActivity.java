@@ -45,6 +45,7 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.monitors.MonitorsFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.SchedulePagerFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
@@ -238,8 +239,8 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
                 loadFragmentCommit(fragment);
                 return true;
             case R.id.navigation_monitors_fragment:
-                //fragment = new ProfileFragment();
-                //loadFragmentCommit(fragment);
+                fragment = new MonitorsFragment();
+                loadFragmentCommit(fragment);
                 return true;
             case R.id.navigation_schedule_fragment:
                 fragment = new SchedulePagerFragment();

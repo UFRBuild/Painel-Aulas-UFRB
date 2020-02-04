@@ -29,6 +29,8 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivityModule;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragmentProvider;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragmentProvider;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.monitors.MonitorsFragmentModule;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.monitors.MonitorsFragmentProvider;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.SchedulePagerFragmentProvider;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.fragments.ScheduleFragmentProvider;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
@@ -45,6 +47,7 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {
             MainActivityModule.class,
+            MonitorsFragmentProvider.class,
             FavoritesFragmentProvider.class,
             SchedulePagerFragmentProvider.class,
             ScheduleFragmentProvider.class,

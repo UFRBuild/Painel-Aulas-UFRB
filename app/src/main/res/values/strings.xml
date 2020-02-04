@@ -87,7 +87,13 @@
     <string name="title_emptyview_schedule">Nenhuma disciplina encontrada!</string>
     <string name="sub_title_emptyview_schedule">Verifique se você definiu corretamente um horário para este dia.</string>
 
-<!--    Screen NotificationActivity-->
+
+    <!--    monitors fragment-->
+    <string name="title_emptyview_monitors">Nenhuma disciplina encontrada!</string>
+    <string name="sub_title_emptyview_monitors">Verifique se você definiu corretamente um horário para este dia.</string>
+    <string name="message_update_monitors">Lista de monitorias atualizada.</string>
+
+    <!--    Screen NotificationActivity-->
     <string name="action_title_notification">Avisos</string>
     <string name="empty_notification_title">Ops! Sem notificações</string>
 
