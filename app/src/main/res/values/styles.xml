@@ -32,8 +32,8 @@
 
         <!--schedule fragment attrs-->
         <item name="background_monitoring_color">@color/colorAccent</item>
-        <item name="color_schedule_duration">#29547A</item>
-        <item name="color_schedule_starting">#C26447</item>
+        <item name="color_schedule_duration">@color/colorPrimary</item>
+        <item name="color_schedule_starting">@color/colorPrimary</item>
 
 
         <item name="bottomNavIconColor">@color/colorAccent</item>
@@ -126,8 +126,8 @@
         <item name="android:actionMenuTextColor">#9f9f9f</item>
 
         <!--schedule fragment attrs-->
-        <item name="color_schedule_duration">#29547A</item>
-        <item name="color_schedule_starting">#C26447</item>
+        <item name="color_schedule_duration">#9f9f9f</item>
+        <item name="color_schedule_starting">#9f9f9f</item>
 
 
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>

@@ -121,8 +121,8 @@
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="6dp"
                                         android:layout_weight="1"
-                                        app:srcCompat="@drawable/ic_check_circle_black_24dp"
-                                        tools:ignore="VectorDrawableCompat"/>
+                                        app:srcCompat="@drawable/ic_check_circle_green_24dp"
+                                        tools:ignore="VectorDrawableCompat" />
 
                                 <TextView
                                         android:id="@+id/textView_new"
@@ -150,8 +150,8 @@
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="6dp"
                                         android:layout_weight="1"
-                                        app:srcCompat="@drawable/ic_check_circle_black_24dp"
-                                        tools:ignore="VectorDrawableCompat"/>
+                                        app:srcCompat="@drawable/ic_check_circle_green_24dp"
+                                        tools:ignore="VectorDrawableCompat" />
 
                                 <TextView
                                         android:id="@+id/textView_0"

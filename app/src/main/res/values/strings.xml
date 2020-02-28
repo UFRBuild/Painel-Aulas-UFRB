@@ -1,7 +1,7 @@
 <resources>
     <!--General settings strings -->
     <string name="app_name">Painel de Aulas - UFRB</string>
-    <string name="app_version">1.0.7</string>
+    <string name="app_version">2.0.3</string>
     <string name="copyright">Copyright 2019 - UFRBuild</string>
     <string name="no_internet">Não há conexão com a internet.</string>
     <string name="action_settings">Settings</string>
@@ -34,26 +34,22 @@
     <string name="btn_doar_label">Doar R$ 1,99</string>
     <string name="btn_doar_label_more">Doar R$ 2,99</string>
     <string name="footer_message_unlock">Contribua e ajude-nos a manter este projeto</string>
-    <string name="disciplinas_favoritas">Disciplinas Favoritas</string>
-    <string name="lista_de_macardores">Lista de Marcadores</string>
-    <string name="notifica_es_sobre_status">Notificações sobre status</string>
+    <string name="disciplinas_favoritas">Disciplinas Favoritas </string>
+    <string name="lista_de_macardores"><del>Horário semanal favoritos</del> </string>
+    <string name="notifica_es_sobre_status"><del>Filtro de Monitorias</del> </string>
     <string name="notifica_es_sobre_eventos_e_palestras">Notificações sobre eventos e palestras</string>
 
 
     <!--Screen AboutActivity-->
     <string name="action_title_about">Sobre</string>
-    <string name="photo_perfil_developer">
-        https://instagram.fssa12-1.fna.fbcdn.net/vp/cce896b85044127233c832cf47068bb7/5DE1D65B/t51.2885-19/s320x320/67384353_350626775828953_3048186810216742912_n.jpg?_nc_ht=instagram.fssa12-1.fna.fbcdn.net
-    </string>
+    <string name="photo_perfil_developer">https://graph.facebook.com/100002459169395/picture?type=large</string>
     <string name="instagram_develper">https://www.instagram.com/mh4x0f_bomfim/</string>
     <string name="github_developer">https://github.com/mh4x0f</string>
     <string name="developer_name">Marcos Bomfim</string>
     <string name="github_repository">https://github.com/mh4x0f/Painel-Aulas-UFRB</string>
     <string name="github_license">https://github.com/mh4x0f/Painel-Aulas-UFRB/blob/master/LICENSE</string>
     <string name="github_policy">https://github.com/mh4x0f/Painel-Aulas-UFRB/blob/master/privacy_policy.md</string>
-    <string name="photo_perfil_marcos_contributor">
-        https://scontent-vie1-1.cdninstagram.com/vp/85e2f5fb0128b68fcbf56689bd2074fa/5DDED14A/t51.2885-19/67662848_2443823712515121_23058829008699392_n.jpg?_nc_ht=scontent-vie1-1.cdninstagram.com
-    </string>
+    <string name="photo_perfil_marcos_contributor">https://graph.facebook.com/100004483452004/picture?type=large</string>
     <string name="photo_perfil_tassio_vale">https://avatars1.githubusercontent.com/u/10504806</string>
     <string name="url_base_googleplay_app">http://play.google.com/store/apps/details?id=</string>
 

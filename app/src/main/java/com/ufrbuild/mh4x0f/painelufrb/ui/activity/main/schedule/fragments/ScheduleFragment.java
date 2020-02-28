@@ -78,11 +78,6 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
     @BindView(R.id.subtitle_states_schedule)
     TextView mSubTitleStates;
 
-//    @BindView(R.id.floatingButtonAction_schedule)
-//    FloatingActionButton mFloatingButton;
-//
-//    @BindView(R.id.progress_bar_schedule)
-//    ProgressBar progressBar;
 
     private ScheduleRepository mRepository;
 
@@ -92,8 +87,6 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
     private String mLastQuery = "";
     private FloatingSearchView mSearchView;
 
-//    @BindView(R.id.swipe_refresh_schedule)
-//    SwipeRefreshLayout mSwipeRefresh;
 
     ScheduleSectionAdapter RoomFavoritesAdapter;
 
@@ -110,10 +103,6 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView =  inflater.inflate(R.layout.fragment_schedule, container, false);
-//        Bundle args = getArguments();
-//        ID_WEEK = args.getInt("ID_WEEK");
-        //viewModel.getmRepository().setAllData(getID_WEEK());
-
 
         setUnBinder(ButterKnife.bind(this, mView));
         return mView;
@@ -130,68 +119,8 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //viewModel.getmRepository().setAllData(getID_WEEK());
-
-
-        //List<SectionHeader> sections = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-        Log.i(TAG, "onActivityCreated: day week: " + day);
-        List<Discipline> disciplines = new ArrayList<Discipline>();
-        Discipline d = new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
-                "Henrique dos Anjos",
-                "006",
-                1561496400,7200, 0);
-        d.setDay_week(SemanaEnum.SEGUNDA.getValor());
-        d.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-
-        Discipline d1 = new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
-                "Henrique dos Anjos",
-                "006",
-                1561496400,7200, 0);
-        d1.setDay_week(SemanaEnum.TERCA.getValor());
-        d1.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-        Discipline d2 = new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
-                "Henrique dos Anjos",
-                "006",
-                1561496400,7200, 0);
-        d2.setDay_week(SemanaEnum.QUINTA.getValor());
-        d2.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-        Discipline d3 = new Discipline("1168565","GCET148 Cálculo Diferencial e Integral III",
-                "Henrique dos Anjos",
-                "006",
-                1561496400,7200, 0);
-        d3.setDay_week(SemanaEnum.SEXTA.getValor());
-        d3.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-        Discipline d4 = new Discipline("1168565","GCET148 Cálculo Diferencial e Integral I",
-                "Henrique dos Anjos",
-                "006",
-                1561496400,7200, 0);
-        d4.setDay_week(SemanaEnum.QUARTA.getValor());
-        d4.setPavilionName("Pavilhao de Aulas 1 - PA1");
-
-        disciplines.add(d);
-//        disciplines.add(d1);
-        disciplines.add(d2);
-//        disciplines.add(d3);
-        disciplines.add(d4);
-        //list_section.add(new SectionHeader(disciplines, "Manhã"));
-        //mRepository.deleteAllData(d);
-
-        //mRepository.insertData(disciplines.get(0));
-//        mRepository.insertData(disciplines.get(1));
-        //mRepository.insertData(disciplines.get(2));
-//        mRepository.insertData(disciplines.get(3));
-//        mRepository.insertData(disciplines.get(4));
-
         RoomFavoritesAdapter = new ScheduleSectionAdapter(getContext(), list_section);
         recyclerView.setAdapter(RoomFavoritesAdapter);
-        //recyclerView.setVisibility(View.INVISIBLE);
-
 
 
 
@@ -239,13 +168,6 @@ public class ScheduleFragment extends BaseFragment<ScheduleViewModel> {
                 }
             }
         });
-
-//        mFloatingButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                viewModel.getDisciplineData();
-//            }
-//        });
 
         // TODO: add this feature in future
 //        ReactiveNetwork.observeInternetConnectivity()

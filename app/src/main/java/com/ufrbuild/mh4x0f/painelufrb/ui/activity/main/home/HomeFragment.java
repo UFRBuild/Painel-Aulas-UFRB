@@ -47,6 +47,7 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters.ClassRoomAdapter;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs.DialogItemClassRoom;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.EnumDayWeek;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.SemanaEnum;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
@@ -248,7 +249,6 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
             Log.i(TAG, "onChanged: " + discpline);
             mDialogFragment.getDialog().dismiss();
-            viewModel.getmRepository().updateDisciplinesWeek(discpline);
         }
     }
 
@@ -301,14 +301,14 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 //                    "Vanderlivisom ",
 //                    "008",
 //                    1561496200,7200, 0);
-//            d.setDay_week(SemanaEnum.SEGUNDA.getValor());
+//            //d.setDay_week(SemanaEnum.SEGUNDA.getValor());
 //            d.setPavilionName("Pavilhao de Aulas 1 - PA1");
 //
 //            Discipline d2 = new Discipline("4200","GCET148 MV Cálculo Diferencial e Integral VI",
 //                    "Aritanaelton ",
 //                    "114",
 //                    1561496400,7200, 0);
-//            d2.setDay_week(SemanaEnum.TERCA.getValor());
+//            //d2.setDay_week(SemanaEnum.TERCA.getValor());
 //            d2.setPavilionName("Pavilhao de Aulas 2 - PA2");
 //
 //            discip.add(d);
@@ -348,7 +348,9 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
         // com coisa que nao posso controlar nada.
         mDialogFragment = null;
 
-        //TODO: create way to delete and insert data in generalDialogFragment
+        //TODO: create new implmentation for unique discipline in DB
+        // this implmenetation will be using the new version
+        // discipline is favorite will be save in DB when the user select this options
         //viewModel.getmRepository().deleteDisciplineByIDAndWeekID("1168565", 2);
 
 
@@ -361,7 +363,8 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                 }
 
                 if (mDialogFragment == null) {
-                    mDialogFragment = DialogItemClassRoom.newInstance(discipline, (ArrayList<Discipline>) disciplines);
+                    mDialogFragment = DialogItemClassRoom.newInstance(discipline,
+                            (disciplines.size() > 0) ? true : false);
                     mDialogFragment.getmDisciplineFetch()
                             .observe(MainActivity.getInstance().getmActiveFragment()
                                     , new HomeFragment.LoadingObserverRepositoryThread());

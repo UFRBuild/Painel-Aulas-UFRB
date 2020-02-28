@@ -58,9 +58,8 @@ public class HomeRepository {
         new HomeRepository.DiscDeleteTask(disciplineDao).execute(paraments);
     }
 
-    public void updateDisciplinesWeek(Discipline listToAdd){
-        setIsLoading(true);
-        new HomeRepository.DiscUpdateWeekTask(disciplineDao, this).execute(listToAdd);
+    public void deleteDisciplineByID(Discipline discipline){
+        new HomeRepository.DeleteDiscplineTask(disciplineDao, this).execute(discipline);
     }
 
 
@@ -89,12 +88,12 @@ public class HomeRepository {
     }
 
 
-    private static class DiscUpdateWeekTask extends AsyncTask<Discipline, Void, Void> {
+    private static class DeleteDiscplineTask extends AsyncTask<Discipline, Void, Void> {
 
         private DisciplineDao disciplineDaoDao;
         private HomeRepository mRepository;
 
-        private DiscUpdateWeekTask(DisciplineDao disDao, HomeRepository home) {
+        private DeleteDiscplineTask(DisciplineDao disDao, HomeRepository home) {
 
             this.disciplineDaoDao = disDao;
             this.mRepository = home;
@@ -103,14 +102,8 @@ public class HomeRepository {
         @Override
         protected Void doInBackground(Discipline ... data) {
 
+            Log.i(TAG, "doInBackground: " + data[0].getId());
             disciplineDaoDao.deleteAllDisciplinesById(data[0].getId());
-
-
-            for (Integer weekday: data[0].getWeeksdays()){
-                data[0].setDay_week(weekday);
-                Log.i(TAG, "doInBackground: " + weekday);
-                disciplineDaoDao.insertDetails(data[0]);
-            }
             mRepository.setIsLoading(false);
 
             return null;

@@ -30,10 +30,14 @@ import com.google.gson.annotations.SerializedName;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity(tableName = "DisciplineDetails")
 public class Discipline implements Parcelable, Comparable<Discipline> {
 
+
+    private static final Pattern pHours = Pattern.compile("\\d+");
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "IdTable")
@@ -221,6 +225,17 @@ public class Discipline implements Parcelable, Comparable<Discipline> {
 
     @Override
     public int compareTo(Discipline another) {
-        return Long.compare(this.getStart_time(), another.getStart_time());
+        int hours_class = 0, hours_args = 0;
+        Matcher m_class = pHours.matcher(CommonUtils.intToTimeString(this.getStart_time(), -3));
+        Matcher m_args = pHours.matcher(CommonUtils.intToTimeString(another.getStart_time(), -3));
+
+        if (m_class.find()) {
+            hours_class = Integer.parseInt(m_class.group(0));
+        }
+        if (m_args.find()) {
+            hours_args = Integer.parseInt(m_args.group(0));
+        }
+
+        return Integer.compare(hours_class, hours_args);
     }
 }

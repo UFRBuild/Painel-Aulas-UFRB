@@ -87,31 +87,8 @@ public class SchedulePagerFragment extends BaseFragment<SchedulePagerViewModel> 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //List<SectionHeader> sections = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-//        List<Discipline> disciplines = new ArrayList<Discipline>();
-//        disciplines.add(new Discipline("1168565","GCET148 MV Cálculo Diferencial e Integral III",
-//                "Henrique dos Anjos",
-//                "006",
-//                1561496400,7200, 0));
-//        list_section.add(new SectionHeader(disciplines, "Manhã"));
-
-        //mRepository.insertData(disciplines.get(0));
-
-
-
         mPagerAdapter = new SchedulePagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
-
-
-
-        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL);
-        //recyclerView.addItemDecoration(dividerItemDecoration);
-
-        //viewModel = createViewModel();
-        //super.SetupAll();
-
 
     }
 

@@ -66,21 +66,6 @@ public class ScheduleViewModel extends BaseViewModel {
         return isEmptyView;
     }
 
-//    public void startRequestAPI() {
-//        setIsLoading(true);
-//
-//        // test paraments
-//        HashMap<String, String> parameters = new HashMap<>();
-//        parameters.put("area", "Pavilhão de Aulas 1 - PA1");
-//        parameters.put("st_min", "1561496400");
-//        parameters.put("st_max", "1561503600");
-////        parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
-////        parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
-////        parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
-//
-//        Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllDiscipline(parameters);
-//        DisciplineCall.enqueue(new DisciplineCallback());
-//    }
 
     LiveData<List<Discipline>> getAllDisciplines() {
         return allDisciplines;
@@ -124,28 +109,7 @@ public class ScheduleViewModel extends BaseViewModel {
         Collections.sort(data_noite);
 
         setDisciplines(sectioned_dis);
-//        timeService.getTimerServerApi().getResult().enqueue(new Callback<TimeServer>() {
-//            @Override
-//            public void onResponse(Call<TimeServer> call,
-//                                   Response<TimeServer> response) {
-//                TimeServer sensorData = response.body();
-//                sensorData.Config();
-//                mTimerServer = sensorData;
-//                Log.d(TAG, "getStart_time_max: " + sensorData.getStart_time_max());
-//                Log.d(TAG, "getStart_time_min: " + sensorData.getStart_time_min());
-//                setIsLoading(false);
-//                startRequestAPI();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<TimeServer> call, Throwable t) {
-//
-//                Log.d(TAG, "onFailure: " + t.toString());
-//                setIsLoading(false);
-//                setIsNetworkError(true);
-//                showSnackbarMessage(R.string.msg_snack_no_intenet);
-//            }
-//        });
+
     }
     public void showEmptyList() { setDisciplines(Collections.<SectionHeader>emptyList()); }
 
@@ -165,34 +129,7 @@ public class ScheduleViewModel extends BaseViewModel {
         setIsLoading(false);
         if (disciplines_sectioned.size() == 0){
             setIsEmptyView(true);
-        }else{
-            showSnackbarMessage(R.string.message_update_disciplines);
         }
         mDisciplineSectionedList.postValue(disciplines_sectioned);
     }
-
-    /**
-     * Callback
-     **/
-//    private class DisciplineCallback implements Callback<RoomResponse> {
-//
-//        @Override
-//        public void onResponse(@NonNull Call<RoomResponse> call, @NonNull Response<RoomResponse> response) {
-//            RoomResponse roomResponse = response.body();
-//            Log.i(TAG, "onResponse: " + response.toString());
-//            if (roomResponse != null) {
-//                setDisciplines(roomResponse.getDisciplines());
-//            } else {
-//                setDisciplines(Collections.<Discipline>emptyList());
-//                setIsEmptyView(true);
-//            }
-//        }
-//
-//        @Override
-//        public void onFailure(Call<RoomResponse> call, Throwable t) {
-//            //setDisciplines(Collections.<Discipline>emptyList());
-//            setIsNetworkError(true);
-//            showSnackbarMessage(R.string.msg_snack_no_intenet);
-//        }
-//    }
 }
