@@ -28,23 +28,35 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.format.DateFormat;
 import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public final class CommonUtils {
+    public Context context;
 
-    private CommonUtils() {
-        // This utility class is not publicly instantiable
+    @Inject
+    public CommonUtils(Context context) {
+        this.context = context;
     }
+
 
     public static ProgressDialog showLoadingDialog(Context context) {
         ProgressDialog progressDialog = new ProgressDialog(context);
@@ -88,6 +100,30 @@ public final class CommonUtils {
             window.setStatusBarColor(color);
         }
     }
+
+
+
+    public static String getFormattedDate( long smsTimeInMilis) {
+        // https://stackoverflow.com/questions/12818711/how-to-find-time-is-today-or-yesterday-in-android/16146263
+        Calendar smsTime = Calendar.getInstance();
+        smsTime.setTimeInMillis(smsTimeInMilis);
+
+        Calendar now = Calendar.getInstance();
+
+        final String timeFormatString = "h:mm aa";
+        final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
+        final long HOURS = 60 * 60 * 60;
+        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE) ) {
+            return " Hoje " + DateFormat.format(timeFormatString, smsTime);
+        } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1  ){
+            return " Ontem " + DateFormat.format(timeFormatString, smsTime);
+        } else if (now.get(Calendar.YEAR) == smsTime.get(Calendar.YEAR)) {
+            return " " + DateFormat.format(dateTimeFormatString, smsTime).toString();
+        } else {
+            return " " + DateFormat.format("dd MMMM yyyy, h:mm aa", smsTime).toString();
+        }
+    }
+
 
     public static String intToTimeString(Long timestamp, int gmt){
 
@@ -133,6 +169,16 @@ public final class CommonUtils {
         is.close();
 
         return new String(buffer, "UTF-8");
+    }
+
+    public ArrayList<LocateModel> getAllLocateModel(Context context){
+        ArrayList<LocateModel> items = new ArrayList<>();
+        List<String> area = Arrays.asList(context.getResources().getStringArray(R.array.locate_campus));
+
+        for (int i = 0; i < area.size();i++){
+            items.add(new LocateModel(area.get(i)));
+        }
+        return items;
     }
 
     public static String getTimeStamp() {

@@ -36,6 +36,9 @@ import java.util.List;
 
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
+
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,9 +53,11 @@ public class HomeViewModel extends BaseViewModel {
     private TimeServer mTimerServer;
     private DisciplineService disciplineService;
     private TimeServerService timeService;
+    private HomeRepository mRepository;
     private String TAG = "HomeViewModel";
 
-    HomeViewModel(DisciplineService disciplineService, TimeServerService timeService) {
+    @Inject
+    HomeViewModel(DisciplineService disciplineService, TimeServerService timeService, HomeRepository home) {
         this.disciplineService = disciplineService;
         this.timeService = timeService;
         mDisciplineList = new MutableLiveData<>();
@@ -60,6 +65,7 @@ public class HomeViewModel extends BaseViewModel {
         isNetworkError = new MutableLiveData<>();
         isEmptyView =  new MutableLiveData<>();
         mTimerServer = new TimeServer();
+        mRepository = home;
     }
 
     public MutableLiveData<List<Discipline>> getDisciplines() {
@@ -81,8 +87,8 @@ public class HomeViewModel extends BaseViewModel {
         // test paraments
         HashMap<String, String> parameters = new HashMap<>();
 //        parameters.put("area", "Pavilhão de Aulas 1 - PA1");
-////        parameters.put("st_min", "1561496400");
-////        parameters.put("st_max", "1561503600");
+//        parameters.put("st_min", "1561496400");
+//        parameters.put("st_max", "1561503600");
         parameters.put("area", MainActivity.getInstance().getmSubTitleHome().getText().toString());
         parameters.put("st_min", String.valueOf(mTimerServer.getStart_time_min()));
         parameters.put("st_max", String.valueOf(mTimerServer.getStart_time_max()));
@@ -90,6 +96,7 @@ public class HomeViewModel extends BaseViewModel {
         Call<RoomResponse> DisciplineCall = disciplineService.getDisciplineApi().getAllDiscipline(parameters);
         DisciplineCall.enqueue(new DisciplineCallback());
     }
+
     public void getDisciplineData() {
         setIsLoading(true);
         timeService.getTimerServerApi().getResult().enqueue(new Callback<TimeServer>() {
@@ -117,7 +124,7 @@ public class HomeViewModel extends BaseViewModel {
     }
     public void showEmptyList() { setDisciplines(Collections.<Discipline>emptyList()); }
 
-    private void setIsLoading(boolean loading) {
+    public void setIsLoading(boolean loading) {
         isLoading.postValue(loading);
     }
 
@@ -137,6 +144,11 @@ public class HomeViewModel extends BaseViewModel {
             showSnackbarMessage(R.string.message_update_disciplines);
         }
         mDisciplineList.postValue(disciplines);
+    }
+
+
+    public HomeRepository getmRepository() {
+        return mRepository;
     }
 
     /**

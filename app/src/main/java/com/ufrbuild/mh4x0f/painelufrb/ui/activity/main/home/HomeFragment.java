@@ -19,6 +19,7 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +40,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.bumptech.glide.load.engine.Resource;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
@@ -45,18 +47,27 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters.ClassRoomAdapter;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs.DialogItemClassRoom;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.EnumDayWeek;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.SemanaEnum;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class HomeFragment  extends BaseFragment<HomeViewModel>
         implements ClassRoomAdapter.OnClassRoomAdapter{
+
+
+    @Inject
+    ViewModelProvider.Factory factory;
+    private HomeViewModel viewModel;
 
 
     private String TAG = "HomeFragment";
@@ -84,22 +95,27 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     @BindView(R.id.floatingButtonAction)
     FloatingActionButton mFloatingButton;
 
+    @Inject
     DataManager mDataManager;
+
+    @Inject
+    CommonUtils utils;
 
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefresh;
 
     private String mLastQuery = "";
     private  FloatingSearchView mSearchView;
+    private DialogItemClassRoom mDialogFragment;
 
-    HomeViewModel viewModel;
 
     private View mView;
 
 
-    private HomeViewModel createViewModel() {
-        HomeViewModelFactory factory = new HomeViewModelFactory(DataManager.getInstance().getMovieService(), DataManager.getInstance().getTimeService());
-        return ViewModelProviders.of(this, factory).get(HomeViewModel.class);
+    @Override
+    public HomeViewModel getViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel.class);
+        return viewModel;
     }
 
     @Nullable
@@ -114,17 +130,15 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mDataManager = DataManager.getInstance();
-
         ClassRoomAdapter = new ClassRoomAdapter(this);
         recyclerView.setAdapter(ClassRoomAdapter);
 
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
+        //recyclerView.addItemDecoration(dividerItemDecoration);
 
-        viewModel = createViewModel();
-        super.SetupAll();
+        //viewModel = createViewModel();
+        //super.SetupAll();
 
 
         viewModel.getLoadingStatus().observe(this, new HomeFragment.LoadingObserver());
@@ -183,30 +197,21 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
     }
 
 
-    public ArrayList<LocateModel> createSampleData(Context context){
-        ArrayList<LocateModel> items = new ArrayList<>();
-        List<String> area = Arrays.asList(context.getResources().getStringArray(R.array.locate_campus));
 
-        for (int i = 0; i < area.size();i++){
-            items.add(new LocateModel(area.get(i)));
-        }
-        return items;
-    }
 
 
     private void toggle() {
         new SimpleSearchDialogCompat(getContext(), getString(R.string.title_name_dialog),
-                getString(R.string.title_select_area), null, createSampleData(getContext()),
+                getString(R.string.title_select_area), null, utils.getAllLocateModel(getContext()),
                 new SearchResultListener<LocateModel>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog,
                                            LocateModel item, int position) {
                         try {
                             if (item != null) {
-                                mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                mDataManager.getPrefs().putObject(getString(R.string.locate_campus), item);
                                 MainActivity.getInstance().getmSubTitleHome().setText(item.getTitle());
                                 viewModel.getDisciplineData();
-                                viewModel.showSnackbarMessage(R.string.message_change_local_campus);
                                 }
                             } catch (Exception e){
                                 Log.i(TAG, "onSelected: " + e.toString());
@@ -232,6 +237,18 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
                 progressBar.setVisibility(View.INVISIBLE);
                 mSwipeRefresh.setRefreshing(false);
             }
+        }
+    }
+
+
+    private class LoadingObserverRepositoryThread implements Observer<Discipline> {
+
+        @Override
+        public void onChanged(@Nullable Discipline discpline) {
+            if (discpline == null) return;
+
+            Log.i(TAG, "onChanged: " + discpline);
+            mDialogFragment.getDialog().dismiss();
         }
     }
 
@@ -278,17 +295,32 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
             } else {
                 emptyView.setVisibility(View.GONE);
             }
+
+//            List<Discipline> discip = new ArrayList<Discipline>();
+//            Discipline d = new Discipline("1000","GCET789 Fisica Geral 3 ",
+//                    "Vanderlivisom ",
+//                    "008",
+//                    1561496200,7200, 0);
+//            //d.setDay_week(SemanaEnum.SEGUNDA.getValor());
+//            d.setPavilionName("Pavilhao de Aulas 1 - PA1");
+//
+//            Discipline d2 = new Discipline("4200","GCET148 MV Cálculo Diferencial e Integral VI",
+//                    "Aritanaelton ",
+//                    "114",
+//                    1561496400,7200, 0);
+//            //d2.setDay_week(SemanaEnum.TERCA.getValor());
+//            d2.setPavilionName("Pavilhao de Aulas 2 - PA2");
+//
+//            discip.add(d);
+//            discip.add(d2);
+//            ClassRoomAdapter.setItems(discip);
         }
     }
 
-    @Override
-    public HomeViewModel getViewModel() {
-        return viewModel;
-    }
 
     @Override
     protected void setUp(View view) {
-
+        setActivity(MainActivity.getInstance()); // set observer activity
     }
 
     @Override
@@ -299,15 +331,49 @@ public class HomeFragment  extends BaseFragment<HomeViewModel>
 
 
         // implementation dialogbox show up single discipline status
-        HashMap data = new  HashMap<String, String>();
-        data.put("matter", discipline.getName());
-        data.put("professor", discipline.getDescription());
-        data.put("duration", CommonUtils.intToTimeString(discipline.getDuration(), 0));
-        data.put("status", String.valueOf(discipline.getStatus()));
-        data.put("class_room", String.valueOf(discipline.getRoom_name()));
-        data.put("start_timer", CommonUtils.intToTimeString(discipline.getStart_time(), -3));
-        DialogItemClassRoom generalDialogFragment = DialogItemClassRoom.newInstance(data);
-        generalDialogFragment.show(MainActivity.getInstance().getSupportFragmentManager(),"dialog");
+//        HashMap data = new  HashMap<String, String>();
+////        data.put("matter", discipline.getName());
+////        data.put("id", discipline.getId());
+////        data.put("professor", discipline.getDescription());
+////        data.put("duration", CommonUtils.intToTimeString(discipline.getDuration(), 0));
+////        data.put("status", String.valueOf(discipline.getStatus()));
+////        data.put("class_room", String.valueOf(discipline.getRoom_name()));
+////        data.put("pavilion", String.valueOf(discipline.getRoom_name()));
+//        data.put("start_timer", CommonUtils.intToTimeString(discipline.getStart_time(), -3));
+        discipline.setPavilionName(MainActivity.getInstance().getmSubTitleHome().getText().toString());
+        viewModel.getmRepository().setAllData(discipline.getId());
+        viewModel.setIsLoading(true);
+        // eu nem lembro a ultima vez que fiz uma barbaridade dessa
+        // mas a culpa nao eh minha, nao tou habituado
+        // com coisa que nao posso controlar nada.
+        mDialogFragment = null;
+
+        //TODO: create new implmentation for unique discipline in DB
+        // this implmenetation will be using the new version
+        // discipline is favorite will be save in DB when the user select this options
+        //viewModel.getmRepository().deleteDisciplineByIDAndWeekID("1168565", 2);
+
+
+        viewModel.getmRepository().getAllDisciplines().observe(this, new Observer<List<Discipline>>() {
+            @Override
+            public void onChanged(@Nullable final List<Discipline> disciplines) {
+
+                for (Discipline dis: disciplines){
+                    Log.i(TAG, "onChanged: " + dis.getName());
+                }
+
+                if (mDialogFragment == null) {
+                    mDialogFragment = DialogItemClassRoom.newInstance(discipline,
+                            (disciplines.size() > 0) ? true : false);
+                    mDialogFragment.getmDisciplineFetch()
+                            .observe(MainActivity.getInstance().getmActiveFragment()
+                                    , new HomeFragment.LoadingObserverRepositoryThread());
+                    mDialogFragment.show(
+                            MainActivity.getInstance().getSupportFragmentManager(),
+                            "dialog");
+                }
+            }
+        });
     }
 
     private void setupFloatingSearch() {

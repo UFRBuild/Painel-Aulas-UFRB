@@ -1,3 +1,4 @@
+
 /*
     This file is part of the Painel de Aulas UFRB Open Source Project.
     Painel de Aulas UFRB is licensed under the Apache 2.0.
@@ -17,22 +18,23 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification;
 
-import android.app.Application;
+import android.arch.lifecycle.ViewModelProvider;
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
+import dagger.Module;
+import dagger.Provides;
 
-public class App extends Application {
-
-    private static App sInstance;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        sInstance = this;
+@Module
+public class NotificationActivityModule {
+    @Provides
+    NotificationViewModel providesViewModel(DataManager store){
+        return new NotificationViewModel(store);
     }
 
-    public static App getInstance() {
-        return sInstance;
+    @Provides
+    ViewModelProvider.Factory provideViewModelProvider(NotificationViewModel viewModel){
+        return new ViewModelProviderFactory<>(viewModel);
     }
-
 }

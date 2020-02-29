@@ -20,6 +20,7 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.details;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,33 +28,62 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateViewModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
+import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends BaseActivity<DetailsViewModel> {
 
     @BindView(R.id.image) AppCompatImageView image;
     @BindView(R.id.title) TextView title;
     @BindView(R.id.desc) TextView desc;
 
+    @Inject
+    DataManager mDataManager;
+    @Inject
+    CommonUtils utils;
+
+    DetailsViewModel viewModel;
+    @Inject
+    ViewModelProvider.Factory factory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))) {
+            setTheme(R.style.Darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        DetailsViewModel viewModel = createViewModel();
 
+        // get support action bar mode
+        utils.getSupportActionBar(this);
+
+
+
+    }
+
+    @Override
+    public DetailsViewModel getViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(DetailsViewModel.class);
+        return viewModel;
+    }
+
+    @Override
+    protected void setUp() {
         viewModel.getDisciplines().observe(this, new ClasRoomObserver());
 
         viewModel.loadData(getIntent());
-    }
-
-    private DetailsViewModel createViewModel() {
-        return ViewModelProviders.of(this).get(DetailsViewModel.class);
     }
 
     private class ClasRoomObserver implements Observer<Discipline> {

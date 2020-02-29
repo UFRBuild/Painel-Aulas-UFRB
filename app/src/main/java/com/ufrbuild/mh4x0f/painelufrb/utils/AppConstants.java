@@ -27,6 +27,9 @@ public class AppConstants {
     }
 
     public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-
     public static final String mDiscPref = "disciplines_pref";
+
+    // API SMSA UFRB
+    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
+    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
 }

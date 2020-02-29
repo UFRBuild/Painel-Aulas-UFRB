@@ -19,10 +19,14 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.*;
 import android.widget.CompoundButton;
@@ -31,16 +35,20 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.arlib.floatingsearchview.FloatingSearchView;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeFragment;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.monitors.MonitorsFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.SchedulePagerFragment;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -48,20 +56,33 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
+import com.ufrbuild.mh4x0f.painelufrb.utils.BottomNavigationBehaviour;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+import javax.inject.Inject;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<MainActivityViewModel> {
 
+
+    @Inject
+    MainActivityViewModel viewModel;
+
+    @Inject
+    CommonUtils utils;
+
+    @Inject
+    DataManager mDataManager;
 
     public final static int ITEM_MATERIALDRAWER_FAVORITES = 2;
     public final static int ITEM_MATERIALDRAWER_MARK = 4;
-    public final static int ITEM_MATERIALDRAWER_DONATE = 7;
-    public final static int ITEM_MATERIALDRAWER_ABOUT = 10;
+    public final static int ITEM_MATERIALDRAWER_DONATE = 10;
+    public final static int ITEM_MATERIALDRAWER_ABOUT = 11;
+    public final static int ITEM_MATERIALDRAWER_AVISOS = 3;
     private static final String TAG = "MainActivity";
-    private HomeFragment mHomeFragment;
+    private BaseFragment mActiveFragment;
     @BindView(R.id.subtitle_home)
     TextView mSubTitleHome;
 
@@ -74,7 +95,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.floating_search_view)
     FloatingSearchView mSearchView;
 
-    DataManager mDataManager;
+
+    @BindView(R.id.navigation_button)
+    BottomNavigationView bottomNavigationView;
 
     // Singleton instance
     private static MainActivity sInstance = null;
@@ -96,19 +119,25 @@ public class MainActivity extends BaseActivity {
         return mSearchView;
     }
 
+    public BaseFragment getmActiveFragment() {
+        return mActiveFragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        mDataManager = DataManager.getInstance();
         if(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))) {
             setTheme(R.style.Darktheme);
         }
         else  setTheme(R.style.AppTheme);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         sInstance = this;
         ButterKnife.bind(this);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        initScrollAutoHide();
 
         // load local localization
         LocateModel locate = mDataManager.getPrefs().getObject(getString(R.string.locate_campus), LocateModel.class);
@@ -119,33 +148,45 @@ public class MainActivity extends BaseActivity {
         setupMaterialDrawer(savedInstanceState);
 
         // get support action bar mode
-        CommonUtils.getSupportActionBar(this);
+        utils.getSupportActionBar(this);
 
-        mHomeFragment = new HomeFragment();
+        mActiveFragment = new HomeFragment();
 
+
+        // get firebase token to send message for just test app
+//        FirebaseInstanceId.getInstance().getInstanceId()
+//                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "getInstanceId failed", task.getException());
+//                            return;
+//                        }
+//                        // Get new Instance ID token
+//                        String token = task.getResult().getToken();
+//                        Log.d(TAG, token);
+//                    }
+//                });
 
         //I added this if statement to keep the selected fragment when rotating the device
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    mHomeFragment).commit();
-        }
+        loadFragmentCommit(mActiveFragment);
 
 
         mllSubtTitleHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SimpleSearchDialogCompat(MainActivity.this, getString(R.string.title_name_dialog),
-                        getString(R.string.title_select_area), null, mHomeFragment.createSampleData(MainActivity.this),
+                        getString(R.string.title_select_area), null, utils.getAllLocateModel(MainActivity.this),
                         new SearchResultListener<LocateModel>() {
                             @Override
                             public void onSelected(BaseSearchDialogCompat dialog,
                                                    LocateModel item, int position) {
                                 try {
                                     if (item != null){
-                                        mDataManager.getPrefs().put(getString(R.string.locate_campus), item);
+                                        //TODO : fix fragment load
+                                        mDataManager.getPrefs().putObject(getString(R.string.locate_campus), item);
                                         getmSubTitleHome().setText(item.getTitle());
-                                        mHomeFragment.getViewModel().getDisciplineData();
-                                        showSnackbar(getString(R.string.message_change_local_campus));
+                                        mActiveFragment.getViewModel().getDisciplineData();
                                     }
                                 }
                                 catch (Exception e){
@@ -157,7 +198,60 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            call_Activity(getApplicationContext(), NotificationActivity.class);
+        }
+
     }
+
+    private void initScrollAutoHide(){
+        // Navigation behaviour - hide/show on scroll
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams)
+                bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationBehaviour());
+    }
+
+
+    public void loadFragmentCommit(BaseFragment fragment) {
+        //TODO: change fragment o BaseFragment
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    //This won't show a blank page when android back press button is clicked from fragment
+                    //.addToBackStack(null)
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            mActiveFragment = fragment;
+        }
+    }
+
+    public BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+        BaseFragment fragment;
+        switch (item.getItemId()) {
+            case R.id.navigation_home_fragment:
+                fragment = new HomeFragment();
+                loadFragmentCommit(fragment);
+                return true;
+            case R.id.navigation_favorites_fragment:
+                fragment = new FavoritesFragment();
+                loadFragmentCommit(fragment);
+                return true;
+            case R.id.navigation_monitors_fragment:
+                fragment = new MonitorsFragment();
+                loadFragmentCommit(fragment);
+                return true;
+            case R.id.navigation_schedule_fragment:
+                fragment = new SchedulePagerFragment();
+                loadFragmentCommit(fragment);
+                return true;
+        }
+        return false;
+    };
+
+
+
 
     public void setupMaterialDrawer( Bundle state){
         // mount material drawer menu
@@ -174,11 +268,23 @@ public class MainActivity extends BaseActivity {
                 .withSavedInstance(state)
                 .build();
 
+        // TODO: fix the number id witch item menudrawer
         PrimaryDrawerItem item_fragment_painel = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.home_painel).withIcon(GoogleMaterial.Icon.gmd_perm_media);
-        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.home_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite_border);
-        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_settings).withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
-        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().withIdentifier(3).withName(R.string.home_about).withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
-        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(4).withName(R.string.home_makator).withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
+        PrimaryDrawerItem item_favorities = new PrimaryDrawerItem().withIdentifier(ITEM_MATERIALDRAWER_FAVORITES).withName(R.string.home_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite_border);
+        SecondaryDrawerItem item_ac_settings = new SecondaryDrawerItem().withName(R.string.home_settings).withIcon(GoogleMaterial.Icon.gmd_settings_applications).withSelectable(false);
+        SecondaryDrawerItem item_ac_about = new SecondaryDrawerItem().
+                withIdentifier(ITEM_MATERIALDRAWER_ABOUT).withName(R.string.home_about).
+                withIcon(GoogleMaterial.Icon.gmd_apps).withSelectable(false);
+        SecondaryDrawerItem item_add_markers = new SecondaryDrawerItem().withIdentifier(ITEM_MATERIALDRAWER_DONATE).withName(R.string.home_makator).withIcon(GoogleMaterial.Icon.gmd_note_add).withSelectable(false);
+        SecondaryDrawerItem item_notification = new SecondaryDrawerItem().withIdentifier(ITEM_MATERIALDRAWER_AVISOS).withName(R.string.home_notification).withIcon(GoogleMaterial.Icon.gmd_notifications).withSelectable(false);
+
+        if (mDataManager.getNotificationsMessage() != null) {
+            if (mDataManager.getNotificationsMessage().size() != 0) {
+                item_notification.withBadge(
+                        String.valueOf(mDataManager.getNotificationsMessage().size())
+                ).withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700));
+            }
+        }
 
         //create the drawer and remember the `Drawer` result object
         mMenuSideBar = new DrawerBuilder()
@@ -187,6 +293,7 @@ public class MainActivity extends BaseActivity {
                 .addDrawerItems(
                         item_fragment_painel.withTypeface(getDefaultFont()),
                         item_favorities.withTypeface(getDefaultFont()),
+                        item_notification.withTypeface(getDefaultFont()),
                         new SectionDrawerItem().withName(R.string.home_marcadores).withTypeface(getDefaultFont()),
                         item_add_markers.withTypeface(getDefaultFont()),
                         new DividerDrawerItem(),
@@ -194,14 +301,14 @@ public class MainActivity extends BaseActivity {
                                 withIcon(GoogleMaterial.Icon.gmd_colorize).withChecked(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))).
                                 withOnCheckedChangeListener(onCheckedChangeListener).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
+                        item_ac_settings.withTypeface(getDefaultFont()),
+                        new SecondaryDrawerItem().withName(R.string.home_feedback)
+                                .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
+                                .withTypeface(getDefaultFont()),
                         new SecondaryDrawerItem().
-                                withIdentifier(5).withName(R.string.home_donate)
+                                withIdentifier(ITEM_MATERIALDRAWER_DONATE).withName(R.string.home_donate)
                                 .withIcon(GoogleMaterial.Icon.gmd_favorite)
                                 .withSelectable(false)
-                                .withTypeface(getDefaultFont()),
-                        item_ac_settings.withTypeface(getDefaultFont()),
-                        new SecondaryDrawerItem().withIdentifier(5).withName(R.string.home_feedback)
-                                .withIcon(GoogleMaterial.Icon.gmd_feedback).withSelectable(false)
                                 .withTypeface(getDefaultFont()),
                         item_ac_about.withTypeface(getDefaultFont())
                 )
@@ -210,18 +317,21 @@ public class MainActivity extends BaseActivity {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // do something with the clicked item :D
                         Log.i(TAG, "onItemClick: " + position);
-                        switch (position) {
+                        switch ((int)drawerItem.getIdentifier()) {
                             case ITEM_MATERIALDRAWER_ABOUT:
-                                call_AboutActivity();
+                                call_Activity(getApplicationContext(), AboutActivity.class);
                                 break;
                             case ITEM_MATERIALDRAWER_DONATE:
-                                call_DonteActivity();
+                                call_Activity(getApplicationContext(), DonateActivity.class);
+                                break;
+                            case ITEM_MATERIALDRAWER_AVISOS:
+                                call_Activity(getApplicationContext(), NotificationActivity.class);
                                 break;
                             case ITEM_MATERIALDRAWER_FAVORITES:
-                                call_DonteActivity();
+                                call_Activity(getApplicationContext(), DonateActivity.class);
                                 break;
                             case ITEM_MATERIALDRAWER_MARK:
-                                call_DonteActivity();
+                                call_Activity(getApplicationContext(), DonateActivity.class);
                                 break;
                         }
                         return true;
@@ -245,8 +355,8 @@ public class MainActivity extends BaseActivity {
     };
 
     @Override
-    public BaseViewModel getViewModel() {
-        return null;
+    public MainActivityViewModel getViewModel() {
+        return viewModel;
     }
 
     @Override
@@ -260,15 +370,9 @@ public class MainActivity extends BaseActivity {
         finish();
     }
 
-    public void call_AboutActivity () {
+    public void call_Activity (Context context, Class<?> ac) {
         // about activity
-        Intent i = new Intent(getApplicationContext(),AboutActivity.class);
-        startActivity(i);
-    }
-
-    public void call_DonteActivity () {
-        // donate activity
-        Intent i = new Intent(getApplicationContext(),DonateActivity.class);
+        Intent i = new Intent(context,ac);
         startActivity(i);
     }
 
