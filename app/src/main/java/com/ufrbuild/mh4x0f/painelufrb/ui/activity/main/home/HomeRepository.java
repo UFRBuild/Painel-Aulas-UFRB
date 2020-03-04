@@ -1,13 +1,13 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.os.AsyncTask;
 import android.util.Log;
 import com.ufrbuild.mh4x0f.painelufrb.data.db.dao.DisciplineDao;
 import com.ufrbuild.mh4x0f.painelufrb.data.db.database.DisciplineDatabase;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
-import java.util.ArrayList;
+
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;

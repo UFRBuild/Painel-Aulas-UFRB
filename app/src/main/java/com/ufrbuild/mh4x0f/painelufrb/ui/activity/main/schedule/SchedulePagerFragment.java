@@ -1,13 +1,13 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +19,13 @@ import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.adapters.SchedulePagerAdapter;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels.SchedulePagerViewModel;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels.ScheduleViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
-
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class SchedulePagerFragment extends BaseFragment<SchedulePagerViewModel> {
 

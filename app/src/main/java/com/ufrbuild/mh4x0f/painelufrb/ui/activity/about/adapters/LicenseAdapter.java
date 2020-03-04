@@ -1,17 +1,14 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.adapters;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.License;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Links;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

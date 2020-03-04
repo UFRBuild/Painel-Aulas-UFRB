@@ -18,8 +18,8 @@
  */
 
 package com.ufrbuild.mh4x0f.painelufrb.di.factory;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 public class ViewModelProviderFactory<V> implements ViewModelProvider.Factory {
     private V viewModel;

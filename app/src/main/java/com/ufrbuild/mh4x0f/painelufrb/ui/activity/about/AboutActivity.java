@@ -20,18 +20,18 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.about;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.ufrbuild.mh4x0f.painelufrb.R;
@@ -44,9 +44,7 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Contributor;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Developer;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.License;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Links;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.details.DetailsViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
 import java.util.ArrayList;

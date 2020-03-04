@@ -19,12 +19,10 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.adapters;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.graphics.Color;
-import android.provider.ContactsContract;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +33,6 @@ import android.widget.TextView;
 import com.pd.chocobar.ChocoBar;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.NotificationActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.model.Notification;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 

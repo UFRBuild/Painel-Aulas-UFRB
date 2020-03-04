@@ -1,25 +1,21 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters;
 
 
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.ufrbuild.mh4x0f.painelufrb.R;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.Week;
-import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
 public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
 

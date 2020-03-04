@@ -19,9 +19,9 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.utils.interactors;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.annotation.Nullable;
 
 public class ProgressDialogStatus extends SingleLiveEvent<Boolean> {
 

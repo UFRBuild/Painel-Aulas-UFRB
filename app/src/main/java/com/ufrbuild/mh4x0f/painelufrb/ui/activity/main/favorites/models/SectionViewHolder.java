@@ -1,6 +1,6 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.models;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 

@@ -18,8 +18,8 @@
  */
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.base;
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.StringRes;
+import androidx.lifecycle.ViewModel;
+import androidx.annotation.StringRes;
 import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;

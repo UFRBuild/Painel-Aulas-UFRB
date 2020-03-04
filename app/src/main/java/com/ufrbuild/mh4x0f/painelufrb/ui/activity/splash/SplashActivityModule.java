@@ -19,7 +19,7 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.splash;
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;

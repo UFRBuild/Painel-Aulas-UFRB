@@ -1,6 +1,6 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.adapters;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +52,7 @@ public class ScheduleSectionAdapter extends SectionRecyclerViewAdapter<SectionHe
         holder.setOnClickListener(discipline);
         holder.setTitle(discipline.getName());
 
-        holder.setmViewColorStatus(discipline.getStatus());
+        //holder.setmViewColorStatus(discipline.getStatus());
         holder.setSala(discipline.getRoom_name());
 
         holder.setStart_time(CommonUtils.intToTimeString(discipline.getStart_time(), -3));

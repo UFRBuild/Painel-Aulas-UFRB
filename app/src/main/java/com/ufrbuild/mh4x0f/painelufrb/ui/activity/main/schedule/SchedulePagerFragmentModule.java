@@ -1,12 +1,11 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule;
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels.SchedulePagerViewModel;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels.ScheduleViewModel;
 
 import javax.inject.Named;
 

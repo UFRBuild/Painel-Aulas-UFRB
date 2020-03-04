@@ -1,7 +1,7 @@
 package ir.mirrajabi.searchdialog;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.Pair;
+import androidx.annotation.NonNull;
+import androidx.core.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;

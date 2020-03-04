@@ -1,7 +1,7 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.ufrbuild.mh4x0f.painelufrb.R;
@@ -11,7 +11,6 @@ import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 
 import java.util.Collections;

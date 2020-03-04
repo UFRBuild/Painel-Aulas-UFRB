@@ -1,7 +1,7 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.util.Log;
 
 import com.ufrbuild.mh4x0f.painelufrb.R;
