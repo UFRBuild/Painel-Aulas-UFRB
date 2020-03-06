@@ -24,9 +24,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import android.util.Log;
 import android.view.*;
 import android.widget.CompoundButton;

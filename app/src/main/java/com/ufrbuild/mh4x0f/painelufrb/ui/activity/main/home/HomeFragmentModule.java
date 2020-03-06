@@ -19,7 +19,7 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
@@ -27,7 +27,6 @@ import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

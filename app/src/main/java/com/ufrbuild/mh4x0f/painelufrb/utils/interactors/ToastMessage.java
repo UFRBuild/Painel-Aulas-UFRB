@@ -19,10 +19,10 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.utils.interactors;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 
 public class ToastMessage extends SingleLiveEvent<Integer> {

@@ -19,8 +19,8 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
@@ -29,7 +29,6 @@ import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

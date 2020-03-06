@@ -7,7 +7,7 @@
         android:orientation="vertical"
         android:layout_height="match_parent"
         tools:context=".ui.activity.donate.DonateActivity">
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
            android:layout_height="match_parent">
 
@@ -54,7 +54,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="?cardbackground"
@@ -195,7 +195,7 @@
 
 
                         </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -203,7 +203,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -245,12 +245,12 @@
                                     android:text="@string/footer_message_unlock" />
                         </LinearLayout>
 
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </LinearLayout>
 
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

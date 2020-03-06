@@ -1,13 +1,12 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.viewmodels;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
-import com.ufrbuild.mh4x0f.painelufrb.R;
+
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.model.RoomResponse;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
@@ -20,9 +19,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ScheduleViewModel extends BaseViewModel {
     private MutableLiveData<List<SectionHeader>> mDisciplineSectionedList;

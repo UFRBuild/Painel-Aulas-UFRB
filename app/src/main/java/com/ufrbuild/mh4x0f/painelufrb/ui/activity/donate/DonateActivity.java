@@ -19,11 +19,11 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,9 +33,7 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.splash.SplashViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
 

@@ -1,10 +1,10 @@
 package com.ufrbuild.mh4x0f.painelufrb.data.db.dao;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
 import java.util.List;
 

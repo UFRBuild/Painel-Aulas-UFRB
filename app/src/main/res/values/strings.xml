@@ -1,7 +1,7 @@
 <resources>
     <!--General settings strings -->
     <string name="app_name">Painel de Aulas - UFRB</string>
-    <string name="app_version">2.0.3</string>
+    <string name="app_version">2.0.4</string>
     <string name="copyright">Copyright 2019 - UFRBuild</string>
     <string name="no_internet">Não há conexão com a internet.</string>
     <string name="action_settings">Settings</string>
@@ -85,12 +85,12 @@
 
 <!--    schedule fragment-->
     <string name="title_emptyview_schedule">Nenhuma disciplina encontrada!</string>
-    <string name="sub_title_emptyview_schedule">Verifique se você definiu corretamente um horário para este dia.</string>
+    <string name="sub_title_emptyview_schedule">Verifique se você definiu corretamente um horário.</string>
 
 
     <!--    monitors fragment-->
     <string name="title_emptyview_monitors">Nenhuma disciplina encontrada!</string>
-    <string name="sub_title_emptyview_monitors">Verifique se você definiu corretamente um horário para este dia.</string>
+    <string name="sub_title_emptyview_monitors">Verifique se você definiu corretamente um horário.</string>
     <string name="message_update_monitors">Lista de monitorias atualizada.</string>
 
     <!--    Screen NotificationActivity-->

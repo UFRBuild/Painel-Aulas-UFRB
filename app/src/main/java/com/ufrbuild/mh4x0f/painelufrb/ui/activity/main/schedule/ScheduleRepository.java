@@ -1,6 +1,6 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule;
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.util.Log;
 import com.ufrbuild.mh4x0f.painelufrb.data.db.dao.DisciplineDao;

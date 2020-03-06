@@ -19,7 +19,7 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.base;
 import android.app.Activity;
-import android.support.v4.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 
 //https://stackoverflow.com/questions/23408756/create-a-general-class-for-custom-dialog-in-java-android/23408864
 

@@ -19,21 +19,17 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.dialogs;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -42,17 +38,10 @@ import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.HomeViewModel;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.adapters.WeekAdapter;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.EnumDayWeek;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.SemanaEnum;
-import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.schedule.models.Week;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseDialogFragment;
-import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 
 // https://stackoverflow.com/questions/23408756/create-a-general-class-for-custom-dialog-in-java-android/23408864
 
