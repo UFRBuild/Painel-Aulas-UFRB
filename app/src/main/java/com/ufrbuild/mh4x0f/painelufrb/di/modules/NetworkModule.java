@@ -2,7 +2,7 @@
     This file is part of the Painel de Aulas UFRB Open Source Project.
     Painel de Aulas UFRB is licensed under the Apache 2.0.
 
-    Copyright 2019 UFRBuild - Marcos Bomfim
+    Copyright 2019/2020 UFRBuild - Marcos Bomfim
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -74,6 +74,17 @@ public class NetworkModule {
                 addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .baseUrl(AppConstants.API_URL_Timer).build();
+        return mRetrofit;
+    }
+
+    @Singleton
+    @Provides
+    @Named("Gists")
+    Retrofit provideRetrofitGists(OkHttpClient client){
+        Retrofit mRetrofit = new Retrofit.Builder().
+                addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .baseUrl(AppConstants.API_URL_GIST).build();
         return mRetrofit;
     }
 

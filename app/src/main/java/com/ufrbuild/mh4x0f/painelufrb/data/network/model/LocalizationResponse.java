@@ -17,20 +17,23 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.utils;
+package com.ufrbuild.mh4x0f.painelufrb.data.network.model;
 
 
-public class AppConstants {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private AppConstants() {
-        // This utility class is not publicly instantiable
+import java.util.List;
+
+public class LocalizationResponse {
+    @Expose
+    @SerializedName("result")
+    private List<Localization> mLocalizations;
+
+    public List<Localization> getmLocalizations() {
+        return mLocalizations;
     }
-
-    public static final String TIMESTAMP = "yyyyMMdd_HHmmss";
-    public static final String mDiscPref = "disciplines_pref";
-
-    // API SMSA UFRB
-    public static final String API_URL_Discipline = "https://smsa.ufrb.edu.br/backend/CRUD/";
-    public static final String API_URL_Timer = "https://smsa.ufrb.edu.br/backend/Time/";
-    public static final String API_URL_GIST = "https://gist.githubusercontent.com/mh4x0f/89068d42f16ccb5d3e46e94a6c55d93c/raw/";
 }
+
+
+

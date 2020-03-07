@@ -2,7 +2,7 @@
     This file is part of the Painel de Aulas UFRB Open Source Project.
     Painel de Aulas UFRB is licensed under the Apache 2.0.
 
-    Copyright 2019 UFRBuild - Marcos Bomfim
+    Copyright 2019/2020 UFRBuild - Marcos Bomfim
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -25,8 +25,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
+import androidx.lifecycle.Observer;
 import android.util.Log;
 import android.view.*;
 import android.widget.CompoundButton;
@@ -40,6 +41,7 @@ import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Localization;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.AboutActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.donate.DonateActivity;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.favorites.FavoritesFragment;
@@ -59,6 +61,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseFragment;
 import com.ufrbuild.mh4x0f.painelufrb.utils.BottomNavigationBehaviour;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
+import java.util.List;
 import javax.inject.Inject;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
@@ -172,11 +175,20 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> {
         loadFragmentCommit(mActiveFragment);
 
 
+        viewModel.getmRepository().getAllLocalizations().observe(this,
+                new Observer<List<Localization>>() {
+            @Override
+            public void onChanged(@Nullable final List<Localization> data) {
+                viewModel.getmRepository().setLocalCampus(data);
+            }
+        });
+
+
         mllSubtTitleHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SimpleSearchDialogCompat(MainActivity.this, getString(R.string.title_name_dialog),
-                        getString(R.string.title_select_area), null, utils.getAllLocateModel(MainActivity.this),
+                        getString(R.string.title_select_area), null, utils.getAllLocateModel(MainActivity.this, viewModel),
                         new SearchResultListener<LocateModel>() {
                             @Override
                             public void onSelected(BaseSearchDialogCompat dialog,

@@ -2,7 +2,7 @@
     This file is part of the Painel de Aulas UFRB Open Source Project.
     Painel de Aulas UFRB is licensed under the Apache 2.0.
 
-    Copyright 2019 UFRBuild - Marcos Bomfim
+    Copyright 2019/2020 UFRBuild - Marcos Bomfim
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -18,14 +18,64 @@
  */
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
+import android.util.Log;
+import androidx.annotation.NonNull;
+import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.data.network.model.LocalizationResponse;
+import com.ufrbuild.mh4x0f.painelufrb.data.network.services.LocalizationService;
 import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 import javax.inject.Inject;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivityViewModel extends BaseViewModel {
 
-    @Inject
-    public MainActivityViewModel() {
+    private LocalizationService localizationService;
+    private MainActivityRepository mRepository;
+    private String TAG = "MainActivityViewModel";
 
+    public MainActivityRepository getmRepository() {
+        return mRepository;
+    }
+
+    @Inject
+    public MainActivityViewModel(LocalizationService local, MainActivityRepository repo) {
+        this.localizationService = local;
+        this.mRepository = repo;
+        startRequestAPI();
+    }
+
+
+
+    public void startRequestAPI() {
+
+        Call<LocalizationResponse> DisciplineCall = localizationService.getmLocalizationApi().getAllLocalization();
+        DisciplineCall.enqueue(new MainActivityViewModel.LocalCallback());
+    }
+
+    /**
+     * Callback
+     **/
+    private class LocalCallback implements Callback<LocalizationResponse> {
+
+        @Override
+        public void onResponse(@NonNull Call<LocalizationResponse> call, @NonNull Response<LocalizationResponse> response) {
+            LocalizationResponse localResponse = response.body();
+            Log.i(TAG, "onResponse: " + response.toString());
+            Log.i(TAG, "onResponse: " + localResponse.getmLocalizations());
+            Log.i(TAG, "onResponse: " + response.body());
+
+
+            if (localResponse.getmLocalizations() != null)
+                mRepository.insertAllLocalization(localResponse.getmLocalizations());
+
+        }
+
+        @Override
+        public void onFailure(Call<LocalizationResponse> call, Throwable t) {
+            showSnackbarMessage(R.string.msg_snack_no_intenet);
+        }
     }
 }

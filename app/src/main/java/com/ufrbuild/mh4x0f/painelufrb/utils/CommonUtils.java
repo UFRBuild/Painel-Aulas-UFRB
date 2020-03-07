@@ -2,7 +2,7 @@
     This file is part of the Painel de Aulas UFRB Open Source Project.
     Painel de Aulas UFRB is licensed under the Apache 2.0.
 
-    Copyright 2019 UFRBuild - Marcos Bomfim
+    Copyright 2019/2020 UFRBuild - Marcos Bomfim
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -33,6 +33,9 @@ import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 import com.ufrbuild.mh4x0f.painelufrb.R;
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Localization;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.MainActivityViewModel;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.main.home.models.LocateModel;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,6 +54,9 @@ import javax.inject.Singleton;
 @Singleton
 public final class CommonUtils {
     public Context context;
+
+    @Inject
+    DataManager mDataManager;
 
     @Inject
     public CommonUtils(Context context) {
@@ -171,12 +177,21 @@ public final class CommonUtils {
         return new String(buffer, "UTF-8");
     }
 
-    public ArrayList<LocateModel> getAllLocateModel(Context context){
+    public ArrayList<LocateModel> getAllLocateModel(Context context, MainActivityViewModel vim){
         ArrayList<LocateModel> items = new ArrayList<>();
-        List<String> area = Arrays.asList(context.getResources().getStringArray(R.array.locate_campus));
+        List<Localization> all_localization = vim.getmRepository().getLocalCampus();
+        if (all_localization.isEmpty()) {
+            List<String> area = Arrays.asList(context.getResources().getStringArray(R.array.locate_campus));
 
-        for (int i = 0; i < area.size();i++){
-            items.add(new LocateModel(area.get(i)));
+            for (int i = 0; i < area.size();i++){
+                items.add(new LocateModel(area.get(i)));
+            }
+        }
+        else {
+
+            for (Localization local : all_localization) {
+                items.add(new LocateModel(local.getName()));
+            }
         }
         return items;
     }
