@@ -212,7 +212,7 @@ public class FavoritesFragment extends BaseFragment<FavoritesViewModel>
 
     private void toggle() {
         new SimpleSearchDialogCompat(getContext(), getString(R.string.title_name_dialog),
-                getString(R.string.title_select_area), null, utils.getAllLocateModel(getContext()),
+                getString(R.string.title_select_area), null, utils.getAllLocateModel(getContext(), MainActivity.getInstance().getViewModel()),
                 new SearchResultListener<LocateModel>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog,

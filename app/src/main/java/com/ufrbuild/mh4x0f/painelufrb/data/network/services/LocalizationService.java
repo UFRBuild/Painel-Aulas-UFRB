@@ -17,33 +17,32 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb.ui.activity.main;
+package com.ufrbuild.mh4x0f.painelufrb.data.network.services;
 
-import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.services.LocalizationService;
+import com.ufrbuild.mh4x0f.painelufrb.data.network.model.LocalizationResponse;
+import javax.inject.Inject;
 import javax.inject.Named;
-import dagger.Module;
-import dagger.Provides;
+import javax.inject.Singleton;
+import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.http.GET;
 
+@Singleton
+public class LocalizationService {
+    private LocalizationService.LocalizationApi mLocalizationApi;
 
-@Module
-public class MainActivityModule {
-
-
-    @Provides
-    MainActivityRepository provideHomeRepository(PainelUFRBApp application){
-        return new MainActivityRepository(application);
+    @Inject
+    public LocalizationService(@Named("Gists") Retrofit retrofit) {
+        mLocalizationApi = retrofit.create(LocalizationService.LocalizationApi.class);
     }
 
-
-    @Provides
-    MainActivityViewModel provideMainActivityViewModel(LocalizationService local, MainActivityRepository repo){
-        return new MainActivityViewModel(local, repo);
+    public LocalizationService.LocalizationApi getmLocalizationApi() {
+        return mLocalizationApi;
     }
 
-    @Provides
-    LocalizationService provideLocalizationService(@Named("Gists") Retrofit retrofit){
-        return new LocalizationService(retrofit);
+    public interface LocalizationApi {
+        @GET("painel-aulas-ufrb-localization.json")
+        Call<LocalizationResponse> getAllLocalization();
     }
+
 }

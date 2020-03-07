@@ -46,7 +46,7 @@ public class HomeFragmentModule {
         return new TimeServerService(retrofit);
     }
 
-        @Provides
+    @Provides
     HomeRepository provideHomeRepository(PainelUFRBApp application){
         //TODO: teste this
         return new HomeRepository(application);
