@@ -20,27 +20,25 @@
 package com.ufrbuild.mh4x0f.painelufrb.ui.base;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import android.widget.Toast;
+import com.pd.chocobar.ChocoBar;
 import com.ufrbuild.mh4x0f.painelufrb.R;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
-
 import butterknife.Unbinder;
+import dagger.android.support.DaggerAppCompatActivity;
 
 
-public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<V extends BaseViewModel> extends DaggerAppCompatActivity {
 
 
     NetworkUtils networkUtils;
@@ -53,9 +51,11 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setUpAllObservers(); // init all observers and viewmodel
+        setUp();
     }
 
-    protected void SetupAll(){
+    protected void setUpAllObservers(){
         setUpViewModel();
         setUpSnackbar();
         setUpToast();
@@ -152,16 +152,28 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
     }
 
     protected void showSnackbar(String message) {
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
-                message,
-                Snackbar.LENGTH_LONG);
-
-        View view = snackbar.getView();
-        view.setBackgroundColor(getResources().getColor(R.color.accent));
-
-        TextView snackTV = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
-        snackTV.setTextColor(ContextCompat.getColor(this, R.color.md_white_1000));
-
+//        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+//                message,
+//                Snackbar.LENGTH_LONG);
+//
+//        View view = snackbar.getView();
+//        view.setBackgroundColor(getResources().getColor(R.color.accent));
+//
+//        TextView snackTV = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+//        snackTV.setTextColor(ContextCompat.getColor(this, R.color.md_white_1000));
+        Snackbar snackbar;
+        if (message.contains("Não há conexão")){
+             snackbar = ChocoBar.builder().setActivity(this)
+                    .setText(message)
+                    .setDuration(ChocoBar.LENGTH_SHORT)
+                    .red();
+        }
+        else {
+            snackbar = ChocoBar.builder().setActivity(this)
+                    .setText(message)
+                    .setDuration(ChocoBar.LENGTH_SHORT)
+                    .green();
+        }
         snackbar.show();
     }
 

@@ -19,43 +19,76 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.data;
 
-import com.ufrbuild.mh4x0f.painelufrb.App;
+import android.content.Context;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.ufrbuild.mh4x0f.painelufrb.PainelUFRBApp;
 import com.ufrbuild.mh4x0f.painelufrb.data.db.database.LogDatabase;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.services.DisciplineService;
-import com.ufrbuild.mh4x0f.painelufrb.data.network.services.TimeServerService;
 import com.preference.PowerPreference;
 import com.preference.Preference;
+import com.ufrbuild.mh4x0f.painelufrb.ui.activity.notification.model.Notification;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-
+@Singleton
 public class DataManager {
 
-    private static DataManager sInstance;
+    public Context context;
+    Gson mGconverter;
 
-    private DataManager() {
-        // This class is not publicly instantiable
+    @Inject
+    public DataManager(Context context,Gson gson) {
+        this.context = context;
+        this.mGconverter = gson;
     }
 
-    public static synchronized DataManager getInstance() {
-        if (sInstance == null) {
-            sInstance = new DataManager();
-        }
-        return sInstance;
+    public boolean isFirstTimeLaunch(){
+        return getPrefs().getBoolean("FirstTimeLaunch",false);
     }
 
     public Preference getPrefs() {
-        return PowerPreference.defult();
+        return PowerPreference.getDefaultFile();
     }
 
     public LogDatabase getLogDatabse() {
-        return LogDatabase.getInstance(App.getInstance());
+        return LogDatabase.getInstance(PainelUFRBApp.getInstance());
     }
 
-    public DisciplineService getMovieService() {
-        return DisciplineService.getInstance();
+    public void putNotificationMessage(Notification notify){
+        // add notification into data preference
+        ArrayList<Notification> list_message = new ArrayList<>();
+        if (getNotificationsMessage() != null){
+            list_message = getNotificationsMessage();
+        }
+        list_message.add(notify);
+        String json_notifications = mGconverter.toJson(list_message);
+        getPrefs().putString("notifications",json_notifications);
     }
 
-    public TimeServerService getTimeService() {
-        return TimeServerService.getInstance();
+    public ArrayList<Notification> getNotificationsMessage(){
+        // get all notification from android preference
+        ArrayList<Notification> list_notifications;
+        String json = getPrefs().getString("notifications");
+        Type type =  new TypeToken<List<Notification>>() {}.getType();
+        list_notifications = mGconverter.fromJson(json, type);
+        return list_notifications;
+    }
+
+    public void RemoveNotificationsMessage(Notification notification){
+        // remove one notification from data preference
+        ArrayList<Notification> list_notifications = getNotificationsMessage();
+
+        for(Notification p : list_notifications) {
+            if (p.getData_temp().equals(notification.getData_temp())){
+                list_notifications.remove(p);
+                break;
+            }
+        }
+        String json_notifications = mGconverter.toJson(list_notifications);
+        getPrefs().putString("notifications",json_notifications);
     }
 
 }

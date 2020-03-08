@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_height="wrap_content">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_margin="8dp">
@@ -19,5 +19,5 @@
                 android:textColor="?attr/textcolor"
                 android:layout_height="wrap_content" android:id="@+id/link_title"
                 app:layout_constraintStart_toEndOf="@+id/img_link" android:layout_marginStart="8dp"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

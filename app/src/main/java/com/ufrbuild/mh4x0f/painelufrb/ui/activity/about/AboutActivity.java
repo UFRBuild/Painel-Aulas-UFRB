@@ -20,16 +20,18 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.about;
 
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.ufrbuild.mh4x0f.painelufrb.R;
@@ -42,17 +44,26 @@ import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Contributor;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Developer;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.License;
 import com.ufrbuild.mh4x0f.painelufrb.ui.activity.about.models.Links;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseActivity;
 import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AboutActivity extends AppCompatActivity implements
+import javax.inject.Inject;
+
+public class AboutActivity extends BaseActivity<AboutViewModel> implements
         DevelopersAdapter.OnDevelopersAdapter,
         ContributorAdapter.OnContributorAdapter,
         LinksAdapter.OnLinksAdapter, LicenseAdapter.OnLicenseAdapter{
     private Toolbar mToolbar;
+    @Inject
     DataManager mDataManager;
+    @Inject
+    CommonUtils utils;
+    AboutViewModel viewModel;
+    @Inject
+    ViewModelProvider.Factory factory;
     @BindView(R.id.rv_developers)
     RecyclerView rv_developers;
     @BindView(R.id.rv_contributors) RecyclerView rv_contributors;
@@ -69,12 +80,11 @@ public class AboutActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mDataManager = DataManager.getInstance();
+        super.onCreate(savedInstanceState);
         if(mDataManager.getPrefs().getBoolean(getString(R.string.theme_key))) {
             setTheme(R.style.Darktheme);
         }
         else  setTheme(R.style.AppTheme);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
 
@@ -83,7 +93,7 @@ public class AboutActivity extends AppCompatActivity implements
         getSupportActionBar().setTitle(R.string.action_title_about);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CommonUtils.getSupportActionBar(this);
+        utils.getSupportActionBar(this);
 
 
         ButterKnife.bind(this);
@@ -119,6 +129,18 @@ public class AboutActivity extends AppCompatActivity implements
         mLinksAdapter.setItems(getAllLinks());
         mLicensesAdapter.setItems(getAllLicenses());
 
+
+    }
+
+    @Override
+    public AboutViewModel getViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(AboutViewModel.class);
+        return viewModel;
+
+    }
+
+    @Override
+    protected void setUp() {
 
     }
 
@@ -191,6 +213,10 @@ public class AboutActivity extends AppCompatActivity implements
                 "anjlab", "A lightweight implementation of Android In-app Billing Version 3",
                 "https://github.com/anjlab/android-inapp-billing-v3"));
 
+        licenses.add(new License("ChocoBar",
+                "Pradyuman Dixit", "The usual Snackbar with more chocolate_bar and colours",
+                "https://github.com/Pradyuman7/ChocoBar"));
+
         licenses.add(new License("Freepik",
                 "Freepik", "The icon logo this project",
                 "https://www.flaticon.com/free-icon/computer_1846883"));
@@ -202,6 +228,7 @@ public class AboutActivity extends AppCompatActivity implements
         licenses.add(new License("Cloud icon free",
                 "Good Ware", "No internet connection",
                 "https://www.flaticon.com/free-icon/cloud_784675"));
+
 
         return licenses;
     }

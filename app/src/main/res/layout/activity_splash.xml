@@ -7,7 +7,7 @@
                 android:background="@color/primary"
                 tools:context=".ui.activity.splash.SplashActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -26,6 +26,6 @@
                 app:srcCompat="@mipmap/ic_launcher_foreground"
                 tools:ignore="VectorDrawableCompat"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

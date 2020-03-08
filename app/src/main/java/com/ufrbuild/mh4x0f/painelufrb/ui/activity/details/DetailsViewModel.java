@@ -19,17 +19,25 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.ui.activity.details;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.content.Intent;
 
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.Discipline;
+import com.ufrbuild.mh4x0f.painelufrb.ui.base.BaseViewModel;
 
-public class DetailsViewModel extends ViewModel {
+import javax.inject.Inject;
+
+public class DetailsViewModel extends BaseViewModel {
 
     MutableLiveData<Discipline> mDisciplines;
 
-    public DetailsViewModel() {
+    private DataManager store;
+
+    @Inject
+    public DetailsViewModel(DataManager store) {
+        this.store = store;
         this.mDisciplines = new MutableLiveData<>();
     }
 

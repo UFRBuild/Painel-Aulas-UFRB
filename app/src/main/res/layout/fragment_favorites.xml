@@ -1,12 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:background="@drawable/bg_header_invert"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical">
+
+
+    <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="center" android:layout_marginTop="8dp">
+        <Button
+                android:layout_width="40dp"
+                android:layout_height="4dp" android:id="@+id/btn_up"
+                android:background="@drawable/bg_color_upbutton" android:layout_marginBottom="2dp"/>
+    </LinearLayout>
+
 
     <TextView
-            android:text="Home Favorites"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_alignParentStart="true"
-            android:layout_marginStart="150dp" android:layout_alignParentBottom="true" android:id="@+id/textView"
-            android:layout_marginBottom="260dp"/>
-</RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/title_recycler"
+            android:text="Favoritos"
+            android:textStyle="bold" android:textSize="18sp" android:fontFamily="@font/montserrat"
+            android:layout_marginEnd="16dp" android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp" android:paddingBottom="8dp" android:paddingTop="4dp"
+            android:textColor="?attr/item_disciplineTitle"/>
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/swipe_refresh_favorites" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="?attr/cardbackground"
+                        android:textColor="?attr/textcolor"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp" app:cardCornerRadius="4dp"
+                        android:id="@+id/card_view_spinner" android:layout_margin="8dp" android:visibility="gone">
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:id="@+id/empty_view_favorites">
+
+                        <ImageView
+                                android:id="@+id/image_state_favorites"
+                                android:layout_width="128dp"
+                                android:layout_height="128dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/developing"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:layout_constraintTop_toBottomOf="@+id/image_state_favorites">
+                            <TextView
+                                    android:id="@+id/title_states_favorites"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="?attr/textcolor"
+                                    android:text="@string/title_emptyview_favorites"
+                                    android:visibility="visible" android:fontFamily="@font/montserrat"
+                                    android:textStyle="bold" android:layout_margin="8dp"/>
+
+                            <TextView
+                                    android:id="@+id/subtitle_states_favorites"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/montserrat"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/sub_title_emptyview_favorites"
+                                    android:textColor="?attr/textcolor" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_view_favorites"
+                            android:layout_width="match_parent"
+                            android:requiresFadingEdge="horizontal|vertical"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:fastScrollEnabled="false"/>
+
+
+                    <com.dmitrymalkovich.android.ProgressFloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/fab_margin"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="8dp"
+                            android:clickable="true"
+                            android:paddingBottom="48dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                android:id="@+id/floatingButtonAction_favorites"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:baselineAlignBottom="true"
+                                android:src="@drawable/ic_update_black_24dp"
+                                app:elevation="2dp"
+                                app:useCompatPadding="false" />
+
+                        <ProgressBar
+                                android:id="@+id/progress_bar_favorites"
+                                style="@style/Widget.AppCompat.ProgressBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                    </com.dmitrymalkovich.android.ProgressFloatingActionButton>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

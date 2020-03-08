@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp">
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:cardCornerRadius="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="?attr/cardbackground"
+            app:cardUseCompatPadding="true">android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout6"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center">
+
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:gravity="right" android:id="@+id/linearLayout3"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                        android:id="@+id/tv_title_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp"
+                        android:text="Novidade! agora teremos uma area de Últimas Notícias"
+                        android:textColor="?attr/item_disciplineTitle"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                <ImageView
+                        android:id="@+id/img_closeDialogNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="4dp"
+                        app:srcCompat="@drawable/ic_close_black_24dp"
+                        tools:ignore="VectorDrawableCompat" />
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" android:layout_margin="8dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    android:id="@+id/linearLayout5"
+                    tools:ignore="MissingConstraints">
+
+                <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.6dp"
+                        android:background="?attr/divider_item_color" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/tv_content_notification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lorem ipsum vulputate mauris platea amet vitae molestie, suscipit vivamus orci etiam aliquam fermentum suspendisse, himenaeos facilisis quisque vestibulum etiam libero. aenean netus scelerisque convallis vel porta mi porttitor, proin auctor nostra semper consequat varius platea nam, dictumst nibh taciti euismod tincidunt cubilia. laoreet quisque eu primis curabitur sit donec gravida eget purus nulla, sagittis dapibus lobortis mollis tristique condimentum laoreet"
+                            android:textColor="?attr/textcolor" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                    <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_forum_black_24dp"
+                            tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                            android:id="@+id/tv_date_notification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:gravity="right"
+                            android:paddingLeft="4dp"
+                            android:text="08/10/2019 as 7:00 PM"
+                            android:textColor="?attr/textcolor" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_margin="8dp" tools:ignore="MissingConstraints" android:id="@+id/linearLayout7"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

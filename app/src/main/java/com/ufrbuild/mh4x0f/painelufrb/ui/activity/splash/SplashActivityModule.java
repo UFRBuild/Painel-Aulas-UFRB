@@ -17,22 +17,26 @@
     limitations under the License.
  */
 
-package com.ufrbuild.mh4x0f.painelufrb;
+package com.ufrbuild.mh4x0f.painelufrb.ui.activity.splash;
 
-import android.app.Application;
+import androidx.lifecycle.ViewModelProvider;
 
-public class App extends Application {
+import com.ufrbuild.mh4x0f.painelufrb.data.DataManager;
+import com.ufrbuild.mh4x0f.painelufrb.di.factory.ViewModelProviderFactory;
 
-    private static App sInstance;
+import dagger.Module;
+import dagger.Provides;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        sInstance = this;
+@Module
+public class SplashActivityModule {
+
+    @Provides
+    SplashViewModel providesViewModel(DataManager store){
+        return new SplashViewModel(store);
     }
 
-    public static App getInstance() {
-        return sInstance;
+    @Provides
+    ViewModelProvider.Factory provideViewModelProvider(SplashViewModel viewModel){
+        return new ViewModelProviderFactory<>(viewModel);
     }
-
 }

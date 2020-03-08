@@ -19,45 +19,23 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.data.network.services;
 
-import android.os.Build;
 import com.ufrbuild.mh4x0f.painelufrb.data.network.model.TimeServer;
-import com.ufrbuild.mh4x0f.painelufrb.utils.NetworkUtils;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
+@Singleton
 public class TimeServerService {
-    private static final String URL = "https://smsa.ufrb.edu.br/backend/Time/";
+
 
     private TimeServerService.TimerApi mTimerApi;
 
-    private static TimeServerService instance;
-
-
-    public static TimeServerService getInstance() {
-        if (instance == null) {
-            instance = new TimeServerService();
-        }
-
-        return instance;
-    }
-
-
-    private TimeServerService() {
-        Retrofit mRetrofit;
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            mRetrofit = new Retrofit.Builder().
-                    addConverterFactory(GsonConverterFactory.create())
-                    .client(NetworkUtils.getUnsafeOkHttpClient().build())
-                    .baseUrl(URL).build();
-        }
-        else{
-            mRetrofit = new Retrofit.Builder().
-                    addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(URL).build();
-        }
-        mTimerApi = mRetrofit.create(TimerApi.class);
+    @Inject
+    public TimeServerService(@Named("Timer") Retrofit retrofit) {
+        mTimerApi = retrofit.create(TimerApi.class);
     }
 
     public TimeServerService.TimerApi getTimerServerApi() {

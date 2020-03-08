@@ -19,44 +19,94 @@
 
 package com.ufrbuild.mh4x0f.painelufrb.data.network.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ufrbuild.mh4x0f.painelufrb.utils.CommonUtils;
 
-public class Discipline implements Parcelable{
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+@Entity(tableName = "DisciplineDetails")
+public class Discipline implements Parcelable, Comparable<Discipline> {
+
+
+    private static final Pattern pHours = Pattern.compile("\\d+");
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "IdTable")
+    private int idtable;
+
+    @Expose
+    @SerializedName("id")
+    @ColumnInfo(name = "Id")
+    private String id;
 
     @Expose
     @SerializedName("name")
+    @ColumnInfo(name = "Name")
     private String name;
 
     @Expose
     @SerializedName("description")
+    @ColumnInfo(name = "Description")
     private String description;
 
     @Expose
     @SerializedName("room_name")
+    @ColumnInfo(name = "RoomName")
     private String room_name;
 
     @Expose
     @SerializedName("start_time")
+    @ColumnInfo(name = "StartTime")
     private long start_time;
 
     @Expose
     @SerializedName("duration")
+    @ColumnInfo(name = "Duration")
     private long duration;
 
     @Expose
     @SerializedName("status")
+    @ColumnInfo(name = "Status")
     private int status;
 
+    @ColumnInfo(name = "DayOfWeek")
+    private int day_week;
+
+    @ColumnInfo(name = "PavilionName")
+    private String pavilionName;
+
+    @Ignore
+    private ArrayList<Integer> weeksdays;
+
+    public Discipline(String id,String name, String description,
+                      String room_name, long start_time, long duration, int status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.room_name = room_name;
+        this.start_time = start_time;
+        this.duration = duration;
+        this.status = status;
+    }
+
     protected Discipline(Parcel in) {
+        id  = in.readString();
         name = in.readString();
         description = in.readString();
         room_name = in.readString();
         duration = in.readLong();
         start_time = in.readLong();
         status = in.readInt();
+        day_week = in.readInt();
     }
 
     public static final Creator<Discipline> CREATOR = new Creator<Discipline>() {
@@ -73,6 +123,18 @@ public class Discipline implements Parcelable{
 
     public String getDescription() {
         return description;
+    }
+
+    public String getPavilionName() {
+        return pavilionName;
+    }
+
+    public void setPavilionName(String pavilionName) {
+        this.pavilionName = pavilionName;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -104,6 +166,45 @@ public class Discipline implements Parcelable{
         this.duration = duration;
     }
 
+    public int getIdtable() {
+        return idtable;
+    }
+
+    public void setIdtable(int idtable) {
+        this.idtable = idtable;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getDay_week() {
+        return day_week;
+    }
+
+    public void setDay_week(int DAY_OF_WEEK) {
+        this.day_week = DAY_OF_WEEK;
+    }
+
+    public ArrayList<Integer> getWeeksdays() {
+        return weeksdays;
+    }
+
+    public void setWeeksdays(ArrayList<Integer> weeksdays) {
+        this.weeksdays = weeksdays;
+    }
 
     @Override
     public int describeContents() {
@@ -118,5 +219,23 @@ public class Discipline implements Parcelable{
         parcel.writeString(room_name);
         parcel.writeString(description);
         parcel.writeString(name);
+        parcel.writeString(id);
+        parcel.writeInt(day_week);
+    }
+
+    @Override
+    public int compareTo(Discipline another) {
+        int hours_class = 0, hours_args = 0;
+        Matcher m_class = pHours.matcher(CommonUtils.intToTimeString(this.getStart_time(), -3));
+        Matcher m_args = pHours.matcher(CommonUtils.intToTimeString(another.getStart_time(), -3));
+
+        if (m_class.find()) {
+            hours_class = Integer.parseInt(m_class.group(0));
+        }
+        if (m_args.find()) {
+            hours_args = Integer.parseInt(m_args.group(0));
+        }
+
+        return Integer.compare(hours_class, hours_args);
     }
 }
