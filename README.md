@@ -1,11 +1,15 @@
-### Painel de Aulas - UFRB
+### Painel de Aulas - UFRB - Deprecated
 Com o aplicativo os estudantes da UFRB( Campus Cruz da Almas ) serão capazes de acessar o painel das salas de aula e laboratórios usando um Smartphone.
 
 O App permite o monitoramento do uso das salas de aula e laboratórios da UFRB de forma simples e objetiva. Ou seja, você não precisa mais ficar o tempo todo olhando para tela na portaria para ficar atualizado.
 
+## OBS 
+O aplicativo foi removido da google play por conta de uma nova atualização do sistema SMSA  (Sistema de Monitoramento de Sala de Aulas - UFRB ) que dificulta o app funcionar da maneira que foi projetada, é muito simples fazer o bypass porém infelizmente não tenho tempo pra isso. UFRB so decepção kkk 
+
 Qualquer um da universidade que souber programação, design, quiser ajudar a melhorar o app com sugestões ou colocar algo novo é bem vindo.
 
 O aplicativo oficial [Google play](https://play.google.com/store/apps/details?id=com.ufrbuild.mh4x0f.painelufrb)
+
 
 ### Metas
 - [ ] Disciplinas Favoritas
